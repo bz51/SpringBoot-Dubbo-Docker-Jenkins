@@ -42,6 +42,13 @@
 		</dependency>
 	</dependencies>
 
+	<modules>
+		<module>Gaoxi-Analysis</module>
+		<module>Gaoxi-Order</module>
+		<module>Gaoxi-Product</module>
+		<module>Gaoxi-User</module>
+	</modules>
+
 	<build>
 		<plugins>
 			<plugin>
