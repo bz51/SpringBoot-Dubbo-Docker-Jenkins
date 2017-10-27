@@ -59,7 +59,8 @@
 		<dependency>
 			<groupId>com.gaoxi</groupId>
 			<artifactId>gaoxi-common-service-facade</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.1</version>
+			<scope>compile</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
