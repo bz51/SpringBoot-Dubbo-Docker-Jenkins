@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ExampleControllerImpl implements ExampleController {
 
-//    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0")
     private ExampleService exampleService;
 
     @Override
     @RequestMapping("hello")
     public String hello() {
-//        return exampleService.hello();
-        return "hello";
+        return exampleService.hello();
+//        return "hello";
     }
 }
