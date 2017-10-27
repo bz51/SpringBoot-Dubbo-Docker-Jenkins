@@ -54,6 +54,30 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+		<!-- gaoxi-common-service-facade -->
+		<dependency>
+			<groupId>com.gaoxi</groupId>
+			<artifactId>gaoxi-common-service-facade</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-test</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- Spring Boot Dubbo 依赖 -->
+		<dependency>
+			<groupId>io.dubbo.springboot</groupId>
+			<artifactId>spring-boot-starter-dubbo</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<modules>
@@ -61,6 +85,7 @@
 		<module>Gaoxi-Order</module>
 		<module>Gaoxi-Product</module>
 		<module>Gaoxi-User</module>
+		<module>Gaoxi-Common-Service-Facade</module>
 	</modules>
 
 	<build>
