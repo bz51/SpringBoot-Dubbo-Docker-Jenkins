@@ -1,7 +1,6 @@
 package com.gaoxi.gaoxicontroller.controller.impl;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.gaoxi.gaoxicommonservicefacade.user.ExampleService;
 import com.gaoxi.gaoxicontroller.controller.ExampleController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
