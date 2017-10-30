@@ -25,7 +25,7 @@ public class ExceptionHandle {
      * @param <T>
      * @return
      */
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(CommonBizException.class)
     public <T> Result<T> exceptionHandler(CommonBizException exception) {
         return Result.newFailureResult(exception);
     }
