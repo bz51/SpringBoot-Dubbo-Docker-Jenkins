@@ -1,10 +1,12 @@
 package com.gaoxi.entity.user;
 
+import java.io.Serializable;
+
 /**
  * @Author 大闲人柴毛毛
  * @Date 2017/10/30 下午6:11
  */
-public class UserEntity {
+public class UserEntity implements Serializable {
     private String id;
     private String username;
     private String password;
@@ -31,5 +33,14 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
