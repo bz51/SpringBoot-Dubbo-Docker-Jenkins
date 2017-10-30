@@ -25,7 +25,7 @@ public interface DemoDAO {
             @Result(property = "title",  column = "title"),
             @Result(property = "content",  column = "content"),
             @Result(property = "userEntity",  column = "user_id", one = @One(select = "com.gaoxi.user.dao.DemoDAO.findUserById")),
-            @Result(property = "userEntity",  column = "user_id", many = @Many(select = "com.gaoxi.user.dao.DemoDAO.findCommentsByArticleId"))
+            @Result(property = "commentEntityList",  column = "id", many = @Many(select = "com.gaoxi.user.dao.DemoDAO.findCommentsByArticleId"))
     })
     List<ArticleEntity> findArticlesByUserId(String userId);
 
