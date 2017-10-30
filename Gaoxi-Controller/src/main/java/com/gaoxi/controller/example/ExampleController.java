@@ -1,7 +1,9 @@
 package com.gaoxi.controller.example;
 
 
+import com.gaoxi.dto.Result;
+
 public interface ExampleController {
 
-    public String hello();
+    public Result<String> hello();
 }

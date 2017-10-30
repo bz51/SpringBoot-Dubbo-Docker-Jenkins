@@ -1,6 +1,7 @@
 package com.gaoxi.controller.example;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.gaoxi.dto.Result;
 import com.gaoxi.facade.user.ExampleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,14 +19,7 @@ public class ExampleControllerImpl implements ExampleController {
 
     @Override
     @RequestMapping("hello")
-    public String hello() {
-        try {
-            return exampleService.hello();
-        } catch (Exception e) {
-            e.printStackTrace();
-            logger.error("",e);
-            return e.toString();
-        }
-
+    public Result<String> hello() {
+        return Result.newSuccessResult(exampleService.hello());
     }
 }
