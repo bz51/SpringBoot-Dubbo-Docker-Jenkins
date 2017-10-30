@@ -8,6 +8,6 @@ import com.gaoxi.dto.Result;
  */
 public interface UserController {
 
-    public Result<String> hello();
+//    public Result<String> hello();
 
 }
