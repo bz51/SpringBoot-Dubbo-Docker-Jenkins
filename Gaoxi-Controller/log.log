@@ -65,7 +65,7 @@
 2017-10-30 12:08:04.007  INFO 1083 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
 2017-10-30 12:08:04.013  INFO 1083 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello]}" onto public java.lang.String com.gaoxi.controller.example.ExampleControllerImpl.hello()
 2017-10-30 12:08:04.016  WARN 1083 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map '/user' method 
-public com.gaoxi.dto.Result<java.lang.String> com.gaoxi.controller.user.UserControllerImpl.hello()
+public com.gaoxi.rsp.Result<java.lang.String> com.gaoxi.controller.user.UserControllerImpl.hello()
 to {[/hello]}: There is already 'exampleControllerImpl' bean method
 public java.lang.String com.gaoxi.controller.example.ExampleControllerImpl.hello() mapped.
 2017-10-30 12:08:04.030  INFO 1083 --- [main] utoConfigurationReportLoggingInitializer : 
@@ -74,7 +74,7 @@ Error starting ApplicationContext. To display the auto-configuration report re-r
 2017-10-30 12:08:04.054 ERROR 1083 --- [main] o.s.boot.SpringApplication               : Application startup failed
 
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map '/user' method 
-public com.gaoxi.dto.Result<java.lang.String> com.gaoxi.controller.user.UserControllerImpl.hello()
+public com.gaoxi.rsp.Result<java.lang.String> com.gaoxi.controller.user.UserControllerImpl.hello()
 to {[/hello]}: There is already 'exampleControllerImpl' bean method
 public java.lang.String com.gaoxi.controller.example.ExampleControllerImpl.hello() mapped.
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1628) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
@@ -120,7 +120,7 @@ public java.lang.String com.gaoxi.controller.example.ExampleControllerImpl.hello
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
 Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map '/user' method 
-public com.gaoxi.dto.Result<java.lang.String> com.gaoxi.controller.user.UserControllerImpl.hello()
+public com.gaoxi.rsp.Result<java.lang.String> com.gaoxi.controller.user.UserControllerImpl.hello()
 to {[/hello]}: There is already 'exampleControllerImpl' bean method
 public java.lang.String com.gaoxi.controller.example.ExampleControllerImpl.hello() mapped.
 	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.assertUniqueMethodMapping(AbstractHandlerMethodMapping.java:576) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
@@ -165,7 +165,7 @@ java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155) [surefire-booter-2.18.1.jar:2.18.1]
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103) [surefire-booter-2.18.1.jar:2.18.1]
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map '/user' method 
-public com.gaoxi.dto.Result<java.lang.String> com.gaoxi.controller.user.UserControllerImpl.hello()
+public com.gaoxi.rsp.Result<java.lang.String> com.gaoxi.controller.user.UserControllerImpl.hello()
 to {[/hello]}: There is already 'exampleControllerImpl' bean method
 public java.lang.String com.gaoxi.controller.example.ExampleControllerImpl.hello() mapped.
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1628) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
@@ -186,7 +186,7 @@ public java.lang.String com.gaoxi.controller.example.ExampleControllerImpl.hello
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116) ~[spring-test-4.3.12.RELEASE.jar:4.3.12.RELEASE]
 	... 26 common frames omitted
 Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map '/user' method 
-public com.gaoxi.dto.Result<java.lang.String> com.gaoxi.controller.user.UserControllerImpl.hello()
+public com.gaoxi.rsp.Result<java.lang.String> com.gaoxi.controller.user.UserControllerImpl.hello()
 to {[/hello]}: There is already 'exampleControllerImpl' bean method
 public java.lang.String com.gaoxi.controller.example.ExampleControllerImpl.hello() mapped.
 	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.assertUniqueMethodMapping(AbstractHandlerMethodMapping.java:576) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]

@@ -1,6 +1,6 @@
 package com.gaoxi.handle;
 
-import com.gaoxi.dto.Result;
+import com.gaoxi.rsp.Result;
 import com.gaoxi.exception.CommonBizException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

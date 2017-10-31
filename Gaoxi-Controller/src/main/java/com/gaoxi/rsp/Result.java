@@ -1,4 +1,4 @@
-package com.gaoxi.dto;
+package com.gaoxi.rsp;
 
 import com.gaoxi.exception.CommonBizException;
 import com.gaoxi.exception.ExpCodeEnum;

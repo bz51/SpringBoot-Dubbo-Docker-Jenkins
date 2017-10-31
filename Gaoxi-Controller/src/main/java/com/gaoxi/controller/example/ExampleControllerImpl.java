@@ -1,7 +1,7 @@
 package com.gaoxi.controller.example;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.gaoxi.dto.Result;
+import com.gaoxi.rsp.Result;
 import com.gaoxi.entity.user.ArticleEntity;
 import com.gaoxi.facade.user.ExampleService;
 import org.slf4j.Logger;

@@ -1,7 +1,7 @@
 package com.gaoxi.controller.example;
 
 
-import com.gaoxi.dto.Result;
+import com.gaoxi.rsp.Result;
 import com.gaoxi.entity.user.ArticleEntity;
 
 import java.util.List;
