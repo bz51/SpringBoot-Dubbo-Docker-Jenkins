@@ -7,6 +7,7 @@ import com.gaoxi.rsp.Result;
 import com.gaoxi.entity.product.ImageEntity;
 import com.gaoxi.entity.product.ProductEntity;
 import org.omg.CORBA.PUBLIC_MEMBER;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -17,6 +18,9 @@ import java.util.List;
  * @description 产品系统的Controller
  */
 public interface ProductController {
+
+    @GetMapping("chaimm")
+    public Result test();
 
     /**
      * 创建产品

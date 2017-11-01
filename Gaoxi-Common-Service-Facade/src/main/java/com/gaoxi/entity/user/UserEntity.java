@@ -11,6 +11,8 @@ public class UserEntity implements Serializable {
     private String username;
     private String password;
 
+    // TODO UserEntity仍需完善……
+
     public String getId() {
         return id;
     }

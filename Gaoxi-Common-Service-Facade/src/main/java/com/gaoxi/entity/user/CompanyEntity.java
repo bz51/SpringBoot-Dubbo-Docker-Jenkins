@@ -7,10 +7,7 @@ import java.io.Serializable;
  * @date 2017/10/31 下午3:48
  * @description 公司账户信息的实体类
  */
-public class CompanyEntity implements Serializable{
-
-    /** 主键 */
-    private String id;
+public class CompanyEntity extends UserEntity implements Serializable{
 
     // TODO CompanyEntity仍需完善
 }

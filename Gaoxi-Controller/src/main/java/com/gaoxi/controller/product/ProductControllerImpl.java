@@ -1,6 +1,8 @@
 package com.gaoxi.controller.product;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.gaoxi.annotation.Login;
+import com.gaoxi.annotation.Role;
 import com.gaoxi.entity.product.BrandEntity;
 import com.gaoxi.entity.product.CategoryEntity;
 import com.gaoxi.entity.product.ImageEntity;
@@ -24,13 +26,22 @@ public class ProductControllerImpl implements ProductController {
     private ProductService productService;
 
     @Override
+    public Result test() {
+        return Result.newSuccessResult();
+    }
+
+    @Override
     @PostMapping("product")
+    @Login
+    @Role("admin")
     public Result createProduct(ProductEntity productEntity) {
         return null;
     }
 
     @Override
     @PostMapping("image")
+    @Login
+    @Role("role1")
     public Result<ImageEntity> uploadImage(MultipartFile file) {
         return null;
     }

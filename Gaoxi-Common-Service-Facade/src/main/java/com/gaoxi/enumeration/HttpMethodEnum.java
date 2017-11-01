@@ -2,15 +2,19 @@ package com.gaoxi.enumeration;
 
 /**
  * @author 大闲人柴毛毛
- * @date 2017/10/31 下午2:40
- * @description 枚举的顶层父类
+ * @date 2017/11/1 上午11:09
+ * @description HTTP请求方式的枚举类
  */
-public class BaseEnum {
+public enum HttpMethodEnum {
+    GET(1,"GET"),
+    POST(2,"POST"),
+    PUT(3,"PUT"),
+    DELETE(4,"DELETE");
 
-    protected int code;
-    protected String msg;
+    private int code;
+    private String msg;
 
-    public BaseEnum(int code, String msg) {
+    HttpMethodEnum(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }
