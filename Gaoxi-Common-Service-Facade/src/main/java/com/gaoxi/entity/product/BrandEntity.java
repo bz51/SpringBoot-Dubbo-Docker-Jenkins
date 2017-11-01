@@ -1,8 +1,7 @@
 package com.gaoxi.entity.product;
 
-import com.gaoxi.entity.user.CompanyEntity;
+import com.gaoxi.entity.user.UserEntity;
 
-import java.awt.*;
 import java.io.Serializable;
 
 /**
@@ -22,7 +21,7 @@ public class BrandEntity implements Serializable{
     private ImageEntity brandLogo;
 
     /** 品牌所属企业 */
-    private CompanyEntity companyEntity;
+    private UserEntity companyEntity;
 
     /** 品牌排序（权值越高，排名越前） */
     private int sort;
@@ -59,11 +58,11 @@ public class BrandEntity implements Serializable{
         this.brandLogo = brandLogo;
     }
 
-    public CompanyEntity getCompanyEntity() {
+    public UserEntity getCompanyEntity() {
         return companyEntity;
     }
 
-    public void setCompanyEntity(CompanyEntity companyEntity) {
+    public void setCompanyEntity(UserEntity companyEntity) {
         this.companyEntity = companyEntity;
     }
 

@@ -1,8 +1,6 @@
 package com.gaoxi.controller.product;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.gaoxi.annotation.Login;
-import com.gaoxi.annotation.Role;
 import com.gaoxi.entity.product.BrandEntity;
 import com.gaoxi.entity.product.CategoryEntity;
 import com.gaoxi.entity.product.ImageEntity;

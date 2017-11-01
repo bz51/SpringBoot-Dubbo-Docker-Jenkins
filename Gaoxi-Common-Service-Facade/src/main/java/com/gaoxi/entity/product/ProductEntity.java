@@ -1,6 +1,6 @@
 package com.gaoxi.entity.product;
 
-import com.gaoxi.entity.user.CompanyEntity;
+import com.gaoxi.entity.user.UserEntity;
 import com.gaoxi.enumeration.product.ProdStateEnum;
 
 import java.util.List;
@@ -52,7 +52,7 @@ public class ProductEntity {
     private String content;
 
     /** 产品所属企业信息 */
-    private CompanyEntity companyEntity;
+    private UserEntity companyEntity;
 
 
     public String getId() {
@@ -151,11 +151,11 @@ public class ProductEntity {
         this.content = content;
     }
 
-    public CompanyEntity getCompanyEntity() {
+    public UserEntity getCompanyEntity() {
         return companyEntity;
     }
 
-    public void setCompanyEntity(CompanyEntity companyEntity) {
+    public void setCompanyEntity(UserEntity companyEntity) {
         this.companyEntity = companyEntity;
     }
 

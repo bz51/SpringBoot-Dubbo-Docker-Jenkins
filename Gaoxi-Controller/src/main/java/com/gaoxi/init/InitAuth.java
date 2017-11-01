@@ -8,6 +8,7 @@ import com.gaoxi.annotation.Login;
 import com.gaoxi.annotation.Role;
 import com.gaoxi.entity.user.UserEntity;
 import com.gaoxi.enumeration.HttpMethodEnum;
+import com.gaoxi.facade.redis.RedisUtilsFacade;
 import com.gaoxi.facade.user.UserService;
 import com.gaoxi.utils.AnnotationUtil;
 import com.gaoxi.utils.ClassUtil;
@@ -42,6 +43,9 @@ public class InitAuth implements CommandLineRunner {
 
     @Reference
     private UserService userService;
+
+    @Reference
+    private RedisUtilsFacade redisUtils;
 
     /** 用户信息列表 */
     private List<UserEntity> userEntityList = Lists.newArrayList();
@@ -95,6 +99,11 @@ public class InitAuth implements CommandLineRunner {
                     accessAuthMap.put(key, accessAuthEntity);
                 }
             }
+        }
+
+        // 将接口访问权限加入Redis中
+        if (!accessAuthMap.isEmpty()) {
+            redisUtils.set("accessAuthMap", accessAuthMap);
         }
     }
 

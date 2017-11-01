@@ -6,7 +6,6 @@ import com.gaoxi.req.product.ProdQueryReq;
 import com.gaoxi.rsp.Result;
 import com.gaoxi.entity.product.ImageEntity;
 import com.gaoxi.entity.product.ProductEntity;
-import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

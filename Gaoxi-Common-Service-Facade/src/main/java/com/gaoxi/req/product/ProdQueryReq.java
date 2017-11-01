@@ -1,6 +1,5 @@
 package com.gaoxi.req.product;
 
-import com.gaoxi.req.AbsReq;
 import com.gaoxi.req.QueryReq;
 
 /**
@@ -22,25 +21,26 @@ public class ProdQueryReq extends QueryReq {
     private String shopPriceEnd;
 
     /** 一级类别id */
-    private int topCategoryId;
+    private String topCategoryId;
     /** 二级类别id */
-    private int subCategoryId;
+    private String subCategoryId;
 
     /** 品牌id */
-    private int brandId;
+    private String brandId;
 
     /** 产品状态码 {@link com.gaoxi.enumeration.product.ProdStateEnum} */
-    private int prodStateCode;
+    private Integer prodStateCode;
 
     /** 公司id */
     private String companyId;
 
 
-    /** 根据价格排序(选填：desc、asc、不填) */
-    private int orderByPrice;
+    /** 根据价格排序 {@link com.gaoxi.enumeration.OrderEnum} */
+    private Integer orderByPrice;
 
-    /** 根据销量排序(选填：desc、asc、不填) */
-    private int orderBySales;
+    /** 根据销量排序 {@link com.gaoxi.enumeration.OrderEnum} */
+    private Integer orderBySales;
+
 
     public String getId() {
         return id;
@@ -74,35 +74,35 @@ public class ProdQueryReq extends QueryReq {
         this.shopPriceEnd = shopPriceEnd;
     }
 
-    public int getTopCategoryId() {
+    public String getTopCategoryId() {
         return topCategoryId;
     }
 
-    public void setTopCategoryId(int topCategoryId) {
+    public void setTopCategoryId(String topCategoryId) {
         this.topCategoryId = topCategoryId;
     }
 
-    public int getSubCategoryId() {
+    public String getSubCategoryId() {
         return subCategoryId;
     }
 
-    public void setSubCategoryId(int subCategoryId) {
+    public void setSubCategoryId(String subCategoryId) {
         this.subCategoryId = subCategoryId;
     }
 
-    public int getBrandId() {
+    public String getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(int brandId) {
+    public void setBrandId(String brandId) {
         this.brandId = brandId;
     }
 
-    public int getProdStateCode() {
+    public Integer getProdStateCode() {
         return prodStateCode;
     }
 
-    public void setProdStateCode(int prodStateCode) {
+    public void setProdStateCode(Integer prodStateCode) {
         this.prodStateCode = prodStateCode;
     }
 
@@ -114,19 +114,19 @@ public class ProdQueryReq extends QueryReq {
         this.companyId = companyId;
     }
 
-    public int getOrderByPrice() {
+    public Integer getOrderByPrice() {
         return orderByPrice;
     }
 
-    public void setOrderByPrice(int orderByPrice) {
+    public void setOrderByPrice(Integer orderByPrice) {
         this.orderByPrice = orderByPrice;
     }
 
-    public int getOrderBySales() {
+    public Integer getOrderBySales() {
         return orderBySales;
     }
 
-    public void setOrderBySales(int orderBySales) {
+    public void setOrderBySales(Integer orderBySales) {
         this.orderBySales = orderBySales;
     }
 
@@ -137,9 +137,9 @@ public class ProdQueryReq extends QueryReq {
                 ", prodName='" + prodName + '\'' +
                 ", shopPriceStart='" + shopPriceStart + '\'' +
                 ", shopPriceEnd='" + shopPriceEnd + '\'' +
-                ", topCategoryId=" + topCategoryId +
-                ", subCategoryId=" + subCategoryId +
-                ", brandId=" + brandId +
+                ", topCategoryId='" + topCategoryId + '\'' +
+                ", subCategoryId='" + subCategoryId + '\'' +
+                ", brandId='" + brandId + '\'' +
                 ", prodStateCode=" + prodStateCode +
                 ", companyId='" + companyId + '\'' +
                 ", orderByPrice=" + orderByPrice +

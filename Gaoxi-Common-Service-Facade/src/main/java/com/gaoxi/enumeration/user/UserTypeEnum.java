@@ -1,16 +1,18 @@
-package com.gaoxi.enumeration;
+package com.gaoxi.enumeration.user;
 
 /**
  * @author 大闲人柴毛毛
- * @date 2017/10/31 下午2:40
- * @description 枚举的顶层父类
+ * @date 2017/11/1 下午5:17
+ * @description
  */
-public class BaseEnum {
+public enum UserTypeEnum {
+    Person(1,"个人用户"),
+    Company(2,"企业用户");
 
-    protected int code;
-    protected String msg;
+    private int code;
+    private String msg;
 
-    public BaseEnum(int code, String msg) {
+    UserTypeEnum(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }

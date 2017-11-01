@@ -1,11 +1,15 @@
 package com.gaoxi.user;
 
+import com.gaoxi.user.dao.UserDAO;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
+@MapperScan("com.gaoxi.user.dao")
 public class GaoxiUserApplication extends SpringBootServletInitializer {
 
 	@Override
