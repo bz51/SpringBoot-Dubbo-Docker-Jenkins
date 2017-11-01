@@ -7,7 +7,10 @@ import com.gaoxi.rsp.Result;
 import com.gaoxi.entity.product.ImageEntity;
 import com.gaoxi.entity.product.ProductEntity;
 import org.omg.CORBA.PUBLIC_MEMBER;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -19,14 +22,13 @@ import java.util.List;
  */
 public interface ProductController {
 
-    @GetMapping("chaimm")
-    public Result test();
 
     /**
      * 创建产品
      * @param productEntity 产品详情
      * @return 是否创建成功
      */
+    @PostMapping("product")
     public Result createProduct(ProductEntity productEntity);
 
     /**
@@ -35,6 +37,7 @@ public interface ProductController {
      * @param file 待上传的文件
      * @return 图片详情
      */
+    @PostMapping("image")
     public Result<ImageEntity> uploadImage(MultipartFile file);
 
     /**
@@ -42,6 +45,7 @@ public interface ProductController {
      * @param productEntity 待修改产品（id必填 & 只提交待修改字段即可）
      * @return 是否修改成功
      */
+    @PutMapping("product")
     public Result updateProduct(ProductEntity productEntity);
 
     /**
@@ -49,6 +53,7 @@ public interface ProductController {
      * @param prodQueryReq 产品查询请求
      * @return 产品查询结果
      */
+    @GetMapping("product")
     public Result<List<ProductEntity>> findProducts(ProdQueryReq prodQueryReq);
 
     /**
@@ -56,6 +61,7 @@ public interface ProductController {
      * @param categoryEntity 产品类别参数
      * @return 是否创建成功
      */
+    @PostMapping("category")
     public Result createCategoty(CategoryEntity categoryEntity);
 
     /**
@@ -64,6 +70,7 @@ public interface ProductController {
      * @param categoryEntity 待修改类别
      * @return 是否修改成
      */
+    @PutMapping("category")
     public Result modifyCategory(CategoryEntity categoryEntity);
 
     /**
@@ -72,6 +79,7 @@ public interface ProductController {
      * @param categoryId 待删除类别的id
      * @return 删除结果
      */
+    @DeleteMapping("category/{categoryId}")
     public Result deleteCategory(String categoryId);
 
     /**
@@ -79,6 +87,7 @@ public interface ProductController {
      * @param brandEntity 品牌参数(其中品牌所属企业字段仅需填写企业id即可)
      * @return 是否创建成功
      */
+    @PostMapping("brand")
     public Result createBrand(BrandEntity brandEntity);
 
     /**
@@ -86,6 +95,7 @@ public interface ProductController {
      * @param brandEntity 待修改品牌(品牌id必填)
      * @return 是否修改成功
      */
+    @PutMapping("brand")
     public Result modifyBrand(BrandEntity brandEntity);
 
     /**
@@ -94,5 +104,6 @@ public interface ProductController {
      * @param brandId 待删除品牌的id
      * @return 是否删除成功
      */
+    @DeleteMapping("brand/{brandId}")
     public Result deleteBrand(String brandId);
 }

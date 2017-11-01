@@ -40,7 +40,7 @@ import static com.gaoxi.utils.ClassUtil.getClasses;
 @Component
 public class InitAuth implements CommandLineRunner {
 
-//    @Reference
+    @Reference
     private UserService userService;
 
     /** 用户信息列表 */
@@ -96,8 +96,6 @@ public class InitAuth implements CommandLineRunner {
                 }
             }
         }
-        System.out.println(JSON.json(accessAuthMap).toString());
-
     }
 
     /**

@@ -25,71 +25,53 @@ public class ProductControllerImpl implements ProductController {
     @Reference(version = "1.0.0")
     private ProductService productService;
 
-    @Override
-    public Result test() {
-        return Result.newSuccessResult();
-    }
 
     @Override
-    @PostMapping("product")
-    @Login
-    @Role("admin")
     public Result createProduct(ProductEntity productEntity) {
         return null;
     }
 
     @Override
-    @PostMapping("image")
-    @Login
-    @Role("role1")
     public Result<ImageEntity> uploadImage(MultipartFile file) {
         return null;
     }
 
     @Override
-    @PutMapping("product")
     public Result updateProduct(ProductEntity productEntity) {
         return null;
     }
 
     @Override
-    @GetMapping("product")
     public Result<List<ProductEntity>> findProducts(ProdQueryReq prodQueryReq) {
         return null;
     }
 
     @Override
-    @PostMapping("category")
     public Result createCategoty(CategoryEntity categoryEntity) {
         return null;
     }
 
     @Override
-    @PutMapping("category")
     public Result modifyCategory(CategoryEntity categoryEntity) {
         return null;
     }
 
     @Override
-    @DeleteMapping("category/{categoryId}")
     public Result deleteCategory(String categoryId) {
         return null;
     }
 
     @Override
-    @PostMapping("brand")
     public Result createBrand(BrandEntity brandEntity) {
         return null;
     }
 
     @Override
-    @PutMapping("brand")
     public Result modifyBrand(BrandEntity brandEntity) {
         return null;
     }
 
     @Override
-    @DeleteMapping("brand/{brandId}")
     public Result deleteBrand(String brandId) {
         return null;
     }
