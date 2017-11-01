@@ -128,7 +128,7 @@ public class Result<T> {
                 "isSuccess=" + isSuccess +
                 ", errorCode=" + errorCode +
                 ", message='" + message + '\'' +
-                ", data=" + data.toString() +
+                ", data=" + data +
                 '}';
     }
 }
