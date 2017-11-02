@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-//@Service(version = "1.0.0")
+@Service(version = "1.0.0")
 public class ExampleServiceImpl implements ExampleService {
 
     @Autowired

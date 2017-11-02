@@ -6,10 +6,10 @@
 	<groupId>com.gaoxi</groupId>
 	<artifactId>gaoxi-analysis</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>gaoxi-analysis</name>
-	<description>Demo project for Spring Boot</description>
+	<description></description>
 
 	<parent>
 		<groupId>com.gaoxi</groupId>
@@ -17,5 +17,6 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
+
 
 </project>

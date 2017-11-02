@@ -1,4 +1,4 @@
-package com.gaoxi.gaoxianalysis;
+package com.gaoxi.analysis;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

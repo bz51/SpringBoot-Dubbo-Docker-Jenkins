@@ -9,7 +9,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-@MapperScan("com.gaoxi.user.dao")
 public class GaoxiUserApplication extends SpringBootServletInitializer {
 
 	@Override
