@@ -1,7 +1,5 @@
 package com.gaoxi.enumeration.product;
 
-import com.gaoxi.enumeration.BaseEnum;
-
 /**
  * @author 大闲人柴毛毛
  * @date 2017/10/31 下午3:42
