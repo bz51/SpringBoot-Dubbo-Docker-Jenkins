@@ -5,6 +5,7 @@ import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.gaoxi.annotation.AuthScan;
 import com.gaoxi.annotation.Login;
+import com.gaoxi.annotation.Permission;
 import com.gaoxi.annotation.Role;
 import com.gaoxi.entity.user.UserEntity;
 import com.gaoxi.enumeration.HttpMethodEnum;
@@ -12,10 +13,13 @@ import com.gaoxi.facade.redis.RedisUtilsFacade;
 import com.gaoxi.facade.user.UserService;
 import com.gaoxi.utils.AnnotationUtil;
 import com.gaoxi.utils.ClassUtil;
+import com.gaoxi.utils.RedisPrefixUtil;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.apache.zookeeper.Op;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -29,6 +33,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import static com.gaoxi.utils.ClassUtil.getClasses;
 
@@ -41,34 +46,25 @@ import static com.gaoxi.utils.ClassUtil.getClasses;
 @Component
 public class InitAuth implements CommandLineRunner {
 
-    @Reference
-    private UserService userService;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Reference
+    /** Redis工具包 */
     private RedisUtilsFacade redisUtils;
-
-    /** 用户信息列表 */
-    private List<UserEntity> userEntityList = Lists.newArrayList();
 
     /** 接口权限列表 */
     private Map<String,AccessAuthEntity> accessAuthMap = Maps.newHashMap();
 
+    /** 反斜杠 */
+    private static final String Back_Slash = "/";
+
     @Override
     public void run(String... strings) throws Exception {
-        // 加载用户信息
-        loadUserInfo();
-
         // 加载接口访问权限
         loadAccessAuth();
     }
 
 
-    /**
-     * 加载用户信息
-     */
-    private void loadUserInfo() {
-
-    }
 
     /**
      * 加载接口访问权限
@@ -95,16 +91,29 @@ public class InitAuth implements CommandLineRunner {
             for (Method method : methods) {
                 AccessAuthEntity accessAuthEntity = buildAccessAuthEntity(method);
                 if (accessAuthEntity!=null) {
-                    String key = accessAuthEntity.getHttpMethodEnum().getMsg()+accessAuthEntity.getUrl();
+                    // 生成key
+                    String key = generateKey(accessAuthEntity);
+                    // 存至本地Map
                     accessAuthMap.put(key, accessAuthEntity);
+                    logger.debug("",accessAuthEntity);
                 }
             }
         }
+        // 存至Redis
+        // TODO 本地调试临时将redis注释掉!!!
+//        redisUtils.set("accessAuthMap", accessAuthMap);
+    }
 
-        // 将接口访问权限加入Redis中
-        if (!accessAuthMap.isEmpty()) {
-            redisUtils.set("accessAuthMap", accessAuthMap);
-        }
+    /**
+     * 生成接口权限信息的Key
+     * Key = 'AUTH'+请求方式+请求URL
+     * @param accessAuthEntity 接口权限信息
+     * @return Key
+     */
+    private String generateKey(AccessAuthEntity accessAuthEntity) {
+        return RedisPrefixUtil.Access_Auth_Prefix +
+                accessAuthEntity.getHttpMethodEnum().getMsg() +
+                accessAuthEntity.getUrl();
     }
 
     /**
@@ -122,30 +131,52 @@ public class InitAuth implements CommandLineRunner {
         if (getMapping!=null) {
             accessAuthEntity = new AccessAuthEntity();
             accessAuthEntity.setHttpMethodEnum(HttpMethodEnum.GET);
-            accessAuthEntity.setUrl(getMapping.value()[0]);
+            accessAuthEntity.setUrl(trimUrl(getMapping.value()[0]));
         }
         else if (postMapping!=null) {
             accessAuthEntity = new AccessAuthEntity();
             accessAuthEntity.setHttpMethodEnum(HttpMethodEnum.POST);
-            accessAuthEntity.setUrl(postMapping.value()[0]);
+            accessAuthEntity.setUrl(trimUrl(postMapping.value()[0]));
         }
         else if (putMapping!=null) {
             accessAuthEntity = new AccessAuthEntity();
             accessAuthEntity.setHttpMethodEnum(HttpMethodEnum.PUT);
-            accessAuthEntity.setUrl(putMapping.value()[0]);
+            accessAuthEntity.setUrl(trimUrl(putMapping.value()[0]));
         }
         else if (deleteMapping!=null) {
             accessAuthEntity = new AccessAuthEntity();
             accessAuthEntity.setHttpMethodEnum(HttpMethodEnum.DELETE);
-            accessAuthEntity.setUrl(deleteMapping.value()[0]);
+            accessAuthEntity.setUrl(trimUrl(deleteMapping.value()[0]));
         }
 
         if (accessAuthEntity!=null) {
-            accessAuthEntity = getLoginAndRole(method, accessAuthEntity);
+            accessAuthEntity = getLoginAndPermission(method, accessAuthEntity);
             accessAuthEntity.setMethodName(method.getName());
         }
 
         return accessAuthEntity;
+    }
+
+    /**
+     * 处理URL
+     * 1. 将URL两侧的斜杠去掉
+     * 2. 将URL中的"{xxx}"替换为"*"
+     * @param url 原始URL
+     * @return 处理后的URL
+     */
+    private static String trimUrl(String url) {
+        // 清除首尾的反斜杠
+        if (url.startsWith(Back_Slash)) {
+            url = url.substring(1);
+        }
+        if (url.endsWith(Back_Slash)) {
+            url = url.substring(0,url.length()-1);
+        }
+
+        // 将"{xxx}"替换为"*"
+        // TODO 正则表达式要继续完善（纠正/user/{xxxxx}/{yyyy}——>user/*的情况）
+        url = url.replaceAll("\\{(.*)\\}","*");
+        return url;
     }
 
     /**
@@ -154,11 +185,11 @@ public class InitAuth implements CommandLineRunner {
      * @param accessAuthEntity
      * @return
      */
-    private AccessAuthEntity getLoginAndRole(Method method, AccessAuthEntity accessAuthEntity) {
-        // 获取@Role的值
-        Role role = AnnotationUtil.getAnnotationValueByMethod(method, Role.class);
-        if (role!=null && StringUtils.isNotEmpty(role.value())) {
-            accessAuthEntity.setRole(role.value());
+    private AccessAuthEntity getLoginAndPermission(Method method, AccessAuthEntity accessAuthEntity) {
+        // 获取@Permission的值
+        Permission permission = AnnotationUtil.getAnnotationValueByMethod(method, Permission.class);
+        if (permission!=null && StringUtils.isNotEmpty(permission.value())) {
+            accessAuthEntity.setPermission(permission.value());
             accessAuthEntity.setLogin(true);
             return accessAuthEntity;
         }
@@ -171,6 +202,17 @@ public class InitAuth implements CommandLineRunner {
 
         accessAuthEntity.setLogin(false);
         return accessAuthEntity;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("user:"+trimUrl("user"));
+        System.out.println("{}:"+trimUrl("{}"));
+        System.out.println("/user:"+trimUrl("/user"));
+        System.out.println("/user/:"+trimUrl("/user/"));
+        System.out.println("user/{xxxx}:"+trimUrl("user/{xxxx}"));
+        System.out.println("/user/{xxxxx}/{yyyy}:"+trimUrl("/user/{xxxxx}/{yyyy}"));
+        System.out.println("/user/home/{sdsds}:"+trimUrl("/user/home/{sdsds}"));
+        System.out.println("/user/{home}/{zzzzz}/:"+trimUrl("/user/{home}/{zzzzz}/"));
     }
 
 }

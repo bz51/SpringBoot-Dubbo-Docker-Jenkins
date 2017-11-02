@@ -15,17 +15,17 @@ public class AccessAuthEntity implements Serializable {
     private String methodName;
     private HttpMethodEnum httpMethodEnum;
     private boolean isLogin;
-    private String role;
+    private String permission;
 
     public AccessAuthEntity() {
     }
 
-    public AccessAuthEntity(String url, String methodName, HttpMethodEnum httpMethodEnum, boolean isLogin, String role) {
+    public AccessAuthEntity(String url, String methodName, HttpMethodEnum httpMethodEnum, boolean isLogin, String permission) {
         this.url = url;
         this.methodName = methodName;
         this.httpMethodEnum = httpMethodEnum;
         this.isLogin = isLogin;
-        this.role = role;
+        this.permission = permission;
     }
 
     public String getUrl() {
@@ -60,11 +60,11 @@ public class AccessAuthEntity implements Serializable {
         isLogin = login;
     }
 
-    public String getRole() {
-        return role;
+    public String getPermission() {
+        return permission;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setPermission(String permission) {
+        this.permission = permission;
     }
 }

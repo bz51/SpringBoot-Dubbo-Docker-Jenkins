@@ -14,7 +14,7 @@ public class Result<T> {
     private boolean isSuccess;
 
     /** 错误码 */
-    private int errorCode;
+    private String errorCode;
 
     /** 错误原因 */
     private String message;
@@ -98,11 +98,11 @@ public class Result<T> {
         isSuccess = success;
     }
 
-    public int getErrorCode() {
+    public String getErrorCode() {
         return errorCode;
     }
 
-    public void setErrorCode(int errorCode) {
+    public void setErrorCode(String errorCode) {
         this.errorCode = errorCode;
     }
 
