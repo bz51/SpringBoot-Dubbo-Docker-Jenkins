@@ -6,7 +6,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.gaoxi.entity.user.UserEntity;
 import com.gaoxi.exception.CommonBizException;
 import com.gaoxi.exception.ExpCodeEnum;
-import com.gaoxi.facade.redis.RedisUtilsFacade;
+import com.gaoxi.facade.redis.RedisUtils;
 import com.gaoxi.facade.user.UserService;
 import com.gaoxi.req.user.UserQueryReq;
 import com.gaoxi.rsp.Result;
@@ -30,7 +30,7 @@ public class UserControllerImpl implements UserController {
     private UserService userService;
 
     @Reference
-    private RedisUtilsFacade redisUtils;
+    private RedisUtils redisUtils;
 
     /** Session有效时间 */
     @Value("${session.expireTime}")

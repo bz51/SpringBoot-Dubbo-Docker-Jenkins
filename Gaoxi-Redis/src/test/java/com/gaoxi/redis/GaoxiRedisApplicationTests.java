@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class GaoxiRedisApplicationTests {
 	@Autowired
-	private RedisUtils redisUtil;
+	private RedisUtilsImpl redisUtil;
 
 	@Test
 	public void contextLoads() throws InterruptedException {

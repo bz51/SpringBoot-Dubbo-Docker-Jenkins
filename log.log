@@ -1914,3 +1914,69 @@ Caused by: java.lang.NullPointerException: null
 
 2017-11-03 14:30:55.050  INFO 1318 --- [main] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4e0ae11f: startup date [Fri Nov 03 14:29:53 CST 2017]; root of context hierarchy
 2017-11-03 14:30:55.052  INFO 1318 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2017-11-03 17:29:18.886  INFO 2044 --- [main] com.gaoxi.redis.GaoxiRedisApplication    : Starting GaoxiRedisApplication on MacBook-Pro.local with PID 2044 (/Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Redis/target/classes started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi)
+2017-11-03 17:29:18.890  INFO 2044 --- [main] com.gaoxi.redis.GaoxiRedisApplication    : The following profiles are active: dev
+2017-11-03 17:29:18.972  INFO 2044 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@657c8ad9: startup date [Fri Nov 03 17:29:18 CST 2017]; root of context hierarchy
+2017-11-03 17:29:20.237  WARN 2044 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.gaoxi.redis]' package. Please check your configuration.
+2017-11-03 17:29:20.291  INFO 2044 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2017-11-03 17:29:21.393  INFO 2044 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2017-11-03 17:29:21.406  INFO 2044 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2017-11-03 17:29:21.407  INFO 2044 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.23
+2017-11-03 17:29:21.494  INFO 2044 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-11-03 17:29:21.495  INFO 2044 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2527 ms
+2017-11-03 17:29:21.667  INFO 2044 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-11-03 17:29:21.672  INFO 2044 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-11-03 17:29:21.673  INFO 2044 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-11-03 17:29:21.673  INFO 2044 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-11-03 17:29:21.673  INFO 2044 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-11-03 17:29:22.075  INFO 2044 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@657c8ad9: startup date [Fri Nov 03 17:29:18 CST 2017]; root of context hierarchy
+2017-11-03 17:29:22.130  INFO 2044 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-11-03 17:29:22.131  INFO 2044 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-11-03 17:29:22.165  INFO 2044 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 17:29:22.166  INFO 2044 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 17:29:22.206  INFO 2044 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 17:29:22.277  WARN 2044 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Tomcat.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.tomcat.jdbc.pool.DataSource]: Factory method 'dataSource' threw exception; nested exception is org.springframework.boot.autoconfigure.jdbc.DataSourceProperties$DataSourceBeanCreationException: Cannot determine embedded database driver class for database type NONE. If you want an embedded database please put a supported one on the classpath. If you have database settings to be loaded from a particular profile you may need to active it (the profiles "dev" are currently active).
+2017-11-03 17:29:22.280  INFO 2044 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2017-11-03 17:29:22.303  INFO 2044 --- [main] utoConfigurationReportLoggingInitializer : 
+
+Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
+2017-11-03 17:29:22.309 ERROR 2044 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Cannot determine embedded database driver class for database type NONE
+
+Action:
+
+If you want an embedded database please put a supported one on the classpath. If you have database settings to be loaded from a particular profile you may need to active it (the profiles "dev" are currently active).
+
+2017-11-03 17:30:08.855  INFO 2052 --- [main] com.gaoxi.redis.GaoxiRedisApplication    : Starting GaoxiRedisApplication on MacBook-Pro.local with PID 2052 (/Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Redis/target/classes started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi)
+2017-11-03 17:30:08.869  INFO 2052 --- [main] com.gaoxi.redis.GaoxiRedisApplication    : The following profiles are active: dev
+2017-11-03 17:30:08.955  INFO 2052 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@657c8ad9: startup date [Fri Nov 03 17:30:08 CST 2017]; root of context hierarchy
+2017-11-03 17:30:10.112  WARN 2052 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.gaoxi.redis]' package. Please check your configuration.
+2017-11-03 17:30:10.183  INFO 2052 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2017-11-03 17:30:11.291  INFO 2052 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2017-11-03 17:30:11.311  INFO 2052 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2017-11-03 17:30:11.312  INFO 2052 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.23
+2017-11-03 17:30:11.411  INFO 2052 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-11-03 17:30:11.412  INFO 2052 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2464 ms
+2017-11-03 17:30:11.575  INFO 2052 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-11-03 17:30:11.579  INFO 2052 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-11-03 17:30:11.580  INFO 2052 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-11-03 17:30:11.580  INFO 2052 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-11-03 17:30:11.580  INFO 2052 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-11-03 17:30:12.018  INFO 2052 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@657c8ad9: startup date [Fri Nov 03 17:30:08 CST 2017]; root of context hierarchy
+2017-11-03 17:30:12.078  INFO 2052 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-11-03 17:30:12.079  INFO 2052 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-11-03 17:30:12.108  INFO 2052 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 17:30:12.108  INFO 2052 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 17:30:12.145  INFO 2052 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 17:30:12.744  INFO 2052 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-11-03 17:30:12.809  INFO 2052 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2017-11-03 17:30:12.815  INFO 2052 --- [main] com.gaoxi.redis.GaoxiRedisApplication    : Started GaoxiRedisApplication in 4.321 seconds (JVM running for 5.109)
+2017-11-03 17:31:55.008  INFO 2052 --- [Thread-14] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@657c8ad9: startup date [Fri Nov 03 17:30:08 CST 2017]; root of context hierarchy
+2017-11-03 17:31:55.011  INFO 2052 --- [Thread-14] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown

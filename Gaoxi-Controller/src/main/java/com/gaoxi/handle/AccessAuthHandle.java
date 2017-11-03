@@ -7,10 +7,9 @@ import com.gaoxi.entity.user.PermissionEntity;
 import com.gaoxi.entity.user.UserEntity;
 import com.gaoxi.exception.CommonBizException;
 import com.gaoxi.exception.ExpCodeEnum;
-import com.gaoxi.facade.redis.RedisUtilsFacade;
+import com.gaoxi.facade.redis.RedisUtils;
 import com.gaoxi.init.AccessAuthEntity;
 import com.gaoxi.utils.RedisPrefixUtil;
-import com.google.common.collect.Maps;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -45,7 +44,7 @@ public class AccessAuthHandle {
     private String sessionIdName;
 
     @Reference
-    private RedisUtilsFacade redisUtils;
+    private RedisUtils redisUtils;
 
     /** 反斜杠 */
     private static final String Back_Slash = "/";

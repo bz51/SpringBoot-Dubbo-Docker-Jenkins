@@ -1,23 +1,16 @@
 package com.gaoxi.init;
 
-import com.alibaba.dubbo.common.json.JSON;
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.gaoxi.annotation.AuthScan;
 import com.gaoxi.annotation.Login;
 import com.gaoxi.annotation.Permission;
-import com.gaoxi.annotation.Role;
-import com.gaoxi.entity.user.UserEntity;
 import com.gaoxi.enumeration.HttpMethodEnum;
-import com.gaoxi.facade.redis.RedisUtilsFacade;
-import com.gaoxi.facade.user.UserService;
+import com.gaoxi.facade.redis.RedisUtils;
 import com.gaoxi.utils.AnnotationUtil;
 import com.gaoxi.utils.ClassUtil;
 import com.gaoxi.utils.RedisPrefixUtil;
-import com.google.common.collect.Collections2;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.apache.zookeeper.Op;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -29,13 +22,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
-
-import static com.gaoxi.utils.ClassUtil.getClasses;
 
 /**
  * @author 大闲人柴毛毛
@@ -51,7 +40,7 @@ public class InitAuth implements CommandLineRunner {
 
     @Reference
     /** Redis工具包 */
-    private RedisUtilsFacade redisUtils;
+    private RedisUtils redisUtils;
 
     /** 接口权限列表 */
     private Map<String,AccessAuthEntity> accessAuthMap = Maps.newHashMap();
