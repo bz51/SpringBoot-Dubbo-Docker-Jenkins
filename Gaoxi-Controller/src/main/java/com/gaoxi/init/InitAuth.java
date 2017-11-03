@@ -40,6 +40,7 @@ import static com.gaoxi.utils.ClassUtil.getClasses;
 /**
  * @author 大闲人柴毛毛
  * @date 2017/11/1 上午10:04
+ *
  * @description 初始化用户信息
  */
 @AuthScan("com.gaoxi.controller")
@@ -58,6 +59,8 @@ public class InitAuth implements CommandLineRunner {
     /** 反斜杠 */
     private static final String Back_Slash = "/";
 
+
+
     @Override
     public void run(String... strings) throws Exception {
         // 加载接口访问权限
@@ -66,11 +69,12 @@ public class InitAuth implements CommandLineRunner {
 
 
 
+
     /**
      * 加载接口访问权限
      */
     private void loadAccessAuth() throws IOException {
-        // 获取待扫描的包
+        // 获取待扫描的包名
         AuthScan authScan = AnnotationUtil.getAnnotationValueByClass(this.getClass(), AuthScan.class);
         String pkgName = authScan.value();
 
@@ -101,7 +105,7 @@ public class InitAuth implements CommandLineRunner {
         }
         // 存至Redis
         // TODO 本地调试临时将redis注释掉!!!
-//        redisUtils.set("accessAuthMap", accessAuthMap);
+//        redisUtils.set(RedisPrefixUtil.Access_Auth_Prefix, accessAuthMap);
     }
 
     /**
@@ -111,8 +115,7 @@ public class InitAuth implements CommandLineRunner {
      * @return Key
      */
     private String generateKey(AccessAuthEntity accessAuthEntity) {
-        return RedisPrefixUtil.Access_Auth_Prefix +
-                accessAuthEntity.getHttpMethodEnum().getMsg() +
+        return accessAuthEntity.getHttpMethodEnum().getMsg() +
                 accessAuthEntity.getUrl();
     }
 
@@ -128,27 +131,40 @@ public class InitAuth implements CommandLineRunner {
         DeleteMapping deleteMapping = AnnotationUtil.getAnnotationValueByMethod(method, DeleteMapping.class);
 
         AccessAuthEntity accessAuthEntity = null;
-        if (getMapping!=null) {
+        if (getMapping!=null
+                && getMapping.value()!=null
+                && getMapping.value().length==1
+                && StringUtils.isNotEmpty(getMapping.value()[0])) {
             accessAuthEntity = new AccessAuthEntity();
             accessAuthEntity.setHttpMethodEnum(HttpMethodEnum.GET);
             accessAuthEntity.setUrl(trimUrl(getMapping.value()[0]));
         }
-        else if (postMapping!=null) {
+        else if (postMapping!=null
+                && postMapping.value()!=null
+                && postMapping.value().length==1
+                && StringUtils.isNotEmpty(postMapping.value()[0])) {
             accessAuthEntity = new AccessAuthEntity();
             accessAuthEntity.setHttpMethodEnum(HttpMethodEnum.POST);
             accessAuthEntity.setUrl(trimUrl(postMapping.value()[0]));
         }
-        else if (putMapping!=null) {
+        else if (putMapping!=null
+                && putMapping.value()!=null
+                && putMapping.value().length==1
+                && StringUtils.isNotEmpty(putMapping.value()[0])) {
             accessAuthEntity = new AccessAuthEntity();
             accessAuthEntity.setHttpMethodEnum(HttpMethodEnum.PUT);
             accessAuthEntity.setUrl(trimUrl(putMapping.value()[0]));
         }
-        else if (deleteMapping!=null) {
+        else if (deleteMapping!=null
+                && deleteMapping.value()!=null
+                && deleteMapping.value().length==1
+                && StringUtils.isNotEmpty(deleteMapping.value()[0])) {
             accessAuthEntity = new AccessAuthEntity();
             accessAuthEntity.setHttpMethodEnum(HttpMethodEnum.DELETE);
             accessAuthEntity.setUrl(trimUrl(deleteMapping.value()[0]));
         }
 
+        // 解析@Login 和 @Permission
         if (accessAuthEntity!=null) {
             accessAuthEntity = getLoginAndPermission(method, accessAuthEntity);
             accessAuthEntity.setMethodName(method.getName());
@@ -156,6 +172,7 @@ public class InitAuth implements CommandLineRunner {
 
         return accessAuthEntity;
     }
+
 
     /**
      * 处理URL

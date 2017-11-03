@@ -1230,3 +1230,616 @@ Caused by: java.lang.NullPointerException: null
 2017-11-02 19:21:51.707  INFO 1715 --- [http-nio-8080-exec-1] c.a.dubbo.common.logger.LoggerFactory    : using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
 2017-11-02 19:21:51.740  INFO 1715 --- [Thread-13] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3e78b6a5: startup date [Thu Nov 02 19:13:12 CST 2017]; root of context hierarchy
 2017-11-02 19:21:51.744  INFO 1715 --- [Thread-13] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2017-11-03 13:51:01.074  INFO 1082 --- [main] com.gaoxi.GaoxiControllerApplication     : Starting GaoxiControllerApplication on MacBook-Pro.local with PID 1082 (/Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Controller/target/classes started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi)
+2017-11-03 13:51:01.113  INFO 1082 --- [main] com.gaoxi.GaoxiControllerApplication     : No active profile set, falling back to default profiles: default
+2017-11-03 13:51:01.373  INFO 1082 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@145eaa29: startup date [Fri Nov 03 13:51:01 CST 2017]; root of context hierarchy
+2017-11-03 13:51:03.198  WARN 1082 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.gaoxi.facade, com.gaoxi]' package. Please check your configuration.
+2017-11-03 13:51:04.872  INFO 1082 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2017-11-03 13:51:04.905  INFO 1082 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2017-11-03 13:51:04.926  INFO 1082 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.23
+2017-11-03 13:51:05.125  INFO 1082 --- [localhost-startStop-1] o.a.c.c.C.[.[.[/Gaoxi-Controller]        : Initializing Spring embedded WebApplicationContext
+2017-11-03 13:51:05.125  INFO 1082 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3793 ms
+2017-11-03 13:51:05.305  INFO 1082 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-11-03 13:51:05.309  INFO 1082 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-11-03 13:51:05.310  INFO 1082 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-11-03 13:51:05.310  INFO 1082 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-11-03 13:51:05.310  INFO 1082 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-11-03 13:51:06.038  INFO 1082 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@145eaa29: startup date [Fri Nov 03 13:51:01 CST 2017]; root of context hierarchy
+2017-11-03 13:51:06.119  INFO 1082 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/article/{userId}]}" onto public com.gaoxi.rsp.Result<java.util.List<com.gaoxi.entity.user.ArticleEntity>> com.gaoxi.controller.example.ExampleControllerImpl.findArticlesByUserId(java.lang.String)
+2017-11-03 13:51:06.121  INFO 1082 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello]}" onto public com.gaoxi.rsp.Result<java.lang.String> com.gaoxi.controller.example.ExampleControllerImpl.hello()
+2017-11-03 13:51:06.139  INFO 1082 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createProduct(com.gaoxi.entity.product.ProductEntity)
+2017-11-03 13:51:06.139  INFO 1082 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/image],methods=[POST]}" onto public com.gaoxi.rsp.Result<com.gaoxi.entity.product.ImageEntity> com.gaoxi.controller.product.ProductControllerImpl.uploadImage(org.springframework.web.multipart.MultipartFile)
+2017-11-03 13:51:06.140  INFO 1082 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.updateProduct(com.gaoxi.entity.product.ProductEntity)
+2017-11-03 13:51:06.141  INFO 1082 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[GET]}" onto public com.gaoxi.rsp.Result<java.util.List<com.gaoxi.entity.product.ProductEntity>> com.gaoxi.controller.product.ProductControllerImpl.findProducts(com.gaoxi.req.product.ProdQueryReq)
+2017-11-03 13:51:06.141  INFO 1082 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createCategoty(com.gaoxi.entity.product.CategoryEntity)
+2017-11-03 13:51:06.142  INFO 1082 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.modifyCategory(com.gaoxi.entity.product.CategoryEntity)
+2017-11-03 13:51:06.142  INFO 1082 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category/{categoryId}],methods=[DELETE]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.deleteCategory(java.lang.String)
+2017-11-03 13:51:06.143  INFO 1082 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createBrand(com.gaoxi.entity.product.BrandEntity)
+2017-11-03 13:51:06.143  INFO 1082 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.modifyBrand(com.gaoxi.entity.product.BrandEntity)
+2017-11-03 13:51:06.144  INFO 1082 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand/{brandId}],methods=[DELETE]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.deleteBrand(java.lang.String)
+2017-11-03 13:51:06.146  INFO 1082 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user],methods=[GET]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.user.UserControllerImpl.login(com.gaoxi.req.user.UserQueryReq,javax.servlet.http.HttpServletResponse)
+2017-11-03 13:51:06.149  INFO 1082 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-11-03 13:51:06.149  INFO 1082 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-11-03 13:51:06.204  INFO 1082 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 13:51:06.204  INFO 1082 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 13:51:06.286  INFO 1082 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in exceptionHandle
+2017-11-03 13:51:06.313  INFO 1082 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 13:51:07.355  INFO 1082 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-11-03 13:51:07.555  INFO 1082 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2017-11-03 13:51:07.601  INFO 1082 --- [main] c.a.dubbo.common.logger.LoggerFactory    : using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+2017-11-03 13:51:07.612  INFO 1082 --- [main] com.gaoxi.GaoxiControllerApplication     : Started GaoxiControllerApplication in 7.595 seconds (JVM running for 11.874)
+2017-11-03 13:51:14.974  INFO 1082 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/Gaoxi-Controller]        : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-11-03 13:51:14.975  INFO 1082 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-11-03 13:51:15.029  INFO 1082 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 53 ms
+2017-11-03 13:51:17.632 ERROR 1082 --- [http-nio-8080-exec-3] com.gaoxi.handle.ExceptionHandle         : 系统异常 
+
+java.lang.NullPointerException: null
+	at com.gaoxi.handle.AccessAuthHandle.getUserEntity(AccessAuthHandle.java:217) ~[classes/:na]
+	at com.gaoxi.handle.AccessAuthHandle.authentication(AccessAuthHandle.java:83) ~[classes/:na]
+	at com.gaoxi.handle.AccessAuthHandle.doAround(AccessAuthHandle.java:62) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_40]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_40]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_40]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_40]
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:629) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:618) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:673) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at com.gaoxi.controller.user.UserControllerImpl$$EnhancerBySpringCGLIB$$9abe2dea.login(<generated>) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_40]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_40]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_40]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_40]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133) ~[spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970) [spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861) [spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:635) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846) [spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-embed-websocket-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:108) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:478) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_40]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_40]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_40]
+
+2017-11-03 13:51:50.373  INFO 1082 --- [Thread-20] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@145eaa29: startup date [Fri Nov 03 13:51:01 CST 2017]; root of context hierarchy
+2017-11-03 13:51:50.376  INFO 1082 --- [Thread-20] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2017-11-03 13:52:01.371  INFO 1089 --- [main] com.gaoxi.GaoxiControllerApplication     : Starting GaoxiControllerApplication on MacBook-Pro.local with PID 1089 (/Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Controller/target/classes started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi)
+2017-11-03 13:52:01.378  INFO 1089 --- [main] com.gaoxi.GaoxiControllerApplication     : No active profile set, falling back to default profiles: default
+2017-11-03 13:52:01.471  INFO 1089 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@15bb6bea: startup date [Fri Nov 03 13:52:01 CST 2017]; root of context hierarchy
+2017-11-03 13:52:02.684  WARN 1089 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.gaoxi.facade, com.gaoxi]' package. Please check your configuration.
+2017-11-03 13:52:04.083  INFO 1089 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2017-11-03 13:52:04.100  INFO 1089 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2017-11-03 13:52:04.101  INFO 1089 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.23
+2017-11-03 13:52:04.199  INFO 1089 --- [localhost-startStop-1] o.a.c.c.C.[.[.[/Gaoxi-Controller]        : Initializing Spring embedded WebApplicationContext
+2017-11-03 13:52:04.199  INFO 1089 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2733 ms
+2017-11-03 13:52:04.373  INFO 1089 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-11-03 13:52:04.379  INFO 1089 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-11-03 13:52:04.379  INFO 1089 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-11-03 13:52:04.380  INFO 1089 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-11-03 13:52:04.380  INFO 1089 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-11-03 13:52:04.825  INFO 1089 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@15bb6bea: startup date [Fri Nov 03 13:52:01 CST 2017]; root of context hierarchy
+2017-11-03 13:52:04.877  INFO 1089 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello]}" onto public com.gaoxi.rsp.Result<java.lang.String> com.gaoxi.controller.example.ExampleControllerImpl.hello()
+2017-11-03 13:52:04.879  INFO 1089 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/article/{userId}]}" onto public com.gaoxi.rsp.Result<java.util.List<com.gaoxi.entity.user.ArticleEntity>> com.gaoxi.controller.example.ExampleControllerImpl.findArticlesByUserId(java.lang.String)
+2017-11-03 13:52:04.889  INFO 1089 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createProduct(com.gaoxi.entity.product.ProductEntity)
+2017-11-03 13:52:04.890  INFO 1089 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/image],methods=[POST]}" onto public com.gaoxi.rsp.Result<com.gaoxi.entity.product.ImageEntity> com.gaoxi.controller.product.ProductControllerImpl.uploadImage(org.springframework.web.multipart.MultipartFile)
+2017-11-03 13:52:04.890  INFO 1089 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.updateProduct(com.gaoxi.entity.product.ProductEntity)
+2017-11-03 13:52:04.891  INFO 1089 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[GET]}" onto public com.gaoxi.rsp.Result<java.util.List<com.gaoxi.entity.product.ProductEntity>> com.gaoxi.controller.product.ProductControllerImpl.findProducts(com.gaoxi.req.product.ProdQueryReq)
+2017-11-03 13:52:04.891  INFO 1089 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createCategoty(com.gaoxi.entity.product.CategoryEntity)
+2017-11-03 13:52:04.891  INFO 1089 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.modifyCategory(com.gaoxi.entity.product.CategoryEntity)
+2017-11-03 13:52:04.891  INFO 1089 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category/{categoryId}],methods=[DELETE]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.deleteCategory(java.lang.String)
+2017-11-03 13:52:04.892  INFO 1089 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createBrand(com.gaoxi.entity.product.BrandEntity)
+2017-11-03 13:52:04.893  INFO 1089 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.modifyBrand(com.gaoxi.entity.product.BrandEntity)
+2017-11-03 13:52:04.893  INFO 1089 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand/{brandId}],methods=[DELETE]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.deleteBrand(java.lang.String)
+2017-11-03 13:52:04.895  INFO 1089 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user],methods=[GET]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.user.UserControllerImpl.login(com.gaoxi.req.user.UserQueryReq,javax.servlet.http.HttpServletResponse)
+2017-11-03 13:52:04.899  INFO 1089 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-11-03 13:52:04.899  INFO 1089 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-11-03 13:52:04.952  INFO 1089 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 13:52:04.952  INFO 1089 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 13:52:04.978  INFO 1089 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in exceptionHandle
+2017-11-03 13:52:05.002  INFO 1089 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 13:52:05.693  INFO 1089 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-11-03 13:52:05.762  INFO 1089 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2017-11-03 13:52:05.772  INFO 1089 --- [main] c.a.dubbo.common.logger.LoggerFactory    : using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+2017-11-03 13:52:05.776  INFO 1089 --- [main] com.gaoxi.GaoxiControllerApplication     : Started GaoxiControllerApplication in 4.811 seconds (JVM running for 5.758)
+2017-11-03 13:52:10.420  INFO 1089 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/Gaoxi-Controller]        : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-11-03 13:52:10.421  INFO 1089 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-11-03 13:52:10.438  INFO 1089 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 17 ms
+2017-11-03 13:52:13.117  INFO 1089 --- [Thread-13] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@15bb6bea: startup date [Fri Nov 03 13:52:01 CST 2017]; root of context hierarchy
+2017-11-03 13:52:13.120  INFO 1089 --- [Thread-13] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2017-11-03 13:52:51.015  INFO 1103 --- [main] com.gaoxi.GaoxiControllerApplication     : Starting GaoxiControllerApplication on MacBook-Pro.local with PID 1103 (/Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Controller/target/classes started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi)
+2017-11-03 13:52:51.023  INFO 1103 --- [main] com.gaoxi.GaoxiControllerApplication     : No active profile set, falling back to default profiles: default
+2017-11-03 13:52:51.107  INFO 1103 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@145eaa29: startup date [Fri Nov 03 13:52:51 CST 2017]; root of context hierarchy
+2017-11-03 13:52:52.246  WARN 1103 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.gaoxi.facade, com.gaoxi]' package. Please check your configuration.
+2017-11-03 13:52:53.368  INFO 1103 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2017-11-03 13:52:53.382  INFO 1103 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2017-11-03 13:52:53.383  INFO 1103 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.23
+2017-11-03 13:52:53.469  INFO 1103 --- [localhost-startStop-1] o.a.c.c.C.[.[.[/Gaoxi-Controller]        : Initializing Spring embedded WebApplicationContext
+2017-11-03 13:52:53.469  INFO 1103 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2365 ms
+2017-11-03 13:52:53.622  INFO 1103 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-11-03 13:52:53.628  INFO 1103 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-11-03 13:52:53.630  INFO 1103 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-11-03 13:52:53.630  INFO 1103 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-11-03 13:52:53.631  INFO 1103 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-11-03 13:52:54.089  INFO 1103 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@145eaa29: startup date [Fri Nov 03 13:52:51 CST 2017]; root of context hierarchy
+2017-11-03 13:52:54.151  INFO 1103 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello]}" onto public com.gaoxi.rsp.Result<java.lang.String> com.gaoxi.controller.example.ExampleControllerImpl.hello()
+2017-11-03 13:52:54.153  INFO 1103 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/article/{userId}]}" onto public com.gaoxi.rsp.Result<java.util.List<com.gaoxi.entity.user.ArticleEntity>> com.gaoxi.controller.example.ExampleControllerImpl.findArticlesByUserId(java.lang.String)
+2017-11-03 13:52:54.163  INFO 1103 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createProduct(com.gaoxi.entity.product.ProductEntity)
+2017-11-03 13:52:54.164  INFO 1103 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/image],methods=[POST]}" onto public com.gaoxi.rsp.Result<com.gaoxi.entity.product.ImageEntity> com.gaoxi.controller.product.ProductControllerImpl.uploadImage(org.springframework.web.multipart.MultipartFile)
+2017-11-03 13:52:54.164  INFO 1103 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.updateProduct(com.gaoxi.entity.product.ProductEntity)
+2017-11-03 13:52:54.165  INFO 1103 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[GET]}" onto public com.gaoxi.rsp.Result<java.util.List<com.gaoxi.entity.product.ProductEntity>> com.gaoxi.controller.product.ProductControllerImpl.findProducts(com.gaoxi.req.product.ProdQueryReq)
+2017-11-03 13:52:54.165  INFO 1103 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createCategoty(com.gaoxi.entity.product.CategoryEntity)
+2017-11-03 13:52:54.166  INFO 1103 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.modifyCategory(com.gaoxi.entity.product.CategoryEntity)
+2017-11-03 13:52:54.166  INFO 1103 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category/{categoryId}],methods=[DELETE]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.deleteCategory(java.lang.String)
+2017-11-03 13:52:54.166  INFO 1103 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createBrand(com.gaoxi.entity.product.BrandEntity)
+2017-11-03 13:52:54.166  INFO 1103 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.modifyBrand(com.gaoxi.entity.product.BrandEntity)
+2017-11-03 13:52:54.167  INFO 1103 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand/{brandId}],methods=[DELETE]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.deleteBrand(java.lang.String)
+2017-11-03 13:52:54.169  INFO 1103 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-11-03 13:52:54.170  INFO 1103 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-11-03 13:52:54.216  INFO 1103 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 13:52:54.216  INFO 1103 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 13:52:54.234  INFO 1103 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in exceptionHandle
+2017-11-03 13:52:54.260  INFO 1103 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 13:52:54.907  INFO 1103 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-11-03 13:52:54.974  INFO 1103 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2017-11-03 13:52:54.984  INFO 1103 --- [main] c.a.dubbo.common.logger.LoggerFactory    : using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+2017-11-03 13:52:54.989  INFO 1103 --- [main] com.gaoxi.GaoxiControllerApplication     : Started GaoxiControllerApplication in 4.308 seconds (JVM running for 5.143)
+2017-11-03 13:52:58.570  INFO 1103 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/Gaoxi-Controller]        : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-11-03 13:52:58.570  INFO 1103 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-11-03 13:52:58.587  INFO 1103 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 16 ms
+2017-11-03 13:53:10.730  INFO 1103 --- [Thread-13] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@145eaa29: startup date [Fri Nov 03 13:52:51 CST 2017]; root of context hierarchy
+2017-11-03 13:53:10.734  INFO 1103 --- [Thread-13] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2017-11-03 13:53:35.956  INFO 1109 --- [main] com.gaoxi.GaoxiControllerApplication     : Starting GaoxiControllerApplication on MacBook-Pro.local with PID 1109 (/Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Controller/target/classes started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi)
+2017-11-03 13:53:35.960  INFO 1109 --- [main] com.gaoxi.GaoxiControllerApplication     : No active profile set, falling back to default profiles: default
+2017-11-03 13:53:36.045  INFO 1109 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@145eaa29: startup date [Fri Nov 03 13:53:36 CST 2017]; root of context hierarchy
+2017-11-03 13:53:37.209  WARN 1109 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.gaoxi.facade, com.gaoxi]' package. Please check your configuration.
+2017-11-03 13:53:38.351  INFO 1109 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2017-11-03 13:53:38.363  INFO 1109 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2017-11-03 13:53:38.364  INFO 1109 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.23
+2017-11-03 13:53:38.443  INFO 1109 --- [localhost-startStop-1] o.a.c.c.C.[.[.[/Gaoxi-Controller]        : Initializing Spring embedded WebApplicationContext
+2017-11-03 13:53:38.443  INFO 1109 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2402 ms
+2017-11-03 13:53:38.606  INFO 1109 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-11-03 13:53:38.611  INFO 1109 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-11-03 13:53:38.612  INFO 1109 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-11-03 13:53:38.612  INFO 1109 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-11-03 13:53:38.613  INFO 1109 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-11-03 13:53:39.063  INFO 1109 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@145eaa29: startup date [Fri Nov 03 13:53:36 CST 2017]; root of context hierarchy
+2017-11-03 13:53:39.118  INFO 1109 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello]}" onto public com.gaoxi.rsp.Result<java.lang.String> com.gaoxi.controller.example.ExampleControllerImpl.hello()
+2017-11-03 13:53:39.120  INFO 1109 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/article/{userId}]}" onto public com.gaoxi.rsp.Result<java.util.List<com.gaoxi.entity.user.ArticleEntity>> com.gaoxi.controller.example.ExampleControllerImpl.findArticlesByUserId(java.lang.String)
+2017-11-03 13:53:39.130  INFO 1109 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createProduct(com.gaoxi.entity.product.ProductEntity)
+2017-11-03 13:53:39.130  INFO 1109 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/image],methods=[POST]}" onto public com.gaoxi.rsp.Result<com.gaoxi.entity.product.ImageEntity> com.gaoxi.controller.product.ProductControllerImpl.uploadImage(org.springframework.web.multipart.MultipartFile)
+2017-11-03 13:53:39.130  INFO 1109 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.updateProduct(com.gaoxi.entity.product.ProductEntity)
+2017-11-03 13:53:39.131  INFO 1109 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[GET]}" onto public com.gaoxi.rsp.Result<java.util.List<com.gaoxi.entity.product.ProductEntity>> com.gaoxi.controller.product.ProductControllerImpl.findProducts(com.gaoxi.req.product.ProdQueryReq)
+2017-11-03 13:53:39.131  INFO 1109 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createCategoty(com.gaoxi.entity.product.CategoryEntity)
+2017-11-03 13:53:39.131  INFO 1109 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.modifyCategory(com.gaoxi.entity.product.CategoryEntity)
+2017-11-03 13:53:39.131  INFO 1109 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category/{categoryId}],methods=[DELETE]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.deleteCategory(java.lang.String)
+2017-11-03 13:53:39.132  INFO 1109 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createBrand(com.gaoxi.entity.product.BrandEntity)
+2017-11-03 13:53:39.132  INFO 1109 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.modifyBrand(com.gaoxi.entity.product.BrandEntity)
+2017-11-03 13:53:39.132  INFO 1109 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand/{brandId}],methods=[DELETE]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.deleteBrand(java.lang.String)
+2017-11-03 13:53:39.133  INFO 1109 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user],methods=[GET]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.user.UserControllerImpl.login(com.gaoxi.req.user.UserQueryReq,javax.servlet.http.HttpServletResponse)
+2017-11-03 13:53:39.136  INFO 1109 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-11-03 13:53:39.137  INFO 1109 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-11-03 13:53:39.182  INFO 1109 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 13:53:39.182  INFO 1109 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 13:53:39.201  INFO 1109 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in exceptionHandle
+2017-11-03 13:53:39.224  INFO 1109 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 13:53:39.919  INFO 1109 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-11-03 13:53:39.984  INFO 1109 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2017-11-03 13:53:39.994  INFO 1109 --- [main] c.a.dubbo.common.logger.LoggerFactory    : using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+2017-11-03 13:53:39.998  INFO 1109 --- [main] com.gaoxi.GaoxiControllerApplication     : Started GaoxiControllerApplication in 4.37 seconds (JVM running for 5.197)
+2017-11-03 13:53:42.405  INFO 1109 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/Gaoxi-Controller]        : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-11-03 13:53:42.406  INFO 1109 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-11-03 13:53:42.425  INFO 1109 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 19 ms
+2017-11-03 13:53:42.458 ERROR 1109 --- [http-nio-8080-exec-1] com.gaoxi.handle.ExceptionHandle         : 系统异常 
+
+java.lang.NullPointerException: null
+	at com.gaoxi.handle.AccessAuthHandle.getUserEntity(AccessAuthHandle.java:217) ~[classes/:na]
+	at com.gaoxi.handle.AccessAuthHandle.authentication(AccessAuthHandle.java:83) ~[classes/:na]
+	at com.gaoxi.handle.AccessAuthHandle.doAround(AccessAuthHandle.java:62) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_40]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_40]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_40]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_40]
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:629) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:618) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:673) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at com.gaoxi.controller.user.UserControllerImpl$$EnhancerBySpringCGLIB$$c7908152.login(<generated>) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_40]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_40]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_40]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_40]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133) ~[spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970) [spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861) [spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:635) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846) [spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-embed-websocket-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:108) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:478) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_40]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_40]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_40]
+
+2017-11-03 13:54:27.703  INFO 1109 --- [Thread-13] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@145eaa29: startup date [Fri Nov 03 13:53:36 CST 2017]; root of context hierarchy
+2017-11-03 13:54:27.706  INFO 1109 --- [Thread-13] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2017-11-03 13:54:57.299  INFO 1113 --- [main] com.gaoxi.GaoxiControllerApplication     : Starting GaoxiControllerApplication on MacBook-Pro.local with PID 1113 (/Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Controller/target/classes started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi)
+2017-11-03 13:54:57.304  INFO 1113 --- [main] com.gaoxi.GaoxiControllerApplication     : No active profile set, falling back to default profiles: default
+2017-11-03 13:54:57.430  INFO 1113 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2438dcd: startup date [Fri Nov 03 13:54:57 CST 2017]; root of context hierarchy
+2017-11-03 13:54:58.288  WARN 1113 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.gaoxi.facade, com.gaoxi]' package. Please check your configuration.
+2017-11-03 13:54:59.431  INFO 1113 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2017-11-03 13:54:59.445  INFO 1113 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2017-11-03 13:54:59.446  INFO 1113 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.23
+2017-11-03 13:54:59.534  INFO 1113 --- [localhost-startStop-1] o.a.c.c.C.[.[.[/Gaoxi-Controller]        : Initializing Spring embedded WebApplicationContext
+2017-11-03 13:54:59.534  INFO 1113 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2109 ms
+2017-11-03 13:54:59.711  INFO 1113 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-11-03 13:54:59.717  INFO 1113 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-11-03 13:54:59.718  INFO 1113 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-11-03 13:54:59.718  INFO 1113 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-11-03 13:54:59.718  INFO 1113 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-11-03 13:55:00.303  INFO 1113 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2438dcd: startup date [Fri Nov 03 13:54:57 CST 2017]; root of context hierarchy
+2017-11-03 13:55:00.386  INFO 1113 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello]}" onto public com.gaoxi.rsp.Result<java.lang.String> com.gaoxi.controller.example.ExampleControllerImpl.hello()
+2017-11-03 13:55:00.389  INFO 1113 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/article/{userId}]}" onto public com.gaoxi.rsp.Result<java.util.List<com.gaoxi.entity.user.ArticleEntity>> com.gaoxi.controller.example.ExampleControllerImpl.findArticlesByUserId(java.lang.String)
+2017-11-03 13:55:00.399  INFO 1113 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createProduct(com.gaoxi.entity.product.ProductEntity)
+2017-11-03 13:55:00.399  INFO 1113 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/image],methods=[POST]}" onto public com.gaoxi.rsp.Result<com.gaoxi.entity.product.ImageEntity> com.gaoxi.controller.product.ProductControllerImpl.uploadImage(org.springframework.web.multipart.MultipartFile)
+2017-11-03 13:55:00.400  INFO 1113 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.updateProduct(com.gaoxi.entity.product.ProductEntity)
+2017-11-03 13:55:00.400  INFO 1113 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[GET]}" onto public com.gaoxi.rsp.Result<java.util.List<com.gaoxi.entity.product.ProductEntity>> com.gaoxi.controller.product.ProductControllerImpl.findProducts(com.gaoxi.req.product.ProdQueryReq)
+2017-11-03 13:55:00.400  INFO 1113 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createCategoty(com.gaoxi.entity.product.CategoryEntity)
+2017-11-03 13:55:00.400  INFO 1113 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.modifyCategory(com.gaoxi.entity.product.CategoryEntity)
+2017-11-03 13:55:00.401  INFO 1113 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category/{categoryId}],methods=[DELETE]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.deleteCategory(java.lang.String)
+2017-11-03 13:55:00.401  INFO 1113 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createBrand(com.gaoxi.entity.product.BrandEntity)
+2017-11-03 13:55:00.401  INFO 1113 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.modifyBrand(com.gaoxi.entity.product.BrandEntity)
+2017-11-03 13:55:00.402  INFO 1113 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand/{brandId}],methods=[DELETE]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.deleteBrand(java.lang.String)
+2017-11-03 13:55:00.403  INFO 1113 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user],methods=[GET]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.user.UserControllerImpl.login(com.gaoxi.req.user.UserQueryReq,javax.servlet.http.HttpServletResponse)
+2017-11-03 13:55:00.406  INFO 1113 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-11-03 13:55:00.406  INFO 1113 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-11-03 13:55:00.467  INFO 1113 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 13:55:00.467  INFO 1113 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 13:55:00.492  INFO 1113 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in exceptionHandle
+2017-11-03 13:55:00.531  INFO 1113 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 13:55:01.452  INFO 1113 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-11-03 13:55:01.523  INFO 1113 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2017-11-03 13:55:01.537  INFO 1113 --- [main] c.a.dubbo.common.logger.LoggerFactory    : using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+2017-11-03 13:55:01.542  INFO 1113 --- [main] com.gaoxi.GaoxiControllerApplication     : Started GaoxiControllerApplication in 4.718 seconds (JVM running for 6.5)
+2017-11-03 13:55:18.623  INFO 1113 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/Gaoxi-Controller]        : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-11-03 13:55:18.623  INFO 1113 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-11-03 13:55:18.649  INFO 1113 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 26 ms
+2017-11-03 13:55:18.702 ERROR 1113 --- [http-nio-8080-exec-1] com.gaoxi.handle.ExceptionHandle         : 系统异常 
+
+java.lang.NullPointerException: null
+	at com.gaoxi.handle.AccessAuthHandle.getUserEntity(AccessAuthHandle.java:217) ~[classes/:na]
+	at com.gaoxi.handle.AccessAuthHandle.authentication(AccessAuthHandle.java:83) ~[classes/:na]
+	at com.gaoxi.handle.AccessAuthHandle.doAround(AccessAuthHandle.java:62) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_40]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_40]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_40]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_40]
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:629) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:618) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:673) ~[spring-aop-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at com.gaoxi.controller.user.UserControllerImpl$$EnhancerBySpringCGLIB$$d0c591db.login(<generated>) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_40]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_40]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_40]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_40]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133) ~[spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901) ~[spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970) [spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861) [spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:635) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846) [spring-webmvc-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-embed-websocket-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:108) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:478) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_40]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_40]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.23.jar:8.5.23]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_40]
+
+2017-11-03 14:01:28.037  INFO 1113 --- [Thread-13] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2438dcd: startup date [Fri Nov 03 13:54:57 CST 2017]; root of context hierarchy
+2017-11-03 14:01:28.041  INFO 1113 --- [Thread-13] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2017-11-03 14:02:02.949  INFO 1133 --- [main] com.gaoxi.GaoxiControllerApplication     : Starting GaoxiControllerApplication on MacBook-Pro.local with PID 1133 (/Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Controller/target/classes started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi)
+2017-11-03 14:02:02.954  INFO 1133 --- [main] com.gaoxi.GaoxiControllerApplication     : No active profile set, falling back to default profiles: default
+2017-11-03 14:02:03.052  INFO 1133 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@15bb6bea: startup date [Fri Nov 03 14:02:03 CST 2017]; root of context hierarchy
+2017-11-03 14:02:03.142  WARN 1133 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.gaoxi.GaoxiControllerApplication]; nested exception is java.io.FileNotFoundException: class path resource [application*.properties] cannot be opened because it does not exist
+2017-11-03 14:02:03.150 ERROR 1133 --- [main] o.s.b.f.s.DefaultListableBeanFactory     : Destroy method on bean with name 'org.springframework.boot.autoconfigure.internalCachingMetadataReaderFactory' threw an exception
+
+java.lang.IllegalStateException: ApplicationEventMulticaster not initialized - call 'refresh' before multicasting events via the context: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@15bb6bea: startup date [Fri Nov 03 14:02:03 CST 2017]; root of context hierarchy
+	at org.springframework.context.support.AbstractApplicationContext.getApplicationEventMulticaster(AbstractApplicationContext.java:414) [spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.support.ApplicationListenerDetector.postProcessBeforeDestruction(ApplicationListenerDetector.java:97) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:253) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:578) [spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:554) [spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:961) [spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:523) [spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.destroySingletons(FactoryBeanRegistrySupport.java:230) [spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:968) [spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1030) [spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:556) [spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:693) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:360) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at com.gaoxi.GaoxiControllerApplication.main(GaoxiControllerApplication.java:21) [classes/:na]
+
+2017-11-03 14:02:03.404 ERROR 1133 --- [main] o.s.boot.SpringApplication               : Application startup failed
+
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.gaoxi.GaoxiControllerApplication]; nested exception is java.io.FileNotFoundException: class path resource [application*.properties] cannot be opened because it does not exist
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:181) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:308) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:228) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:272) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:92) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:687) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:525) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122) ~[spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:693) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:360) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at com.gaoxi.GaoxiControllerApplication.main(GaoxiControllerApplication.java:21) [classes/:na]
+Caused by: java.io.FileNotFoundException: class path resource [application*.properties] cannot be opened because it does not exist
+	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:172) ~[spring-core-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.core.io.support.EncodedResource.getInputStream(EncodedResource.java:154) ~[spring-core-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.core.io.support.PropertiesLoaderUtils.fillProperties(PropertiesLoaderUtils.java:98) ~[spring-core-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.core.io.support.PropertiesLoaderUtils.fillProperties(PropertiesLoaderUtils.java:72) ~[spring-core-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.core.io.support.PropertiesLoaderUtils.loadProperties(PropertiesLoaderUtils.java:58) ~[spring-core-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.core.io.support.ResourcePropertySource.<init>(ResourcePropertySource.java:65) ~[spring-core-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.core.io.support.DefaultPropertySourceFactory.createPropertySource(DefaultPropertySourceFactory.java:36) ~[spring-core-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassParser.processPropertySource(ConfigurationClassParser.java:440) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:271) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:245) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:198) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:167) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	... 13 common frames omitted
+
+2017-11-03 14:06:23.741  INFO 1144 --- [main] com.gaoxi.GaoxiControllerApplication     : Starting GaoxiControllerApplication on MacBook-Pro.local with PID 1144 (/Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Controller/target/classes started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi)
+2017-11-03 14:06:23.749  INFO 1144 --- [main] com.gaoxi.GaoxiControllerApplication     : No active profile set, falling back to default profiles: default
+2017-11-03 14:06:23.862  INFO 1144 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@145eaa29: startup date [Fri Nov 03 14:06:23 CST 2017]; root of context hierarchy
+2017-11-03 14:06:23.991  WARN 1144 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.gaoxi.GaoxiControllerApplication]; nested exception is java.io.FileNotFoundException: class path resource [application*.properties] cannot be opened because it does not exist
+2017-11-03 14:06:23.998 ERROR 1144 --- [main] o.s.b.f.s.DefaultListableBeanFactory     : Destroy method on bean with name 'org.springframework.boot.autoconfigure.internalCachingMetadataReaderFactory' threw an exception
+
+java.lang.IllegalStateException: ApplicationEventMulticaster not initialized - call 'refresh' before multicasting events via the context: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@145eaa29: startup date [Fri Nov 03 14:06:23 CST 2017]; root of context hierarchy
+	at org.springframework.context.support.AbstractApplicationContext.getApplicationEventMulticaster(AbstractApplicationContext.java:414) [spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.support.ApplicationListenerDetector.postProcessBeforeDestruction(ApplicationListenerDetector.java:97) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:253) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:578) [spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:554) [spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:961) [spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:523) [spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.destroySingletons(FactoryBeanRegistrySupport.java:230) [spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:968) [spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1030) [spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:556) [spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:693) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:360) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at com.gaoxi.GaoxiControllerApplication.main(GaoxiControllerApplication.java:23) [classes/:na]
+
+2017-11-03 14:06:24.150 ERROR 1144 --- [main] o.s.boot.SpringApplication               : Application startup failed
+
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.gaoxi.GaoxiControllerApplication]; nested exception is java.io.FileNotFoundException: class path resource [application*.properties] cannot be opened because it does not exist
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:181) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:308) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:228) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:272) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:92) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:687) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:525) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122) ~[spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:693) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:360) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at com.gaoxi.GaoxiControllerApplication.main(GaoxiControllerApplication.java:23) [classes/:na]
+Caused by: java.io.FileNotFoundException: class path resource [application*.properties] cannot be opened because it does not exist
+	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:172) ~[spring-core-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.core.io.support.EncodedResource.getInputStream(EncodedResource.java:154) ~[spring-core-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.core.io.support.PropertiesLoaderUtils.fillProperties(PropertiesLoaderUtils.java:98) ~[spring-core-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.core.io.support.PropertiesLoaderUtils.fillProperties(PropertiesLoaderUtils.java:72) ~[spring-core-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.core.io.support.PropertiesLoaderUtils.loadProperties(PropertiesLoaderUtils.java:58) ~[spring-core-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.core.io.support.ResourcePropertySource.<init>(ResourcePropertySource.java:65) ~[spring-core-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.core.io.support.DefaultPropertySourceFactory.createPropertySource(DefaultPropertySourceFactory.java:36) ~[spring-core-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassParser.processPropertySource(ConfigurationClassParser.java:440) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:271) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:245) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:198) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:167) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	... 13 common frames omitted
+
+2017-11-03 14:17:45.356  INFO 1190 --- [main] com.gaoxi.GaoxiControllerApplication     : Starting GaoxiControllerApplication on MacBook-Pro.local with PID 1190 (/Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Controller/target/classes started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi)
+2017-11-03 14:17:45.361  INFO 1190 --- [main] com.gaoxi.GaoxiControllerApplication     : The following profiles are active: dev
+2017-11-03 14:17:45.445  INFO 1190 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3ec300f1: startup date [Fri Nov 03 14:17:45 CST 2017]; root of context hierarchy
+2017-11-03 14:17:46.727  WARN 1190 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.gaoxi.facade, com.gaoxi]' package. Please check your configuration.
+2017-11-03 14:17:47.971  INFO 1190 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2017-11-03 14:17:47.984  INFO 1190 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2017-11-03 14:17:47.985  INFO 1190 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.23
+2017-11-03 14:17:48.065  INFO 1190 --- [localhost-startStop-1] o.a.c.c.C.[.[.[/Gaoxi-Controller]        : Initializing Spring embedded WebApplicationContext
+2017-11-03 14:17:48.065  INFO 1190 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2628 ms
+2017-11-03 14:17:48.249  INFO 1190 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-11-03 14:17:48.256  INFO 1190 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-11-03 14:17:48.256  INFO 1190 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-11-03 14:17:48.257  INFO 1190 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-11-03 14:17:48.257  INFO 1190 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-11-03 14:17:48.768  INFO 1190 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3ec300f1: startup date [Fri Nov 03 14:17:45 CST 2017]; root of context hierarchy
+2017-11-03 14:17:48.826  INFO 1190 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello]}" onto public com.gaoxi.rsp.Result<java.lang.String> com.gaoxi.controller.example.ExampleControllerImpl.hello()
+2017-11-03 14:17:48.828  INFO 1190 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/article/{userId}]}" onto public com.gaoxi.rsp.Result<java.util.List<com.gaoxi.entity.user.ArticleEntity>> com.gaoxi.controller.example.ExampleControllerImpl.findArticlesByUserId(java.lang.String)
+2017-11-03 14:17:48.838  INFO 1190 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createProduct(com.gaoxi.entity.product.ProductEntity)
+2017-11-03 14:17:48.839  INFO 1190 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/image],methods=[POST]}" onto public com.gaoxi.rsp.Result<com.gaoxi.entity.product.ImageEntity> com.gaoxi.controller.product.ProductControllerImpl.uploadImage(org.springframework.web.multipart.MultipartFile)
+2017-11-03 14:17:48.839  INFO 1190 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.updateProduct(com.gaoxi.entity.product.ProductEntity)
+2017-11-03 14:17:48.840  INFO 1190 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/product],methods=[GET]}" onto public com.gaoxi.rsp.Result<java.util.List<com.gaoxi.entity.product.ProductEntity>> com.gaoxi.controller.product.ProductControllerImpl.findProducts(com.gaoxi.req.product.ProdQueryReq)
+2017-11-03 14:17:48.840  INFO 1190 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createCategoty(com.gaoxi.entity.product.CategoryEntity)
+2017-11-03 14:17:48.840  INFO 1190 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.modifyCategory(com.gaoxi.entity.product.CategoryEntity)
+2017-11-03 14:17:48.841  INFO 1190 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category/{categoryId}],methods=[DELETE]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.deleteCategory(java.lang.String)
+2017-11-03 14:17:48.841  INFO 1190 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand],methods=[POST]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.createBrand(com.gaoxi.entity.product.BrandEntity)
+2017-11-03 14:17:48.841  INFO 1190 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand],methods=[PUT]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.modifyBrand(com.gaoxi.entity.product.BrandEntity)
+2017-11-03 14:17:48.842  INFO 1190 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/brand/{brandId}],methods=[DELETE]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.product.ProductControllerImpl.deleteBrand(java.lang.String)
+2017-11-03 14:17:48.844  INFO 1190 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user],methods=[GET]}" onto public com.gaoxi.rsp.Result com.gaoxi.controller.user.UserControllerImpl.login(com.gaoxi.req.user.UserQueryReq,javax.servlet.http.HttpServletResponse)
+2017-11-03 14:17:48.847  INFO 1190 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-11-03 14:17:48.847  INFO 1190 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-11-03 14:17:48.891  INFO 1190 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 14:17:48.891  INFO 1190 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 14:17:48.911  INFO 1190 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in exceptionHandle
+2017-11-03 14:17:48.935  INFO 1190 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 14:17:49.725  INFO 1190 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-11-03 14:17:49.795  INFO 1190 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2017-11-03 14:17:49.807  INFO 1190 --- [main] c.a.dubbo.common.logger.LoggerFactory    : using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+2017-11-03 14:17:49.811  INFO 1190 --- [main] com.gaoxi.GaoxiControllerApplication     : Started GaoxiControllerApplication in 4.88 seconds (JVM running for 5.826)
+2017-11-03 14:18:09.549  INFO 1190 --- [Thread-14] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3ec300f1: startup date [Fri Nov 03 14:17:45 CST 2017]; root of context hierarchy
+2017-11-03 14:18:09.552  INFO 1190 --- [Thread-14] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2017-11-03 14:21:06.924  INFO 1224 --- [main] com.gaoxi.user.GaoxiUserApplication      : Starting GaoxiUserApplication on MacBook-Pro.local with PID 1224 (/Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-User/target/classes started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi)
+2017-11-03 14:21:06.928  INFO 1224 --- [main] com.gaoxi.user.GaoxiUserApplication      : The following profiles are active: dev
+2017-11-03 14:21:07.020  INFO 1224 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3ec300f1: startup date [Fri Nov 03 14:21:07 CST 2017]; root of context hierarchy
+2017-11-03 14:21:09.106  INFO 1224 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2017-11-03 14:21:09.121  INFO 1224 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2017-11-03 14:21:09.122  INFO 1224 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.23
+2017-11-03 14:21:09.230  INFO 1224 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-11-03 14:21:09.230  INFO 1224 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2215 ms
+2017-11-03 14:21:09.402  INFO 1224 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-11-03 14:21:09.407  INFO 1224 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-11-03 14:21:09.408  INFO 1224 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-11-03 14:21:09.409  INFO 1224 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-11-03 14:21:09.409  INFO 1224 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-11-03 14:21:09.829  INFO 1224 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3ec300f1: startup date [Fri Nov 03 14:21:07 CST 2017]; root of context hierarchy
+2017-11-03 14:21:09.926  INFO 1224 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-11-03 14:21:09.927  INFO 1224 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-11-03 14:21:09.959  INFO 1224 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 14:21:09.959  INFO 1224 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 14:21:10.000  INFO 1224 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-03 14:21:11.186  INFO 1224 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-11-03 14:21:11.248  INFO 1224 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2017-11-03 14:21:11.253  INFO 1224 --- [main] com.gaoxi.user.GaoxiUserApplication      : Started GaoxiUserApplication in 4.758 seconds (JVM running for 5.689)
+2017-11-03 14:21:22.429  INFO 1224 --- [Thread-12] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3ec300f1: startup date [Fri Nov 03 14:21:07 CST 2017]; root of context hierarchy
+2017-11-03 14:21:22.432  INFO 1224 --- [Thread-12] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown

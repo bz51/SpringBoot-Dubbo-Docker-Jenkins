@@ -3,6 +3,7 @@ package com.gaoxi.enumeration;
 /**
  * @author 大闲人柴毛毛
  * @date 2017/11/1 上午11:09
+ *
  * @description HTTP请求方式的枚举类
  */
 public enum HttpMethodEnum {

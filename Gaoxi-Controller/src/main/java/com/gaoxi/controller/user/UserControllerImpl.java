@@ -27,7 +27,6 @@ import java.util.List;
  * @Date 2017/10/27 下午10:26
  */
 @RestController
-@ResponseBody
 public class UserControllerImpl implements UserController {
 
     @Reference
@@ -45,7 +44,6 @@ public class UserControllerImpl implements UserController {
     private String sessionIdName;
 
     @Override
-    @GetMapping("/user")
     public Result login(UserQueryReq loginReq, HttpServletResponse httpRsp) {
 
         // 校验参数
