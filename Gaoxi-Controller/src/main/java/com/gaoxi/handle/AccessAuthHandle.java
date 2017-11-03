@@ -32,7 +32,7 @@ import java.util.Map;
  * @author 大闲人柴毛毛
  * @date 2017/11/2 下午7:06
  *
- * @description 访问权限处理类
+ * @description 访问权限处理类(所有请求都要经过此类)
  */
 @Aspect
 @Component
@@ -52,9 +52,18 @@ public class AccessAuthHandle {
     /** 星 */
     private static final String STAR = "*";
 
+
+
+    /** 定义切点 */
     @Pointcut("execution(public * com.gaoxi.controller..*.*(..))")
     public void accessAuth(){}
 
+
+    /**
+     * 拦截所有请求
+     * @param joinPoint
+     * @throws Throwable
+     */
     @Around("accessAuth()")
     public void doAround(ProceedingJoinPoint joinPoint) throws Throwable {
 
@@ -64,6 +73,10 @@ public class AccessAuthHandle {
         // 放行通过
         joinPoint.proceed();
     }
+
+
+
+
 
     /**
      * 检查当前用户是否允许访问该接口
@@ -153,7 +166,7 @@ public class AccessAuthHandle {
      */
     private AccessAuthEntity getAccessAuthEntity(String method, String url) {
         // 获取所有接口的访问权限
-        Map<String,AccessAuthEntity> accessAuthMap = (Map<String, AccessAuthEntity>) redisUtils.get("accessAuthMap");
+        Map<String,AccessAuthEntity> accessAuthMap = (Map<String, AccessAuthEntity>) redisUtils.get(RedisPrefixUtil.Access_Auth_Prefix);
 
         // 遍历所有接口的访问权限
         if (accessAuthMap!=null && accessAuthMap.size()>0) {
@@ -164,7 +177,8 @@ public class AccessAuthHandle {
             }
         }
 
-        return null;
+        // 没有该接口
+        throw new CommonBizException(ExpCodeEnum.ERROR_404);
     }
 
 
@@ -187,7 +201,7 @@ public class AccessAuthHandle {
         // 将URL按照反斜杠切分
         String[] urls_1 = key.split("/");
         String[] urls_2 = url.split("/");
-        urls_2[0] += method;
+        urls_2[0] = method + urls_2[0];
 
         // 反斜杠数量不同，则匹配失败
         if (urls_1.length != urls_2.length) {
@@ -201,9 +215,11 @@ public class AccessAuthHandle {
                 continue;
             }
 
-            // 若两个字符串不想等，则匹配失败
+            // 若两个字符串不相等，则匹配失败
             return false;
         }
+
+        // 匹配成功
         return true;
     }
 
@@ -213,23 +229,17 @@ public class AccessAuthHandle {
      * @return
      */
     private UserEntity getUserEntity(String sessionID) {
-        // 获取UserID
-        String userID = (String) redisUtils.get(sessionID);
-        if (StringUtils.isEmpty(userID)) {
+        // SessionID为空
+        if (StringUtils.isEmpty(sessionID)) {
             return null;
         }
 
         // 获取UserEntity
-        if (StringUtils.isNotEmpty(userID)) {
-            // 生成key("USER"+用户ID)
-            String key = RedisPrefixUtil.USER_Prefix + userID;
-            Object userEntity = redisUtils.get(key);
-            if (userEntity==null) {
-                return null;
-            }
-            return (UserEntity) userEntity;
+        Object userEntity = redisUtils.get(sessionID);
+        if (userEntity==null) {
+            return null;
         }
-        return null;
+        return (UserEntity) userEntity;
     }
 
     /**

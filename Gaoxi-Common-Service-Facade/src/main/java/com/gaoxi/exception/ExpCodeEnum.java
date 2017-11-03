@@ -15,6 +15,7 @@ public enum ExpCodeEnum {
 
     /** 通用异常 */
     UNKNOW_ERROR(ComExpPrefix + "000", "未知异常"),
+    ERROR_404(ComExpPrefix + "001", "没有该接口"),
 
     /** User模块异常 */
     USERNAME_NULL(UserExpPrefix + "000", "用户名为空"),

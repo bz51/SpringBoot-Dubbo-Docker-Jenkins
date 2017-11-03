@@ -1,5 +1,7 @@
 package com.gaoxi.controller.product;
 
+import com.gaoxi.annotation.Login;
+import com.gaoxi.annotation.Permission;
 import com.gaoxi.entity.product.BrandEntity;
 import com.gaoxi.entity.product.CategoryEntity;
 import com.gaoxi.req.product.ProdQueryReq;
@@ -28,6 +30,8 @@ public interface ProductController {
      * @return 是否创建成功
      */
     @PostMapping("product")
+//    @Login
+//    @Permission("product:create")
     public Result createProduct(ProductEntity productEntity);
 
     /**
@@ -37,6 +41,8 @@ public interface ProductController {
      * @return 图片详情
      */
     @PostMapping("image")
+    @Login
+//    @Permission("image:upload")
     public Result<ImageEntity> uploadImage(MultipartFile file);
 
     /**
@@ -45,6 +51,8 @@ public interface ProductController {
      * @return 是否修改成功
      */
     @PutMapping("product")
+    @Login
+    @Permission("product:update")
     public Result updateProduct(ProductEntity productEntity);
 
     /**
@@ -53,6 +61,8 @@ public interface ProductController {
      * @return 产品查询结果
      */
     @GetMapping("product")
+    @Login
+    @Permission("product:query")
     public Result<List<ProductEntity>> findProducts(ProdQueryReq prodQueryReq);
 
     /**
@@ -61,6 +71,8 @@ public interface ProductController {
      * @return 是否创建成功
      */
     @PostMapping("category")
+    @Login
+    @Permission("category:create")
     public Result createCategoty(CategoryEntity categoryEntity);
 
     /**
@@ -70,6 +82,8 @@ public interface ProductController {
      * @return 是否修改成
      */
     @PutMapping("category")
+    @Login
+    @Permission("category:update")
     public Result modifyCategory(CategoryEntity categoryEntity);
 
     /**
@@ -79,6 +93,8 @@ public interface ProductController {
      * @return 删除结果
      */
     @DeleteMapping("category/{categoryId}")
+    @Login
+    @Permission("category:delete")
     public Result deleteCategory(String categoryId);
 
     /**
@@ -87,6 +103,8 @@ public interface ProductController {
      * @return 是否创建成功
      */
     @PostMapping("brand")
+    @Login
+    @Permission("brand:create")
     public Result createBrand(BrandEntity brandEntity);
 
     /**
@@ -95,6 +113,8 @@ public interface ProductController {
      * @return 是否修改成功
      */
     @PutMapping("brand")
+    @Login
+    @Permission("brand:update")
     public Result modifyBrand(BrandEntity brandEntity);
 
     /**
@@ -104,5 +124,7 @@ public interface ProductController {
      * @return 是否删除成功
      */
     @DeleteMapping("brand/{brandId}")
+    @Login
+    @Permission("brand:delete")
     public Result deleteBrand(String brandId);
 }

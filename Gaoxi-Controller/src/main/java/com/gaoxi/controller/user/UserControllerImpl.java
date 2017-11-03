@@ -68,49 +68,20 @@ public class UserControllerImpl implements UserController {
      * @param httpRsp HTTP响应参数
      */
     private void doLoginSuccess(List<UserEntity> userEntityList, HttpServletResponse httpRsp) {
-        // 处理Session
-        doSession(userEntityList, httpRsp);
-
-        // 处理用户信息
-        doUserInfo(userEntityList);
-    }
-
-    /**
-     * 处理用户信息
-     * @param userEntityList 用户信息
-     */
-    private void doUserInfo(List<UserEntity> userEntityList) {
-        // 获取用户信息
-        UserEntity userEntity = userEntityList.get(0);
-
-        // 生成key("USER"+用户ID)
-        String key = RedisPrefixUtil.USER_Prefix + userEntity.getId();
-
-        // 将用户信息存入Redis
-        redisUtils.set(key, userEntity, sessionExpireTime);
-
-    }
-
-
-    /**
-     * 处理Session信息
-     * @param userEntityList 用户信息
-     * @param httpRsp HTTP响应信息
-     */
-    private void doSession(List<UserEntity> userEntityList, HttpServletResponse httpRsp) {
         // 生成SessionID
         String sessionID = RedisPrefixUtil.SessionID_Prefix + KeyGenerator.getKey();
 
-        // 获取UserID
-        String userID = userEntityList.get(0).getId();
+        // 获取UserEntity
+        UserEntity userEntity = userEntityList.get(0);
 
-        // 将 SessionID-UserId 存入Redis
-        redisUtils.set(sessionID, userID, sessionExpireTime);
+        // 将 SessionID-UserEntity 存入Redis
+        redisUtils.set(sessionID, userEntity, sessionExpireTime);
 
         // 将SessionID存入HTTP响应头
         Cookie cookie = new Cookie(sessionIdName, sessionID);
         httpRsp.addCookie(cookie);
     }
+
 
     /**
      * 参数校验

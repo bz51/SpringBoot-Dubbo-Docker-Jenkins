@@ -105,7 +105,7 @@ public class InitAuth implements CommandLineRunner {
         }
         // 存至Redis
         // TODO 本地调试临时将redis注释掉!!!
-//        redisUtils.set(RedisPrefixUtil.Access_Auth_Prefix, accessAuthMap);
+        redisUtils.set(RedisPrefixUtil.Access_Auth_Prefix, accessAuthMap);
     }
 
     /**
