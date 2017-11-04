@@ -2,6 +2,12 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+
+    <settings>
+        <!-- 开启结果集自动映射（"_"——>驼峰命名） -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
     <typeAliases>
 
         <typeAlias alias="UserEntity" type="com.gaoxi.entity.user.UserEntity" />
@@ -9,4 +15,5 @@
         <typeAlias alias="PermissionEntity" type="com.gaoxi.entity.user.PermissionEntity" />
 
     </typeAliases>
+
 </configuration>

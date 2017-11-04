@@ -28,6 +28,31 @@
     </resultMap>
 
 
+    <update id="batchUpdateUserState">
+        UPDATE sys_user
+        set  user_state = #{userStateCode}
+        where id in
+        <foreach collection="userIdList"
+                 index="index"
+                 item="userId"
+                 separator=","
+                 open="(" close=")">
+            #{userId}
+        </foreach>
+    </update>
+
+    <delete id="deleteRole">
+      DELETE FROM sys_role WHERE id = #{roleId}
+    </delete>
+
+    <delete id="deleteRolePermission">
+        DELETE FROM sys_role_permission WHERE role_id = #{roleId}
+    </delete>
+
+    <delete id="deleteRoleMenu">
+        DELETE FROM sys_role_menu WHERE role_id = #{roleId}
+    </delete>
+
 
     <select id="findUsers" resultMap="userResultMap">
       SELECT user.id as id, username, phone, mail, licence_pic, register_time,
@@ -55,12 +80,41 @@
           ON
         role_permission.permission_id = permission.id
     </select>
-    
-    
+
+
+    <select id="findRoles" resultType="com.gaoxi.entity.user.RoleEntity">
+      SELECT * FROM sys_role
+    </select>
+
+    <select id="findPermissions" resultType="com.gaoxi.entity.user.PermissionEntity">
+      SELECT * FROM sys_permission
+    </select>
+
+    <select id="findMenus" resultType="com.gaoxi.entity.user.MenuEntity">
+        SELECT * FROM sys_menu
+    </select>
+
+
     <insert id="createUser">
         INSERT INTO sys_user (id,username,password,phone,mail,licence_pic,register_time,user_type,user_state)
         VALUES (#{id},#{username},#{password},#{phone},#{mail},#{licence_pic},#{registerTime},#{userTypeEnum.code},#{userStateEnum.code})
     </insert>
-            
+
+    <insert id="insertRoleMenu">
+        INSERT INTO sys_role_menu (role_id,menu_id)
+        VALUES
+        <foreach collection="roleMenuReq.menuIdList" item="menuId" index="index">
+          (#{roleMenuReq.roleId},#{menuId})
+        </foreach>
+    </insert>
+
+    <insert id="insertRolePermission">
+        INSERT INTO sys_role_permission (role_id,permission_id)
+        VALUES
+        <foreach collection="rolePermissionReq.permissionIdList" item="permissionId" index="index">
+            (#{rolePermissionReq.roleId},#{permissionId})
+        </foreach>
+    </insert>
+
 
 </mapper>

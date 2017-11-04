@@ -3,22 +3,27 @@ package com.gaoxi.user.service;
 import com.alibaba.dubbo.common.utils.CollectionUtils;
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.gaoxi.entity.user.MenuEntity;
+import com.gaoxi.entity.user.PermissionEntity;
+import com.gaoxi.entity.user.RoleEntity;
 import com.gaoxi.entity.user.UserEntity;
 import com.gaoxi.enumeration.user.UserStateEnum;
 import com.gaoxi.enumeration.user.UserTypeEnum;
 import com.gaoxi.exception.CommonBizException;
 import com.gaoxi.exception.ExpCodeEnum;
 import com.gaoxi.facade.user.UserService;
-import com.gaoxi.req.user.LoginReq;
-import com.gaoxi.req.user.RegisterReq;
-import com.gaoxi.req.user.UserQueryReq;
+import com.gaoxi.req.BatchReq;
+import com.gaoxi.req.user.*;
 import com.gaoxi.user.dao.UserDAO;
 import com.gaoxi.utils.KeyGenerator;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 大闲人柴毛毛
@@ -99,6 +104,205 @@ public class UserServiceImpl implements UserService {
 
         // 入库成功
         return userEntity;
+    }
+
+    @Override
+    public void batchUpdateUserState(BatchReq<UserStateReq> userStateReqs) {
+        // 参数校验
+        checkParam(userStateReqs);
+
+        // 按照userState将userId分组
+        Map<Integer, List<String>> userStateMap = groupUserIdByUserState(userStateReqs);
+
+        // 批量更新
+        if (!userStateMap.isEmpty()) {
+            for (Integer userStateCode : userStateMap.keySet()) {
+                userDAO.batchUpdateUserState(userStateCode, userStateMap.get(userStateCode));
+            }
+        }
+    }
+
+    @Override
+    public void createAdminUser(AdminCreateReq adminCreateReq) {
+        // 参数校验
+        checkParam(adminCreateReq);
+
+        // 构造UserEntity
+        UserEntity userEntity = buildUserEntity(adminCreateReq);
+
+        // 用户信息入库
+        userDAO.createUser(userEntity);
+    }
+
+    @Override
+    public List<RoleEntity> findRoles() {
+        return userDAO.findRoles();
+    }
+
+    @Override
+    public void deleteRole(String roleId) {
+        // 参数校验
+        checkParam(roleId);
+
+        // 删除角色
+        userDAO.deleteRole(roleId);
+
+        // 删除角色-权限关系
+        userDAO.deleteRolePermission(roleId);
+
+        // 删除角色-菜单关系
+        userDAO.deleteRoleMenu(roleId);
+    }
+
+    @Override
+    public void updateMenuOfRole(RoleMenuReq roleMenuReq) {
+        // 参数校验
+        checkParam(roleMenuReq);
+
+        // 删除该角色下所有的菜单
+        userDAO.deleteRoleMenu(roleMenuReq.getRoleId());
+
+        // 插入该角色下的新菜单
+        userDAO.insertRoleMenu(roleMenuReq);
+    }
+
+    @Override
+    public void updatePermissionOfRole(RolePermissionReq rolePermissionReq) {
+        // 参数校验
+        checkParam(rolePermissionReq);
+
+        // 删除该角色下的所有权限
+        userDAO.deleteRolePermission(rolePermissionReq.getRoleId());
+
+        // 插入该角色下的新权限
+        userDAO.insertRolePermission(rolePermissionReq);
+    }
+
+    @Override
+    public List<PermissionEntity> findPermissions() {
+        return userDAO.findPermissions();
+    }
+
+    @Override
+    public List<MenuEntity> findMenus() {
+        return userDAO.findMenus();
+    }
+
+    private void checkParam(RolePermissionReq rolePermissionReq) {
+        // 参数不能为空
+        if (rolePermissionReq==null) {
+            throw new CommonBizException(ExpCodeEnum.PARAM_NULL);
+        }
+
+        // roleId不能为空
+        if (StringUtils.isEmpty(rolePermissionReq.getRoleId())) {
+            throw new CommonBizException(ExpCodeEnum.ROLEID_NULL);
+        }
+
+        // 权限Id列表不能为空
+        if (CollectionUtils.isEmpty(rolePermissionReq.getPermissionIdList())) {
+            throw new CommonBizException(ExpCodeEnum.PERMISSIONIDLIST_NULL);
+        }
+    }
+
+
+    private void checkParam(RoleMenuReq roleMenuReq) {
+        // 参数不能为空
+        if (roleMenuReq==null) {
+            throw new CommonBizException(ExpCodeEnum.PARAM_NULL);
+        }
+
+        // roleId不能为空
+        if (StringUtils.isEmpty(roleMenuReq.getRoleId())) {
+            throw new CommonBizException(ExpCodeEnum.ROLEID_NULL);
+        }
+
+        // menuId列表不能为空
+        if (CollectionUtils.isEmpty(roleMenuReq.getMenuIdList())) {
+            throw new CommonBizException(ExpCodeEnum.MENUIDLIST_NULL);
+        }
+    }
+
+    private void checkParam(String roleId) {
+        if (StringUtils.isEmpty(roleId)) {
+            throw new CommonBizException(ExpCodeEnum.PARAM_NULL);
+        }
+    }
+
+    /**
+     * 构造UserEntity对象
+     * @param adminCreateReq 创建管理员的请求
+     * @return UserEntity对象
+     */
+    private UserEntity buildUserEntity(AdminCreateReq adminCreateReq) {
+        UserEntity userEntity = new UserEntity();
+
+        userEntity.setUsername(adminCreateReq.getUsername());
+        userEntity.setUserStateEnum(UserStateEnum.ON);
+        userEntity.setUserTypeEnum(UserTypeEnum.ADMIN);
+        userEntity.setRegisterTime(new Timestamp(System.currentTimeMillis()));
+        userEntity.setPassword(adminCreateReq.getPassword());
+        userEntity.setPhone(adminCreateReq.getPhone());
+
+        return userEntity;
+    }
+
+    private void checkParam(AdminCreateReq adminCreateReq) {
+        // 密码不能为空
+        if (StringUtils.isEmpty(adminCreateReq.getPassword())) {
+           throw new CommonBizException(ExpCodeEnum.PASSWD_NULL);
+        }
+
+        // 用户名不能为空
+        if (StringUtils.isEmpty(adminCreateReq.getUsername())) {
+           throw new CommonBizException(ExpCodeEnum.USERNAME_NULL);
+        }
+
+        // 电话不能为空
+        if (StringUtils.isEmpty(adminCreateReq.getPhone())) {
+            throw new CommonBizException(ExpCodeEnum.PHONE_NULL);
+        }
+
+        // 角色不能为空
+        if (adminCreateReq.getRole() == null) {
+            throw new CommonBizException(ExpCodeEnum.ROLE_NULL);
+        }
+
+    }
+
+    /**
+     * 根据userState将userId分组
+     * @param userStateReqs 修改用户状态的请求
+     * @return 分组后结果（key：用户状态、value：该状态下对应的userid列表）
+     */
+    private Map<Integer, List<String>> groupUserIdByUserState(BatchReq<UserStateReq> userStateReqs) {
+        // 创建结果集
+        Map<Integer, List<String>> userStateMap = Maps.newHashMap();
+
+        // 遍历UserStateEnum
+        if (UserStateEnum.values().length > 0) {
+            for (UserStateEnum userStateEnum : UserStateEnum.values()) {
+                // 获取当前用户状态下的所有userid
+                List<String> userIdList = Lists.newArrayList();
+                if (CollectionUtils.isNotEmpty(userStateReqs.getReqList())) {
+                    for (UserStateReq userStateReq : userStateReqs.getReqList()) {
+                        if (userStateReq.getUserState() == userStateEnum.getCode()) {
+                            userIdList.add(userStateReq.getUserId());
+                        }
+                    }
+                    userStateMap.put(userStateEnum.getCode(), userIdList);
+                }
+            }
+        }
+
+        return userStateMap;
+    }
+
+    private void checkParam(BatchReq<UserStateReq> userStateReqs) {
+        if (userStateReqs == null ||
+                CollectionUtils.isEmpty(userStateReqs.getReqList())) {
+            throw new CommonBizException(ExpCodeEnum.PARAM_NULL);
+        }
     }
 
     /**
