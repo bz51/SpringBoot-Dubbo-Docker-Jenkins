@@ -9,6 +9,7 @@ public class CommonBizException extends RuntimeException {
     private ExpCodeEnum codeEnum;
 
     public CommonBizException(ExpCodeEnum codeEnum){
+        super(codeEnum.getMessage());
         this.codeEnum = codeEnum;
     }
 
