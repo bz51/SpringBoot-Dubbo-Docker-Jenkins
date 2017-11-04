@@ -4,9 +4,9 @@ import com.gaoxi.annotation.Login;
 import com.gaoxi.annotation.Permission;
 import com.gaoxi.entity.product.BrandEntity;
 import com.gaoxi.entity.product.CategoryEntity;
+import com.gaoxi.entity.product.ProdImageEntity;
 import com.gaoxi.req.product.ProdQueryReq;
 import com.gaoxi.rsp.Result;
-import com.gaoxi.entity.product.ImageEntity;
 import com.gaoxi.entity.product.ProductEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +43,7 @@ public interface ProductController {
     @PostMapping("image")
     @Login
 //    @Permission("image:upload")
-    public Result<ImageEntity> uploadImage(MultipartFile file);
+    public Result<ProdImageEntity> uploadImage(MultipartFile file);
 
     /**
      * 修改产品

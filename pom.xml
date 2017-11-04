@@ -84,13 +84,14 @@
 	</dependencies>
 
 
-	<!--<modules>-->
-		<!--<module>Gaoxi-Analysis</module>-->
-		<!--<module>Gaoxi-Order</module>-->
-		<!--<module>Gaoxi-Product</module>-->
-		<!--<module>Gaoxi-User</module>-->
-		<!--<module>Gaoxi-Common-Service-Facade</module>-->
-	<!--</modules>-->
+	<modules>
+		<module>Gaoxi-Analysis</module>
+		<module>Gaoxi-Order</module>
+		<module>Gaoxi-Product</module>
+		<module>Gaoxi-User</module>
+		<module>Gaoxi-Controller</module>
+		<module>Gaoxi-Common-Service-Facade</module>
+	</modules>
 
 	<profiles>
 		<profile>

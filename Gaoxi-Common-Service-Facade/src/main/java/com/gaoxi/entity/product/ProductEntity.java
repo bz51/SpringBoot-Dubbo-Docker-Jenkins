@@ -46,7 +46,7 @@ public class ProductEntity {
     private ProdStateEnum prodStateEnum;
 
     /** 产品图片 */
-    private List<ImageEntity> imageEntityList;
+    private List<ProdImageEntity> prodImageEntityList;
 
     /** 产品详情 */
     private String content;
@@ -135,12 +135,12 @@ public class ProductEntity {
         this.prodStateEnum = prodStateEnum;
     }
 
-    public List<ImageEntity> getImageEntityList() {
-        return imageEntityList;
+    public List<ProdImageEntity> getProdImageEntityList() {
+        return prodImageEntityList;
     }
 
-    public void setImageEntityList(List<ImageEntity> imageEntityList) {
-        this.imageEntityList = imageEntityList;
+    public void setProdImageEntityList(List<ProdImageEntity> prodImageEntityList) {
+        this.prodImageEntityList = prodImageEntityList;
     }
 
     public String getContent() {
@@ -181,7 +181,7 @@ public class ProductEntity {
                 ", subCategEntity=" + subCategEntity +
                 ", brandEntity=" + brandEntity +
                 ", prodStateEnum=" + prodStateEnum +
-                ", imageEntityList=" + imageEntityList +
+                ", prodImageEntityList=" + prodImageEntityList +
                 ", content='" + content + '\'' +
                 ", companyEntity=" + companyEntity +
                 '}';

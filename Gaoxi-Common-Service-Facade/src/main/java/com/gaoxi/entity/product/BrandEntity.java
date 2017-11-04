@@ -17,8 +17,8 @@ public class BrandEntity implements Serializable{
     /** 产品品牌名称 */
     private String brand;
 
-    /** 品牌logo */
-    private ImageEntity brandLogo;
+    /** 品牌logo url*/
+    private String brandLogoUrl;
 
     /** 品牌所属企业 */
     private UserEntity companyEntity;
@@ -50,12 +50,12 @@ public class BrandEntity implements Serializable{
         this.sort = sort;
     }
 
-    public ImageEntity getBrandLogo() {
-        return brandLogo;
+    public String getBrandLogoUrl() {
+        return brandLogoUrl;
     }
 
-    public void setBrandLogo(ImageEntity brandLogo) {
-        this.brandLogo = brandLogo;
+    public void setBrandLogoUrl(String brandLogoUrl) {
+        this.brandLogoUrl = brandLogoUrl;
     }
 
     public UserEntity getCompanyEntity() {
@@ -71,7 +71,7 @@ public class BrandEntity implements Serializable{
         return "BrandEntity{" +
                 "id='" + id + '\'' +
                 ", brand='" + brand + '\'' +
-                ", brandLogo=" + brandLogo +
+                ", brandLogo=" + brandLogoUrl +
                 ", companyEntity=" + companyEntity +
                 ", sort=" + sort +
                 '}';
