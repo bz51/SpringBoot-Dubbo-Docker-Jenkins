@@ -58,8 +58,8 @@
     
     
     <insert id="createUser">
-        INSERT INTO sys_user (id,username,password,phone,mail,licence_pic,register_time,user_type,user_state,role_id)
-        VALUES ()
+        INSERT INTO sys_user (id,username,password,phone,mail,licence_pic,register_time,user_type,user_state)
+        VALUES (#{id},#{username},#{password},#{phone},#{mail},#{licence_pic},#{registerTime},#{userTypeEnum.code},#{userStateEnum.code})
     </insert>
             
 

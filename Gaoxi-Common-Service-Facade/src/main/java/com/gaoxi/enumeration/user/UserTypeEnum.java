@@ -1,11 +1,13 @@
 package com.gaoxi.enumeration.user;
 
+import com.gaoxi.enumeration.BaseEnum;
+
 /**
  * @author 大闲人柴毛毛
  * @date 2017/11/1 下午5:17
  * @description
  */
-public enum UserTypeEnum {
+public enum UserTypeEnum implements BaseEnum {
     Person(1,"个人用户"),
     Company(2,"企业用户"),
     ADMIN(3,"管理员");
@@ -33,19 +35,14 @@ public enum UserTypeEnum {
         return null;
     }
 
+    @Override
     public int getCode() {
         return code;
     }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
+    @Override
     public String getMsg() {
         return msg;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
 }

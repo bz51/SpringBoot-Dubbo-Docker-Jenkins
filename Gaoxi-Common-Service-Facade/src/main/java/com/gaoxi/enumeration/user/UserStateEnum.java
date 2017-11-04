@@ -1,11 +1,13 @@
 package com.gaoxi.enumeration.user;
 
+import com.gaoxi.enumeration.BaseEnum;
+
 /**
  * @author 大闲人柴毛毛
  * @date 2017/11/1 下午7:52
  * @description 用户状态的枚举类
  */
-public enum UserStateEnum {
+public enum UserStateEnum implements BaseEnum {
     ON(1, "启用"),
     OFF(0, "禁用");
 
@@ -17,20 +19,14 @@ public enum UserStateEnum {
         this.msg = msg;
     }
 
+    @Override
     public int getCode() {
         return code;
     }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
+    @Override
     public String getMsg() {
         return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
     }
 
     @Override
