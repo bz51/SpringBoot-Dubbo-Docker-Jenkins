@@ -3,7 +3,7 @@ package com.gaoxi.controller.product;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.gaoxi.entity.product.BrandEntity;
 import com.gaoxi.entity.product.CategoryEntity;
-import com.gaoxi.entity.product.ImageEntity;
+import com.gaoxi.entity.product.ProdImageEntity;
 import com.gaoxi.entity.product.ProductEntity;
 import com.gaoxi.facade.product.ProductService;
 import com.gaoxi.req.product.ProdQueryReq;
@@ -26,11 +26,12 @@ public class ProductControllerImpl implements ProductController {
 
     @Override
     public Result createProduct(ProductEntity productEntity) {
-        return null;
+        //新增产品
+        return productService.createProduct(productEntity);
     }
 
     @Override
-    public Result<ImageEntity> uploadImage(MultipartFile file) {
+    public Result<ProdImageEntity> uploadImage(MultipartFile file) {
         return null;
     }
 

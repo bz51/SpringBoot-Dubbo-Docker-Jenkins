@@ -27,6 +27,14 @@ public enum ExpCodeEnum {
 
     /** Product模块异常 */
     PRODUCT_NAME_NULL(ProdExpPrefix + "000", "产品名称为空"),
+    PRODUCT_MARKETPRICE_NULL(ProdExpPrefix + "001", "产品市场价为空"),
+    PRODUCT_SHOPPRICE_NULL(ProdExpPrefix + "002", "产品本店价为空"),
+    PRODUCT_STOCK_ZERO(ProdExpPrefix + "003", "产品库存为0"),
+    PRODUCT_WEIGHT_NULL(ProdExpPrefix + "004", "产品重量为空"),
+    PRODUCT_TOPCATEENTITY_NULL(ProdExpPrefix + "005", "产品一级分类为空"),
+    PRODUCT_SUBCATEGENTITY_NULL(ProdExpPrefix + "006", "产品二级分类为空"),
+    PRODUCT_BRANDENTITY_NULL(ProdExpPrefix + "007", "产品品牌为空"),
+    PRODUCT_COMPANYENTITY_NULL(ProdExpPrefix + "008", "产品所属企业为空"),
 
     /** Order模块异常 */
     STOCK_LOW(OrderExpPrefix + "000", "库存不足"),

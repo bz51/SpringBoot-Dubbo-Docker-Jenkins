@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @date 2017/10/31 下午3:45
  * @description 产品图片的实体类
  */
-public class ImageEntity implements Serializable{
+public class ProdImageEntity implements Serializable{
 
     /** 主键 */
     private String id;
@@ -34,11 +34,20 @@ public class ImageEntity implements Serializable{
         this.imageURL = imageURL;
     }
 
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
     @Override
     public String toString() {
-        return "ImageEntity{" +
+        return "ProdImageEntity{" +
                 "id='" + id + '\'' +
                 ", imageURL='" + imageURL + '\'' +
+                ", productId='" + productId + '\'' +
                 '}';
     }
 }
