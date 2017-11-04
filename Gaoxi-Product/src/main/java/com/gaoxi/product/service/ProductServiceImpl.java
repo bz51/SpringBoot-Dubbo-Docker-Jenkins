@@ -10,4 +10,5 @@ import com.gaoxi.facade.product.ProductService;
  */
 @Service(version = "1.0.0")
 public class ProductServiceImpl implements ProductService {
+
 }

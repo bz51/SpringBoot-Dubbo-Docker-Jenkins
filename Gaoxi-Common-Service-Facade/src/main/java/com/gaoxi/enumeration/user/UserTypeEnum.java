@@ -7,7 +7,8 @@ package com.gaoxi.enumeration.user;
  */
 public enum UserTypeEnum {
     Person(1,"个人用户"),
-    Company(2,"企业用户");
+    Company(2,"企业用户"),
+    ADMIN(3,"管理员");
 
     private int code;
     private String msg;
