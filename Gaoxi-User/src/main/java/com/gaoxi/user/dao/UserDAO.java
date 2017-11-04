@@ -19,6 +19,11 @@ public interface UserDAO {
      * @param userQueryReq 查询请求
      * @return 查询结果
      */
-    public List<UserEntity> findUsers(UserQueryReq userQueryReq);
+    List<UserEntity> findUsers(UserQueryReq userQueryReq);
 
+    /**
+     * 插入用户信息
+     * @param userEntity 用户信息
+     */
+    void createUser(UserEntity userEntity);
 }

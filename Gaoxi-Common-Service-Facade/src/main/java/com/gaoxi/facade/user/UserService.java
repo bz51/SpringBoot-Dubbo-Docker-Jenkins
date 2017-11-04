@@ -1,6 +1,8 @@
 package com.gaoxi.facade.user;
 
 import com.gaoxi.entity.user.UserEntity;
+import com.gaoxi.req.user.LoginReq;
+import com.gaoxi.req.user.RegisterReq;
 import com.gaoxi.req.user.UserQueryReq;
 
 import java.util.List;
@@ -12,6 +14,9 @@ import java.util.List;
  */
 public interface UserService {
 
+    public UserEntity login(LoginReq loginReq);
+
     public List<UserEntity> findUsers(UserQueryReq userQueryReq);
 
+    UserEntity register(RegisterReq registerReq);
 }

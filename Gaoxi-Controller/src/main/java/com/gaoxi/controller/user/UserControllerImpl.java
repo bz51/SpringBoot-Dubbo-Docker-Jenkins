@@ -3,12 +3,16 @@ package com.gaoxi.controller.user;
 import com.alibaba.dubbo.common.utils.CollectionUtils;
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.gaoxi.entity.user.MenuEntity;
+import com.gaoxi.entity.user.PermissionEntity;
+import com.gaoxi.entity.user.RoleEntity;
 import com.gaoxi.entity.user.UserEntity;
 import com.gaoxi.exception.CommonBizException;
 import com.gaoxi.exception.ExpCodeEnum;
 import com.gaoxi.facade.redis.RedisUtils;
 import com.gaoxi.facade.user.UserService;
-import com.gaoxi.req.user.UserQueryReq;
+import com.gaoxi.req.BatchReq;
+import com.gaoxi.req.user.*;
 import com.gaoxi.rsp.Result;
 import com.gaoxi.utils.KeyGenerator;
 import com.gaoxi.utils.RedisPrefixUtil;
@@ -41,35 +45,81 @@ public class UserControllerImpl implements UserController {
     private String sessionIdName;
 
     @Override
-    public Result login(UserQueryReq loginReq, HttpServletResponse httpRsp) {
+    public Result login(LoginReq loginReq, HttpServletResponse httpRsp) {
 
-        // 校验参数
-        checkParam(loginReq);
-
-        // 查询用户
-        List<UserEntity> userEntityList = userService.findUsers(loginReq);
-
-        // 登录失败
-        if (CollectionUtils.isEmpty(userEntityList)) {
-            throw new CommonBizException(ExpCodeEnum.LOGIN_FAIL);
-        }
+        // 登录鉴权
+        UserEntity userEntity = userService.login(loginReq);
 
         // 登录成功
-        doLoginSuccess(userEntityList, httpRsp);
+        doLoginSuccess(userEntity, httpRsp);
         return Result.newSuccessResult();
+    }
+
+
+    @Override
+    public Result register(RegisterReq registerReq, HttpServletResponse httpRsp) {
+
+        // 用户信息入库
+        UserEntity userEntity = userService.register(registerReq);
+
+        // 登录成功
+        doLoginSuccess(userEntity, httpRsp);
+        return Result.newSuccessResult();
+    }
+
+    @Override
+    public Result<List<UserEntity>> findUsers(UserQueryReq userQueryReq) {
+        return null;
+    }
+
+    @Override
+    public Result batchUpdateUserState(BatchReq<UserStateReq> userStateReqs) {
+        return null;
+    }
+
+    @Override
+    public Result createAdminUser(AdminCreateReq adminCreateReq) {
+        return null;
+    }
+
+    @Override
+    public Result<List<RoleEntity>> findRoles() {
+        return null;
+    }
+
+    @Override
+    public Result deleteRole(String roleId) {
+        return null;
+    }
+
+    @Override
+    public Result updateMenuOfRole(RoleMenuReq roleMenuReq) {
+        return null;
+    }
+
+    @Override
+    public Result updatePermissionOfRole(RolePermissionReq rolePermissionReq) {
+        return null;
+    }
+
+    @Override
+    public Result<List<PermissionEntity>> findPermissions() {
+        return null;
+    }
+
+    @Override
+    public Result<List<MenuEntity>> findMenus() {
+        return null;
     }
 
     /**
      * 处理登录成功
-     * @param userEntityList 用户信息
+     * @param userEntity 用户信息
      * @param httpRsp HTTP响应参数
      */
-    private void doLoginSuccess(List<UserEntity> userEntityList, HttpServletResponse httpRsp) {
+    private void doLoginSuccess(UserEntity userEntity, HttpServletResponse httpRsp) {
         // 生成SessionID
         String sessionID = RedisPrefixUtil.SessionID_Prefix + KeyGenerator.getKey();
-
-        // 获取UserEntity
-        UserEntity userEntity = userEntityList.get(0);
 
         // 将 SessionID-UserEntity 存入Redis
         redisUtils.set(sessionID, userEntity, sessionExpireTime);
@@ -77,24 +127,5 @@ public class UserControllerImpl implements UserController {
         // 将SessionID存入HTTP响应头
         Cookie cookie = new Cookie(sessionIdName, sessionID);
         httpRsp.addCookie(cookie);
-    }
-
-
-    /**
-     * 参数校验
-     * @param loginReq
-     */
-    private void checkParam(UserQueryReq loginReq) {
-        // 密码不能为空
-        if (StringUtils.isEmpty(loginReq.getPassword())) {
-            throw new CommonBizException(ExpCodeEnum.PASSWD_NULL);
-        }
-
-        // 手机、mail、用户名 至少填一个
-        if (StringUtils.isEmpty(loginReq.getUsername()) &&
-                StringUtils.isEmpty(loginReq.getMail()) &&
-                StringUtils.isEmpty(loginReq.getPhone())) {
-            throw new CommonBizException(ExpCodeEnum.AUTH_NULL);
-        }
     }
 }

@@ -9,26 +9,11 @@ import java.util.UUID;
  */
 public class KeyGenerator {
 
-    /** 主键的长度 */
-    private static final int UUID_LENGTH = 10;
-
-    /**
-     * 获得指定数目的UUID
-     * @return
-     */
-    public static String getKey(){
-        StringBuilder sb = new StringBuilder(UUID_LENGTH);
-        for(int i=0;i<UUID_LENGTH;i++){
-            sb.append(getUUID());
-        }
-        return sb.toString();
-    }
-
     /**
      * 获得一个UUID
      * @return String UUID
      */
-    private static String getUUID(){
+    private static String getKey(){
         String uuid = UUID.randomUUID().toString();
         //去掉“-”符号
         return uuid.replaceAll("-", "");

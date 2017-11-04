@@ -18,6 +18,21 @@ public enum UserTypeEnum {
         this.msg = msg;
     }
 
+    /**
+     * 根据code获取枚举
+     * @param code
+     * @return
+     */
+    public static UserTypeEnum getEnumByCode(int code) {
+        for (UserTypeEnum userTypeEnum : UserTypeEnum.values()) {
+            if (userTypeEnum.getCode() == code) {
+                return userTypeEnum;
+            }
+        }
+
+        return null;
+    }
+
     public int getCode() {
         return code;
     }

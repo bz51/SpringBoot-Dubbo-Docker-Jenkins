@@ -55,5 +55,12 @@
           ON
         role_permission.permission_id = permission.id
     </select>
+    
+    
+    <insert id="createUser">
+        INSERT INTO sys_user (id,username,password,phone,mail,licence_pic,register_time,user_type,user_state,role_id)
+        VALUES ()
+    </insert>
+            
 
 </mapper>

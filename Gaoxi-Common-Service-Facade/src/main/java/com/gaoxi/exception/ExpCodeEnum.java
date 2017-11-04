@@ -24,6 +24,11 @@ public enum ExpCodeEnum {
     LOGIN_FAIL(UserExpPrefix + "003", "登录失败"),
     UNLOGIN(UserExpPrefix + "004", "尚未登录"),
     NO_PERMISSION(UserExpPrefix + "005", "没有权限"),
+    PHONE_NULL(UserExpPrefix + "006", "手机号为空"),
+    MAIL_NULL(UserExpPrefix + "007", "电子邮件为空"),
+    USERTYPE_NULL(UserExpPrefix + "008", "用户类别为空"),
+    LICENCE_NULL(UserExpPrefix + "009", "营业执照为空"),
+    COMPANYNAME_NULL(UserExpPrefix + "010", "企业名称为空"),
 
     /** Product模块异常 */
     PRODUCT_NAME_NULL(ProdExpPrefix + "000", "产品名称为空"),
