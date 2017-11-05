@@ -14,12 +14,12 @@
         <result property="prodStateEnum" column="prod_state" typeHandler="com.gaoxi.typehandler.EnumTypeHandler"/>
 
         <association property="topCateEntity" javaType="com.gaoxi.entity.product.CategoryEntity">
-            <result property="id" column="topcategory.id"/>
+            <result property="id" column="topid"/>
             <result property="category" column="top_cate_name"/>
         </association>
 
         <association property="subCategEntity" javaType="com.gaoxi.entity.product.CategoryEntity">
-            <result property="id" column="subcategory.id"/>
+            <result property="id" column="subid"/>
             <result property="category" column="sub_cate_name"/>
         </association>
 
@@ -39,9 +39,9 @@
     </resultMap>
     <select id="findProducts" resultMap="productResultMap" parameterType="com.gaoxi.req.product.ProdQueryReq">
         SELECT product.id as id,prod_name,market_price,shop_price,stock,sales,weight,prod_state,
-                topcategory.id,
+                topcategory.id as topid,
                 topcategory.category_name as top_cate_name,
-                subcategory.id,
+                subcategory.id as subid,
                 subcategory.category_name as sub_cate_name,
                 brand.id,
                 brand.brand_name AS brand_name,

@@ -130,17 +130,17 @@ public class ProductServiceImplTest {
     @Test
     public void testFindProducts(){
         ProdQueryReq prodQueryReq = new ProdQueryReq();
-        prodQueryReq.setId("32aa5443ed1340d0843d2dfc153ac066");
-        prodQueryReq.setBrandId("8f33629890684f8fbc005edadc2c296c");
-        prodQueryReq.setCompanyId("USER680519fdf9e04d38aef2ceeb10ebb561");
-        prodQueryReq.setProdName("光伏板");
+//        prodQueryReq.setId("32aa5443ed1340d0843d2dfc153ac066");
+//        prodQueryReq.setBrandId("8f33629890684f8fbc005edadc2c296c");
+//        prodQueryReq.setCompanyId("USER680519fdf9e04d38aef2ceeb10ebb561");
+//        prodQueryReq.setProdName("光伏板");
  //       prodQueryReq.setProdStateCode(1);
 //        prodQueryReq.setShopPriceEnd("11");
 //        prodQueryReq.setShopPriceStart("99");
         //prodQueryReq.setOrderByPrice(1);
         prodQueryReq.setOrderBySales(1);
-        prodQueryReq.setTopCategoryId("d87b243d99e341d2b4af8e72bb49f6ad");
-        prodQueryReq.setSubCategoryId("79f7f386bee4451dbdcd9df5305d24ac");
+//        prodQueryReq.setTopCategoryId("d87b243d99e341d2b4af8e72bb49f6ad");
+//        prodQueryReq.setSubCategoryId("79f7f386bee4451dbdcd9df5305d24ac");
 
         Result<List<ProductEntity>> productEntityList = productService.findProducts(prodQueryReq);
         System.out.println(productEntityList);

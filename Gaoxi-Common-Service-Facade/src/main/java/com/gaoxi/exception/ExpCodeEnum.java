@@ -48,14 +48,14 @@ public enum ExpCodeEnum {
     PRODUCT_CREATE_FAIL(ProdExpPrefix + "009", "产品新增失败"),
     PRODUCT_UPDATE_FAIL(ProdExpPrefix + "010", "产品更新失败"),
     PRODUCT_SELECT_FAIL(ProdExpPrefix + "011", "没有符合条件的查询结果，产品查询失败"),
-    /** Category异常 前缀统一使用 ProdExpPrefix*/
+    /** Category异常 前缀统一使用 ProdExpPrefix */
     CATEGORY_NAME_NULL(ProdExpPrefix + "012","类别名称为空"),
     CATEGORY_CREATE_FAIL(ProdExpPrefix + "013","类别新增失败"),
     CATEGORY_DELETE_FAIL(ProdExpPrefix + "014","类别删除失败"),
     CATEGORY_UPDATE_FAIL(ProdExpPrefix + "015","类别更新失败"),
     CATEGORY_SELECT_FAIL(ProdExpPrefix + "016","没有符合条件的查询结果，类别查询失败"),
     CATEGORY_HASUSED(ProdExpPrefix +"017","当前类别已经被使用"),
-    /** Brand异常 前缀统一使用 ProdExpPrefix*/
+    /** Brand异常 前缀统一使用 ProdExpPrefix */
     BRADN_NAME_NULL(ProdExpPrefix + "018","品牌名称为空"),
     BRADN_LOGO_NULL(ProdExpPrefix + "019","品牌LOGO为空"),
     BRADN_COMMPANY_NULL(ProdExpPrefix + "020","品牌所属企业为空"),
