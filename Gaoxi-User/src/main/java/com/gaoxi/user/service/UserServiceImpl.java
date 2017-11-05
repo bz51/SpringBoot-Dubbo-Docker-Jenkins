@@ -31,6 +31,7 @@ import java.util.Map;
  * @description 用户相关操作
  */
 @Service
+@org.springframework.stereotype.Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -98,6 +99,8 @@ public class UserServiceImpl implements UserService {
 
         // 构造UserEntity
         UserEntity userEntity = buildUserEntity(registerReq);
+
+        // TODO 增加判断： 用户名、手机、邮箱 均不能重复
 
         // 用户信息入库
         userDAO.createUser(userEntity);
@@ -237,12 +240,17 @@ public class UserServiceImpl implements UserService {
     private UserEntity buildUserEntity(AdminCreateReq adminCreateReq) {
         UserEntity userEntity = new UserEntity();
 
+        userEntity.setId(generateKey());
         userEntity.setUsername(adminCreateReq.getUsername());
         userEntity.setUserStateEnum(UserStateEnum.ON);
         userEntity.setUserTypeEnum(UserTypeEnum.ADMIN);
         userEntity.setRegisterTime(new Timestamp(System.currentTimeMillis()));
         userEntity.setPassword(adminCreateReq.getPassword());
         userEntity.setPhone(adminCreateReq.getPhone());
+
+        RoleEntity roleEntity = new RoleEntity();
+        roleEntity.setId(adminCreateReq.getRoleId());
+        userEntity.setRoleEntity(roleEntity);
 
         return userEntity;
     }
@@ -264,7 +272,7 @@ public class UserServiceImpl implements UserService {
         }
 
         // 角色不能为空
-        if (adminCreateReq.getRole() == null) {
+        if (adminCreateReq.getRoleId() == null) {
             throw new CommonBizException(ExpCodeEnum.ROLE_NULL);
         }
 

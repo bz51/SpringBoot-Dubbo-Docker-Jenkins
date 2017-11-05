@@ -8,6 +8,7 @@ import com.gaoxi.req.user.RoleMenuReq;
 import com.gaoxi.req.user.RolePermissionReq;
 import com.gaoxi.req.user.UserQueryReq;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public interface UserDAO {
      * @param userQueryReq 查询请求
      * @return 查询结果
      */
-    List<UserEntity> findUsers(UserQueryReq userQueryReq);
+    List<UserEntity> findUsers(@Param("userQueryReq") UserQueryReq userQueryReq);
 
     /**
      * 插入用户信息
@@ -37,7 +38,8 @@ public interface UserDAO {
      * @param userStateCode 用户状态
      * @param userIdList 用户ID列表
      */
-    void batchUpdateUserState(Integer userStateCode, List<String> userIdList);
+    void batchUpdateUserState(@Param("userStateCode") Integer userStateCode,
+                              @Param("userIdList") List<String> userIdList);
 
     /**
      * 查询所有的角色
@@ -67,13 +69,13 @@ public interface UserDAO {
      * 插入角色-菜单关系
      * @param roleMenuReq
      */
-    void insertRoleMenu(RoleMenuReq roleMenuReq);
+    void insertRoleMenu(@Param("roleMenuReq") RoleMenuReq roleMenuReq);
 
     /**
      * 插入角色-权限关系
      * @param rolePermissionReq
      */
-    void insertRolePermission(RolePermissionReq rolePermissionReq);
+    void insertRolePermission(@Param("rolePermissionReq") RolePermissionReq rolePermissionReq);
 
     /**
      * 查询所有权限

@@ -123,6 +123,8 @@ public class UserEntity implements Serializable {
         this.roleEntity = roleEntity;
     }
 
+
+
     @Override
     public String toString() {
         return "UserEntity{" +

@@ -15,6 +15,11 @@ public class UserStateReq extends AbsReq {
     /** 用户状态 {@link com.gaoxi.enumeration.user.UserStateEnum} */
     private int userState;
 
+    public UserStateReq(String userId, int userState) {
+        this.userId = userId;
+        this.userState = userState;
+    }
+
     public String getUserId() {
         return userId;
     }
