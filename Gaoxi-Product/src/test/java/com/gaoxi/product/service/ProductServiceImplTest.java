@@ -1,13 +1,17 @@
 package com.gaoxi.product.service;
 
 import com.gaoxi.entity.product.CategoryEntity;
+import com.gaoxi.entity.product.ProductEntity;
 import com.gaoxi.facade.product.ProductService;
 import com.gaoxi.req.product.*;
+import com.gaoxi.rsp.Result;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -138,6 +142,7 @@ public class ProductServiceImplTest {
         prodQueryReq.setTopCategoryId("d87b243d99e341d2b4af8e72bb49f6ad");
         prodQueryReq.setSubCategoryId("79f7f386bee4451dbdcd9df5305d24ac");
 
-        productService.findProducts(prodQueryReq);
+        Result<List<ProductEntity>> productEntityList = productService.findProducts(prodQueryReq);
+        System.out.println(productEntityList);
     }
 }

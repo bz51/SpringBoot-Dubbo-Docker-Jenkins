@@ -11,22 +11,22 @@
         <result property="stock" column="stock"/>
         <result property="sales" column="sales"/>
         <result property="weight" column="weight"/>
-        <result property="prodStateEnum" column="prod_state"/>
+        <result property="prodStateEnum" column="prod_state" typeHandler="com.gaoxi.typehandler.EnumTypeHandler"/>
 
         <association property="topCateEntity" javaType="com.gaoxi.entity.product.CategoryEntity">
             <result property="id" column="topcategory.id"/>
-            <result property="category_name" column="top_cate_name"/>
+            <result property="category" column="top_cate_name"/>
         </association>
 
         <association property="subCategEntity" javaType="com.gaoxi.entity.product.CategoryEntity">
             <result property="id" column="subcategory.id"/>
-            <result property="category_name" column="sub_cate_name"/>
+            <result property="category" column="sub_cate_name"/>
         </association>
 
         <association property="brandEntity" javaType="com.gaoxi.entity.product.BrandEntity">
             <result property="id" column="brand.id"/>
-            <result property="brand_name" column="brand_name"/>
-            <result property="brand_logo_url" column="brand_logo"/>
+            <result property="brand" column="brand_name"/>
+            <result property="brandLogoUrl" column="brand_logo"/>
             <association property="companyEntity" javaType="com.gaoxi.entity.user.UserEntity">
                 <result property="id" column="sys_user.id"/>
                 <result property="username" column="company_name"/>
