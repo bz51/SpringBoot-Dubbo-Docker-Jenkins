@@ -19,8 +19,8 @@ public class AdminCreateReq extends AbsReq {
     /** 手机号 */
     private String phone;
 
-    /** 用户的角色 {@link com.gaoxi.enumeration.user.UserTypeEnum} */
-    private Integer role;
+    /** 角色ID */
+    private String roleId;
 
     public String getUsername() {
         return username;
@@ -46,12 +46,12 @@ public class AdminCreateReq extends AbsReq {
         this.phone = phone;
     }
 
-    public Integer getRole() {
-        return role;
+    public String getRoleId() {
+        return roleId;
     }
 
-    public void setRole(Integer role) {
-        this.role = role;
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class AdminCreateReq extends AbsReq {
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +
-                ", role=" + role +
+                ", roleId='" + roleId + '\'' +
                 '}';
     }
 }

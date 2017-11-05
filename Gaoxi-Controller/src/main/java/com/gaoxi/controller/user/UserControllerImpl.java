@@ -69,47 +69,84 @@ public class UserControllerImpl implements UserController {
 
     @Override
     public Result<List<UserEntity>> findUsers(UserQueryReq userQueryReq) {
-        return null;
+        // 查询
+        List<UserEntity> userEntityList = userService.findUsers(userQueryReq);
+
+        // 成功
+        return Result.newSuccessResult(userEntityList);
     }
 
     @Override
     public Result batchUpdateUserState(BatchReq<UserStateReq> userStateReqs) {
-        return null;
+        // 批量更新
+        userService.batchUpdateUserState(userStateReqs);
+
+        // 成功
+        return Result.newSuccessResult();
     }
 
     @Override
     public Result createAdminUser(AdminCreateReq adminCreateReq) {
-        return null;
+        // 创建管理员
+        userService.createAdminUser(adminCreateReq);
+
+        // 成功
+        return Result.newSuccessResult();
     }
 
     @Override
     public Result<List<RoleEntity>> findRoles() {
-        return null;
+
+        // 查询
+        List<RoleEntity> roleEntityList = userService.findRoles();
+
+        // 成功
+        return Result.newSuccessResult(roleEntityList);
     }
 
     @Override
     public Result deleteRole(String roleId) {
-        return null;
+        // 删除
+        userService.deleteRole(roleId);
+
+        // 成功
+        return Result.newSuccessResult();
     }
 
     @Override
     public Result updateMenuOfRole(RoleMenuReq roleMenuReq) {
-        return null;
+        // 更新
+        userService.updateMenuOfRole(roleMenuReq);
+
+        // 成功
+        return Result.newSuccessResult();
     }
 
     @Override
     public Result updatePermissionOfRole(RolePermissionReq rolePermissionReq) {
-        return null;
+        // 更新
+        userService.updatePermissionOfRole(rolePermissionReq);
+
+        // 成功
+        return Result.newSuccessResult();
     }
 
     @Override
     public Result<List<PermissionEntity>> findPermissions() {
-        return null;
+        // 查询
+        List<PermissionEntity> permissionEntityList = userService.findPermissions();
+
+        // 成功
+        return Result.newSuccessResult(permissionEntityList);
     }
 
     @Override
     public Result<List<MenuEntity>> findMenus() {
-        return null;
+        // 查询
+        List<MenuEntity> menuEntityList = userService.findMenus();
+
+        // 成功
+        return Result.newSuccessResult(menuEntityList);
     }
 
     /**

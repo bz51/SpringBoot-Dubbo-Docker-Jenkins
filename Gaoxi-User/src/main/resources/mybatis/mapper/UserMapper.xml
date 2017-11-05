@@ -11,8 +11,8 @@
         <result property="licencePic" column="licence_pic"/>
         <result property="registerTime" column="register_time"/>
         <result property="registerTime" column="register_time"/>
-        <!--<result property="userType" column="user_type"/>-->
-        <!--<result property="userState" column="user_state"/>-->
+        <result property="userTypeEnum" column="user_type" typeHandler="com.gaoxi.typehandler.EnumTypeHandler"/>
+        <result property="userStateEnum" column="user_state" typeHandler="com.gaoxi.typehandler.EnumTypeHandler"/>
 
         <association property="roleEntity" javaType="com.gaoxi.entity.user.RoleEntity">
             <result property="id" column="role_id"/>
@@ -22,16 +22,42 @@
             <collection property="permissionList" ofType="com.gaoxi.entity.user.PermissionEntity">
                 <result property="id" column="permission_id"/>
                 <result property="permission" column="permission"/>
-                <result property="desc" column="desc"/>
+                <result property="desc" column="permission_desc"/>
             </collection>
         </association>
     </resultMap>
 
 
+    <update id="batchUpdateUserState">
+        UPDATE sys_user
+        set  user_state = #{userStateCode}
+        where id in
+        <foreach collection="userIdList"
+                 index="index"
+                 item="userId"
+                 separator=","
+                 open="(" close=")">
+            #{userId}
+        </foreach>
+    </update>
+
+    <delete id="deleteRole">
+      DELETE FROM sys_role WHERE id = #{roleId}
+    </delete>
+
+    <delete id="deleteRolePermission">
+        DELETE FROM sys_role_permission WHERE role_id = #{roleId}
+    </delete>
+
+    <delete id="deleteRoleMenu">
+        DELETE FROM sys_role_menu WHERE role_id = #{roleId}
+    </delete>
+
 
     <select id="findUsers" resultMap="userResultMap">
       SELECT user.id as id, username, phone, mail, licence_pic, register_time,
---             user_type, user_state,
+              user_type,
+              user_state,
               role.id as role_id,
               role.name as role_name,
               role.desc as role_desc,
@@ -54,13 +80,79 @@
         sys_permission as permission
           ON
         role_permission.permission_id = permission.id
+
+        <where>
+            <if test="userQueryReq.id != null">
+                id = #{userQueryReq.id}
+            </if>
+            <if test="userQueryReq.username != null">
+                username like CONCAT('%',#{userQueryReq.username},'%')
+            </if>
+            <if test="userQueryReq.phone != null">
+                phone = #{userQueryReq.phone}
+            </if>
+            <if test="userQueryReq.mail != null">
+                mail = #{userQueryReq.mail}
+            </if>
+            <if test="userQueryReq.registerTimeStart != null">
+                register_time &gt; #{userQueryReq.registerTimeStart}
+            </if>
+            <if test="userQueryReq.registerTimeEnd != null">
+                register_time &lt; #{userQueryReq.registerTimeEnd}
+            </if>
+            <if test="userQueryReq.userType != null">
+                user_type = #{userQueryReq.userType}
+            </if>
+            <if test="userQueryReq.userState != null">
+                user_state = #{userQueryReq.userState}
+            </if>
+            <if test="userQueryReq.roleId != null">
+                role_id = #{userQueryReq.roleId}
+            </if>
+        </where>
+
+        <if test="userQueryReq.orderByRegisterTime != null and userQueryReq.orderByRegisterTime == 1">
+            order by register_time DESC
+        </if>
+        <if test="userQueryReq.orderByRegisterTime != null and userQueryReq.orderByRegisterTime == 2">
+            order by register_time ASC
+        </if>
     </select>
-    
-    
+
+
+    <select id="findRoles" resultType="com.gaoxi.entity.user.RoleEntity">
+      SELECT * FROM sys_role
+    </select>
+
+    <select id="findPermissions" resultType="com.gaoxi.entity.user.PermissionEntity">
+      SELECT * FROM sys_permission
+    </select>
+
+    <select id="findMenus" resultType="com.gaoxi.entity.user.MenuEntity">
+        SELECT * FROM sys_menu
+    </select>
+
+
     <insert id="createUser">
         INSERT INTO sys_user (id,username,password,phone,mail,licence_pic,register_time,user_type,user_state,role_id)
-        VALUES ()
+        VALUES (#{id},#{username},#{password},#{phone},#{mail},#{licencePic},#{registerTime},#{userTypeEnum.code},#{userStateEnum.code},#{roleEntity.id})
     </insert>
-            
+
+    <insert id="insertRoleMenu">
+        INSERT INTO sys_role_menu (role_id,menu_id)
+        VALUES
+        <foreach collection="roleMenuReq.menuIdList" item="menuId" index="index" separator=",">
+          (#{roleMenuReq.roleId},#{menuId})
+        </foreach>
+    </insert>
+
+    <insert id="insertRolePermission">
+        INSERT INTO sys_role_permission (role_id,permission_id)
+        VALUES
+        <foreach collection="rolePermissionReq.permissionIdList" item="permissionId" index="index" separator=",">
+            (#{rolePermissionReq.roleId},#{permissionId})
+        </foreach>
+    </insert>
+
 
 </mapper>

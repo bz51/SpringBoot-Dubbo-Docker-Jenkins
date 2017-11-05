@@ -16,6 +16,7 @@ public enum ExpCodeEnum {
     /** 通用异常 */
     UNKNOW_ERROR(ComExpPrefix + "000", "未知异常"),
     ERROR_404(ComExpPrefix + "001", "没有该接口"),
+    PARAM_NULL(ComExpPrefix + "002", "参数为空"),
 
     /** User模块异常 */
     USERNAME_NULL(UserExpPrefix + "000", "用户名为空"),
@@ -29,6 +30,10 @@ public enum ExpCodeEnum {
     USERTYPE_NULL(UserExpPrefix + "008", "用户类别为空"),
     LICENCE_NULL(UserExpPrefix + "009", "营业执照为空"),
     COMPANYNAME_NULL(UserExpPrefix + "010", "企业名称为空"),
+    ROLE_NULL(UserExpPrefix + "011", "角色为空"),
+    ROLEID_NULL(UserExpPrefix + "012", "roleId为空"),
+    MENUIDLIST_NULL(UserExpPrefix + "013", "menuIdList为空"),
+    PERMISSIONIDLIST_NULL(UserExpPrefix + "014", "permissionIdList为空"),
 
     /** Product模块异常 */
     PRODUCT_NAME_NULL(ProdExpPrefix + "000", "产品名称为空"),
@@ -64,7 +69,7 @@ public enum ExpCodeEnum {
     STOCK_LOW(OrderExpPrefix + "000", "库存不足"),
 
     /** Analysis模块异常 */
-    PARAM_NULL(AnlsExpPrefix + "000", "参数为空");
+    XXXX_NULL(AnlsExpPrefix + "000", "XXXX异常");
 
     private String code;
     private String message;
