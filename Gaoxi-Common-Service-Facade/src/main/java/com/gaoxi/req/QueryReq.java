@@ -13,6 +13,13 @@ public class QueryReq extends AbsReq {
     /** 每页显示的条数 */
     protected int numPerPage = 10;
 
+    //当前行号
+    protected int currentPage;
+
+    public int getCurrentPage() {
+        return (page-1)*numPerPage;
+    }
+
     public int getPage() {
         return page;
     }

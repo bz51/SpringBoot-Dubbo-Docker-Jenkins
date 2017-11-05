@@ -6,7 +6,7 @@ import com.gaoxi.entity.product.CategoryEntity;
 import com.gaoxi.entity.product.ProdImageEntity;
 import com.gaoxi.entity.product.ProductEntity;
 import com.gaoxi.facade.product.ProductService;
-import com.gaoxi.req.product.ProdQueryReq;
+import com.gaoxi.req.product.*;
 import com.gaoxi.rsp.Result;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,9 +25,9 @@ public class ProductControllerImpl implements ProductController {
 
 
     @Override
-    public Result createProduct(ProductEntity productEntity) {
+    public Result createProduct(ProdInsertReq prodInsertReq) {
         //新增产品
-        return productService.createProduct(productEntity);
+        return productService.createProduct(prodInsertReq);
     }
 
     @Override
@@ -36,42 +36,48 @@ public class ProductControllerImpl implements ProductController {
     }
 
     @Override
-    public Result updateProduct(ProductEntity productEntity) {
-        return null;
+    public Result updateProduct(ProdUpdateReq prodUpdateReq) {
+        //增量更新产品
+        return productService.updateProduct(prodUpdateReq);
     }
 
     @Override
     public Result<List<ProductEntity>> findProducts(ProdQueryReq prodQueryReq) {
-        return null;
+        return productService.findProducts(prodQueryReq);
     }
 
     @Override
     public Result createCategoty(CategoryEntity categoryEntity) {
-        return null;
+        return productService.createCategoty(categoryEntity);
     }
 
     @Override
     public Result modifyCategory(CategoryEntity categoryEntity) {
-        return null;
+        return productService.modifyCategory(categoryEntity);
     }
 
     @Override
     public Result deleteCategory(String categoryId) {
-        return null;
+        return productService.deleteCategory(categoryId);
     }
 
     @Override
-    public Result createBrand(BrandEntity brandEntity) {
-        return null;
+    public Result<List<CategoryEntity>> findCategorys(CategoryQueryReq categoryQueryReq) {
+        return productService.findCategorys(categoryQueryReq);
     }
 
     @Override
-    public Result modifyBrand(BrandEntity brandEntity) {
-        return null;
+    public Result createBrand(BrandInsertReq brandInsertReq) {
+        return productService.createBrand(brandInsertReq);
     }
 
     @Override
-    public Result deleteBrand(String brandId) {
-        return null;
+    public Result modifyBrand(BrandInsertReq brandInsertReq) {
+        return productService.modifyBrand(brandInsertReq);
+    }
+
+    @Override
+    public Result<List<BrandEntity>> findBrands(BrandQueryReq brandQueryReq) {
+        return productService.findBrands(brandQueryReq);
     }
 }

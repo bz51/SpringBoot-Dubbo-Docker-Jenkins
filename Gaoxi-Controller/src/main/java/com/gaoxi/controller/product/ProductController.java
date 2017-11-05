@@ -5,7 +5,7 @@ import com.gaoxi.annotation.Permission;
 import com.gaoxi.entity.product.BrandEntity;
 import com.gaoxi.entity.product.CategoryEntity;
 import com.gaoxi.entity.product.ProdImageEntity;
-import com.gaoxi.req.product.ProdQueryReq;
+import com.gaoxi.req.product.*;
 import com.gaoxi.rsp.Result;
 import com.gaoxi.entity.product.ProductEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,13 +26,13 @@ public interface ProductController {
 
     /**
      * 创建产品
-     * @param productEntity 产品详情
+     * @param prodInsertReq 产品详情
      * @return 是否创建成功
      */
     @PostMapping("product")
 //    @Login
 //    @Permission("product:create")
-    public Result createProduct(ProductEntity productEntity);
+    public Result createProduct(ProdInsertReq prodInsertReq);
 
     /**
      * 上传图片
@@ -47,13 +47,13 @@ public interface ProductController {
 
     /**
      * 修改产品
-     * @param productEntity 待修改产品（id必填 & 只提交待修改字段即可）
+     * @param prodUpdateReq 待修改产品（id必填 & 只提交待修改字段即可）
      * @return 是否修改成功
      */
     @PutMapping("product")
     @Login
     @Permission("product:update")
-    public Result updateProduct(ProductEntity productEntity);
+    public Result updateProduct(ProdUpdateReq prodUpdateReq);
 
     /**
      * 查询产品
@@ -98,33 +98,44 @@ public interface ProductController {
     public Result deleteCategory(String categoryId);
 
     /**
+     * 查询类别
+     * @param categoryQueryReq 类别查询请求
+     * @return 类别查询结果
+     */
+    @GetMapping("product")
+    @Login
+    @Permission("product:query")
+    public Result<List<CategoryEntity>> findCategorys(CategoryQueryReq categoryQueryReq);
+
+
+    /**
      * 创建品牌
-     * @param brandEntity 品牌参数(其中品牌所属企业字段仅需填写企业id即可)
+     * @param brandInsertReq 品牌参数(企业id即可)
      * @return 是否创建成功
      */
     @PostMapping("brand")
     @Login
     @Permission("brand:create")
-    public Result createBrand(BrandEntity brandEntity);
+    public Result createBrand(BrandInsertReq brandInsertReq);
 
     /**
      * 修改品牌
-     * @param brandEntity 待修改品牌(品牌id必填)
+     * @param brandInsertReq 待修改品牌(品牌id必填)
      * @return 是否修改成功
      */
     @PutMapping("brand")
     @Login
     @Permission("brand:update")
-    public Result modifyBrand(BrandEntity brandEntity);
+    public Result modifyBrand(BrandInsertReq brandInsertReq);
 
     /**
-     * 删除品牌
-     * PS：只有当该品牌下没有产品时才允许删除
-     * @param brandId 待删除品牌的id
-     * @return 是否删除成功
+     * 查询品牌
+     * @param brandQueryReq 品牌查询请求
+     * @return 品牌查询结果
      */
-    @DeleteMapping("brand/{brandId}")
+    @GetMapping("product")
     @Login
-    @Permission("brand:delete")
-    public Result deleteBrand(String brandId);
+    @Permission("product:query")
+    public Result<List<BrandEntity>> findBrands(BrandQueryReq brandQueryReq);
+
 }

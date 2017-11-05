@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gaoxi.product.dao.CategoryDAO" >
+    <resultMap id="categoryResultMap" type="com.gaoxi.entity.product.CategoryEntity">
+        <result property="id" column="id"/>
+        <result property="category" column="category_name"/>
+        <result property="parentId" column="category_parentid"/>
+        <result property="sort" column="sort"/>
+    </resultMap>
+    <select id="findCategorys" resultMap="categoryResultMap" parameterType="com.gaoxi.req.product.CategoryQueryReq">
+        SELECT id,category_name,category_parentid,sort
+        FROM category
+        <where>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="categoryName != null">
+                AND category_name LIKE #{categoryName}
+            </if>
+            <if test="parentId != null">
+                AND category_parentid = #{parentId}
+            </if>
+        </where>
+        ORDER BY sort DESC
+        limit #{currentPage},#{numPerPage}
+    </select>
+    <insert id="createCategoty" parameterType="com.gaoxi.entity.product.CategoryEntity">
+        INSERT INTO category
+        (id,category_name,category_parentid,sort)
+        VALUES
+        (#{id},#{category},#{parentId},#{sort})
+    </insert>
+    <update id="updateCategory" parameterType="com.gaoxi.entity.product.CategoryEntity">
+        UPDATE category
+        <set>
+            <if test="category != null" >
+                category_name = #{category,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null" >
+                category_parentid = #{parentId,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null" >
+                sort = #{sort,jdbcType=INTEGER},
+            </if>
+        </set>
+        WHERE id = #{id,jdbcType=VARCHAR}
+    </update>
+    <delete id="deleteCategory" parameterType="string">
+        DELETE FROM category
+        WHERE id = #{categoryId}
+    </delete>
+
+</mapper>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gaoxi.product.dao.BrandDAO" >
+    <resultMap id="brandResultMap" type="com.gaoxi.entity.product.BrandEntity">
+        <result property="id" column="id"/>
+        <result property="brand" column="brand_name"/>
+        <result property="brandLogoUrl" column="brand_logo_url"/>
+        <result property="sort" column="sort"/>
+        <association property="companyEntity" javaType="com.gaoxi.entity.user.UserEntity">
+            <result property="id" column="sys_user.id"/>
+            <result property="username" column="company_name"/>
+        </association>
+    </resultMap>
+    <select id="findBrands" resultMap="brandResultMap" parameterType="com.gaoxi.req.product.BrandQueryReq">
+        SELECT brand.id AS id,brand_name,brand_logo_url,sort,
+                sys_user.id,
+                sys_user.username as company_name
+        FROM brand
+          LEFT JOIN
+          sys_user
+          ON brand.company_entity = sys_user.id
+          <where>
+              <if test="id != null">
+                  AND brand.id = #{id}
+              </if>
+              <if test="brand != null">
+                  AND brand_name LIKE #{brand}
+              </if>
+              <if test="companyEntityId != null">
+                  AND sys_user.id = #{companyEntityId}
+              </if>
+          </where>
+        ORDER BY sort DESC
+        limit #{currentPage},#{numPerPage}
+    </select>
+    <insert id="createBrand" parameterType="com.gaoxi.req.product.BrandInsertReq">
+        INSERT INTO brand
+        (id,brand_name,brand_logo_url,company_entity,sort)
+        VALUES
+        (#{id},#{brand},#{brandLogoUrl},#{companyEntityId},#{sort})
+    </insert>
+    <update id="updateBrand" parameterType="com.gaoxi.req.product.BrandUpdateReq">
+        UPDATE brand
+        <set>
+            <if test="brand != null" >
+                brand_name = #{brand,jdbcType=VARCHAR},
+            </if>
+            <if test="brandLogoUrl != null" >
+                brand_logo_url = #{brandLogoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="companyEntityId != null" >
+                company_entity = #{companyEntityId,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null" >
+                sort = #{sort,jdbcType=INTEGER},
+            </if>
+        </set>
+        WHERE id = #{id,jdbcType=VARCHAR}
+    </update>
+</mapper>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gaoxi.product.dao.ProductDAO" >
+
+    <resultMap id="productResultMap" type="com.gaoxi.entity.product.ProductEntity">
+        <result property="id" column="id"/>
+        <result property="prodName" column="prod_name"/>
+        <result property="marketPrice" column="market_price"/>
+        <result property="shopPrice" column="shop_price"/>
+        <result property="stock" column="stock"/>
+        <result property="sales" column="sales"/>
+        <result property="weight" column="weight"/>
+        <result property="prodStateEnum" column="prod_state"/>
+
+        <association property="topCateEntity" javaType="com.gaoxi.entity.product.CategoryEntity">
+            <result property="id" column="topcategory.id"/>
+            <result property="category_name" column="top_cate_name"/>
+        </association>
+
+        <association property="subCategEntity" javaType="com.gaoxi.entity.product.CategoryEntity">
+            <result property="id" column="subcategory.id"/>
+            <result property="category_name" column="sub_cate_name"/>
+        </association>
+
+        <association property="brandEntity" javaType="com.gaoxi.entity.product.BrandEntity">
+            <result property="id" column="brand.id"/>
+            <result property="brand_name" column="brand_name"/>
+            <result property="brand_logo_url" column="brand_logo"/>
+            <association property="companyEntity" javaType="com.gaoxi.entity.user.UserEntity">
+                <result property="id" column="sys_user.id"/>
+                <result property="username" column="company_name"/>
+            </association>
+        </association>
+
+        <collection property="prodImageEntityList" ofType="com.gaoxi.entity.product.ProdImageEntity">
+            <result property="imageURL" column="prod_image_url"/>
+        </collection>
+    </resultMap>
+    <select id="findProducts" resultMap="productResultMap" parameterType="com.gaoxi.req.product.ProdQueryReq">
+        SELECT product.id as id,prod_name,market_price,shop_price,stock,sales,weight,prod_state,
+                topcategory.id,
+                topcategory.category_name as top_cate_name,
+                subcategory.id,
+                subcategory.category_name as sub_cate_name,
+                brand.id,
+                brand.brand_name AS brand_name,
+                brand.brand_logo_url AS brand_logo,
+                sys_user.id,
+                sys_user.username AS company_name,
+                prod_image.prod_image_url as prod_image_url
+        FROM
+          product
+            LEFT JOIN
+            category as topcategory
+            ON product.top_cate_entity = topcategory.id
+            LEFT JOIN
+            category as subcategory
+            ON product.sub_categ_entity = subcategory.id
+            LEFT JOIN
+            brand
+            ON product.brand_entity = brand.id
+            LEFT JOIN
+            sys_user
+            ON brand.company_entity = sys_user.id
+            LEFT JOIN
+            prod_image
+            ON product.id = prod_image.product_id
+        <where>
+            <if test="id != null">
+                AND product.id = #{id}
+            </if>
+            <if test="prodName != null">
+                AND prod_name LIKE #{prodName}
+            </if>
+            <if test="shopPriceStart != null">
+                AND shop_price &gt;= #{shopPriceStart}
+            </if>
+            <if test="shopPriceEnd != null">
+                AND shop_price &lt;= #{shopPriceEnd}
+            </if>
+            <if test="topCategoryId != null">
+                AND topcategory.id = #{topCategoryId}
+            </if>
+            <if test="subCategoryId != null">
+                AND subcategory.id = #{subCategoryId}
+            </if>
+            <if test="brandId != null">
+                AND brand.id = #{brandId}
+            </if>
+            <if test="prodStateCode != null">
+                AND prod_state = #{prodStateCode}
+            </if>
+            <if test="companyId != null">
+                AND sys_user.id = #{companyId}
+            </if>
+        </where>
+        <if test="orderByPrice != null and orderByPrice == 1">
+            ORDER BY #{orderByPrice} DESC
+        </if>
+        <if test="orderByPrice != null and orderByPrice == 2">
+            ORDER BY #{orderByPrice} ASC
+        </if>
+        <if test="orderBySales != null and orderBySales == 1">
+            ORDER BY #{orderBySales} DESC
+        </if>
+        <if test="orderBySales != null and orderBySales == 2">
+            ORDER BY #{orderBySales} DESC
+        </if>
+        limit #{currentPage},#{numPerPage}
+    </select>
+
+    <insert id="createProduct">
+      INSERT INTO product
+      (id,prod_name,market_price,shop_price,stock,sales,weight,
+      top_cate_entity,sub_categ_entity,brand_entity,prod_state,content,company_entity)
+      VALUES
+      (#{id},#{prodName},#{marketPrice},#{shopPrice},#{stock},#{sales},#{weight},
+      #{topCateEntityID},#{subCategEntityID},#{brandEntityID},#{prodState},#{content},#{companyEntityID})
+    </insert>
+    <update id="updateProduct" parameterType="com.gaoxi.req.product.ProdUpdateReq" >
+        update product
+        <set >
+            <if test="prodName != null" >
+                prod_name = #{prodName,jdbcType=VARCHAR},
+            </if>
+            <if test="marketPrice != null" >
+                market_price = #{marketPrice,jdbcType=VARCHAR},
+            </if>
+            <if test="shopPrice != null" >
+                shop_price = #{shopPrice,jdbcType=VARCHAR},
+            </if>
+            <if test="stock != null" >
+                stock = #{stock,jdbcType=INTEGER},
+            </if>
+            <if test="sales != null" >
+                sales = #{sales,jdbcType=INTEGER},
+            </if>
+            <if test="weight != null" >
+                weight = #{weight,jdbcType=VARCHAR},
+            </if>
+            <if test="topCateEntityID != null" >
+                top_cate_entity = #{topCateEntityID,jdbcType=VARCHAR},
+            </if>
+            <if test="subCategEntityID != null" >
+                sub_categ_entity = #{subCategEntityID,jdbcType=VARCHAR},
+            </if>
+            <if test="brandEntityID != null" >
+                brand_entity = #{brandEntityID,jdbcType=VARCHAR},
+            </if>
+            <if test="prodState != null" >
+                prod_state = #{prodState,jdbcType=INTEGER},
+            </if>
+            <if test="content != null" >
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="companyEntityID != null" >
+                company_entity = #{companyEntityID,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <select id="findUsedCategory" resultType="int">
+        SELECT COUNT(1)
+        FROM product
+        WHERE top_cate_entity = #{categoryId} OR sub_categ_entity = #{categoryId}
+
+    </select>
+
+</mapper>
