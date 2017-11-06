@@ -17,6 +17,7 @@ public enum ExpCodeEnum {
     UNKNOW_ERROR(ComExpPrefix + "000", "未知异常"),
     ERROR_404(ComExpPrefix + "001", "没有该接口"),
     PARAM_NULL(ComExpPrefix + "002", "参数为空"),
+    NO_REPEAT(ComExpPrefix + "003", "请勿重复提交"),
 
     /** User模块异常 */
     USERNAME_NULL(UserExpPrefix + "000", "用户名为空"),
@@ -67,6 +68,16 @@ public enum ExpCodeEnum {
 
     /** Order模块异常 */
     STOCK_LOW(OrderExpPrefix + "000", "库存不足"),
+    PROCESSOR_NULL(OrderExpPrefix + "001", "受理请求不存在"),
+    COMPONENT_NULL(OrderExpPrefix + "002", "业务组件列表为空"),
+    PROCESSREQ_ENUM_NULL(OrderExpPrefix + "003", "受理请求的枚举为空"),
+    PROCESSREQ_NULL(OrderExpPrefix + "004", "受理请求为空"),
+    PROCESSREQ_ORDERID_NULL(OrderExpPrefix + "005", "受理请求中的orderId为空"),
+    PROCESSREQ_USERID_NULL(OrderExpPrefix + "006", "受理请求中的userId为空"),
+    AllowStateList_NULL(OrderExpPrefix + "007", "幂等性检查所需的allowStateList为空"),
+    ORDER_INSERT_REQ_NULL(OrderExpPrefix + "008", "创建订单的请求参数为空"),
+    USERID_NULL(OrderExpPrefix + "009", "UserId为空"),
+
 
     /** Analysis模块异常 */
     XXXX_NULL(AnlsExpPrefix + "000", "XXXX异常");
