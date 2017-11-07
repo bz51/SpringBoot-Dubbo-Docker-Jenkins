@@ -2,6 +2,7 @@ package com.gaoxi.utils;
 
 import java.lang.annotation.Annotation;
 import java.lang.annotation.ElementType;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
@@ -31,5 +32,16 @@ public class AnnotationUtil {
      */
     public static <T> T getAnnotationValueByMethod(Method method, Class annotationClazz) {
         return (T) method.getAnnotation(annotationClazz);
+    }
+
+    /**
+     * 获取指定Field上的指定注解
+     * @param field 目标 成员变量
+     * @param annotationClazz 注解类的Class对象
+     * @param <T> 注解类型
+     * @return 注解对象
+     */
+    public static <T> T getAnnotationValueByField(Field field, Class annotationClazz) {
+        return (T) field.getAnnotation(annotationClazz);
     }
 }

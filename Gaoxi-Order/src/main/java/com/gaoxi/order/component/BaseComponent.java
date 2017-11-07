@@ -1,4 +1,4 @@
-package com.gaoxi.order.processor.component;
+package com.gaoxi.order.component;
 
 import com.gaoxi.req.order.OrderProcessReq;
 

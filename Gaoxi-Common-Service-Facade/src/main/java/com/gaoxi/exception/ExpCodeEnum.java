@@ -77,6 +77,11 @@ public enum ExpCodeEnum {
     AllowStateList_NULL(OrderExpPrefix + "007", "幂等性检查所需的allowStateList为空"),
     ORDER_INSERT_REQ_NULL(OrderExpPrefix + "008", "创建订单的请求参数为空"),
     USERID_NULL(OrderExpPrefix + "009", "UserId为空"),
+    PAYMODE_NULL(OrderExpPrefix + "010", "支付方式不能为空，且必须符合枚举规范"),
+    LOCATION_NULL(OrderExpPrefix + "011", "收货地址为空"),
+    PRODUCTIDCOUNT_NULL(OrderExpPrefix + "012", "prodIdCountMap为空"),
+    SELLER_DIFFERENT(OrderExpPrefix + "013", "产品的卖家必须相同"),
+    TARGETSTATE_NULL(OrderExpPrefix + "014", "更新订单状态时，订单目标状态不能为空"),
 
 
     /** Analysis模块异常 */

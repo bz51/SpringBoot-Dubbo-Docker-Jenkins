@@ -4,7 +4,6 @@ import com.gaoxi.entity.user.LocationEntity;
 import com.gaoxi.entity.user.UserEntity;
 import com.gaoxi.enumeration.order.OrderStateEnum;
 import com.gaoxi.enumeration.order.PayModeEnum;
-import com.sun.tools.corba.se.idl.constExpr.Times;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

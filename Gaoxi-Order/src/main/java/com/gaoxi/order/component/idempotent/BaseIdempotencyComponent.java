@@ -1,4 +1,4 @@
-package com.gaoxi.order.processor.component.idempotent;
+package com.gaoxi.order.component.idempotent;
 
 import com.alibaba.dubbo.common.utils.CollectionUtils;
 import com.gaoxi.entity.order.OrdersEntity;
@@ -7,7 +7,7 @@ import com.gaoxi.exception.CommonBizException;
 import com.gaoxi.exception.CommonSysException;
 import com.gaoxi.exception.ExpCodeEnum;
 import com.gaoxi.order.dao.OrderDAO;
-import com.gaoxi.order.processor.component.BaseComponent;
+import com.gaoxi.order.component.BaseComponent;
 import com.gaoxi.req.order.OrderProcessReq;
 import com.gaoxi.req.order.OrderQueryReq;
 import org.springframework.beans.factory.annotation.Autowired;

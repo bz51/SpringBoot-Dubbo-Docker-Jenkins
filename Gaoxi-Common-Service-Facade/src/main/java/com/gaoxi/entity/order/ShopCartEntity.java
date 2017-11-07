@@ -1,7 +1,6 @@
 package com.gaoxi.entity.order;
 
 import com.gaoxi.entity.product.ProductEntity;
-import com.sun.tools.corba.se.idl.constExpr.Times;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

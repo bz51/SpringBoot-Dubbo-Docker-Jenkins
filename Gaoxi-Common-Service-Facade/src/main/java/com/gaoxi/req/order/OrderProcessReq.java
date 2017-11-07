@@ -11,6 +11,9 @@ import com.gaoxi.req.AbsReq;
  */
 public class OrderProcessReq <T> extends AbsReq {
 
+    /** 是否终止下面的流程 */
+    private boolean isStop = false;
+
     /** 受理人ID */
     private String userId;
 
@@ -58,10 +61,20 @@ public class OrderProcessReq <T> extends AbsReq {
     @Override
     public String toString() {
         return "OrderProcessReq{" +
-                "userId='" + userId + '\'' +
+                "isStop=" + isStop +
+                ", userId='" + userId + '\'' +
                 ", orderId='" + orderId + '\'' +
                 ", processReqEnum=" + processReqEnum +
                 ", t=" + t +
                 '}';
     }
+
+    public boolean isStop() {
+        return isStop;
+    }
+
+    public void setStop(boolean stop) {
+        isStop = stop;
+    }
+
 }

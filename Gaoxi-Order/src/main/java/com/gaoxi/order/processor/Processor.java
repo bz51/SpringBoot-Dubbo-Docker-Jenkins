@@ -3,7 +3,7 @@ package com.gaoxi.order.processor;
 import com.alibaba.dubbo.common.utils.CollectionUtils;
 import com.gaoxi.exception.CommonSysException;
 import com.gaoxi.exception.ExpCodeEnum;
-import com.gaoxi.order.processor.component.BaseComponent;
+import com.gaoxi.order.component.BaseComponent;
 import com.gaoxi.req.order.OrderProcessReq;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +25,7 @@ public abstract class Processor {
     protected List<BaseComponent> componentList;
 
 
+
     /**
      * 处理函数
      * @param orderProcessReq
@@ -40,6 +41,10 @@ public abstract class Processor {
         // 依次执行所有业务组件
         for (BaseComponent component : componentList) {
             component.handle(orderProcessReq);
+            // 终止
+            if (orderProcessReq.isStop()) {
+                break;
+            }
         }
     }
 

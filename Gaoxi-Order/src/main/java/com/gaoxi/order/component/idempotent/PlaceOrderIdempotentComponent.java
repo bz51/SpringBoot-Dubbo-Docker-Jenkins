@@ -1,9 +1,8 @@
-package com.gaoxi.order.processor.component.idempotent;
+package com.gaoxi.order.component.idempotent;
 
 import com.gaoxi.enumeration.order.OrderStateEnum;
 
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author 大闲人柴毛毛
