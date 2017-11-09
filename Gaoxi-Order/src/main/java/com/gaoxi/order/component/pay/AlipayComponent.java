@@ -1,19 +1,19 @@
-package com.gaoxi.order.component.checkstock;
+package com.gaoxi.order.component.pay;
 
 import com.gaoxi.context.OrderProcessContext;
 import com.gaoxi.order.component.BaseComponent;
-import com.gaoxi.req.order.OrderProcessReq;
+import org.springframework.stereotype.Component;
 
 /**
  * @author 大闲人柴毛毛
- * @date 2017/11/7 下午1:17
- * @description 库存校验组件
+ * @date 2017/11/9 下午3:29
+ * @description
  */
-public class CheckStockComponent extends BaseComponent {
-
+@Component
+public class AlipayComponent extends BaseComponent {
 
     @Override
     public void handle(OrderProcessContext orderProcessContext) {
-
+        // TODO
     }
 }

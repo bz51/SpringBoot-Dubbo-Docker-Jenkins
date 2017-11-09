@@ -1,6 +1,7 @@
 package com.gaoxi.order.component.idempotent;
 
 import com.alibaba.dubbo.common.utils.CollectionUtils;
+import com.gaoxi.context.OrderProcessContext;
 import com.gaoxi.entity.order.OrdersEntity;
 import com.gaoxi.enumeration.order.OrderStateEnum;
 import com.gaoxi.exception.CommonBizException;
@@ -30,12 +31,12 @@ public abstract class BaseIdempotencyComponent extends BaseComponent {
 
     /**
      * 幂等性检查的处理函数
-     * @param orderProcessReq 订单受理请求
+     * @param orderProcessContext 订单受理上下文
      */
     @Override
-    public void handle(OrderProcessReq orderProcessReq) {
+    public void handle(OrderProcessContext orderProcessContext) {
         // 获取订单当前状态
-        OrderStateEnum curOrderState = getOrderState(orderProcessReq);
+        OrderStateEnum curOrderState = getOrderState(orderProcessContext);
 
         // 幂等性检查
         checkIdempotency(curOrderState, allowStateList);
@@ -66,16 +67,16 @@ public abstract class BaseIdempotencyComponent extends BaseComponent {
 
     /**
      * 获取当前订单的状态
-     * @param orderProcessReq 订单受理请求
+     * @param orderProcessContext 订单受理上下文
      * @return 订单状态
      */
-    private OrderStateEnum getOrderState(OrderProcessReq orderProcessReq) {
+    private OrderStateEnum getOrderState(OrderProcessContext orderProcessContext) {
         // 获取订单ID
-        String orderId = orderProcessReq.getOrderId();
+        String orderId = orderProcessContext.getOrderProcessReq().getOrderId();
 
         // 查询订单
         OrderQueryReq orderQueryReq = new OrderQueryReq();
-        orderQueryReq.setId(orderProcessReq.getOrderId());
+        orderQueryReq.setId(orderProcessContext.getOrderProcessReq().getOrderId());
         List<OrdersEntity> ordersEntityList = orderDAO.findOrders(orderQueryReq);
 
         // 订单不存在

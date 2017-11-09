@@ -1,18 +1,15 @@
 package com.gaoxi.req.order;
 
-import com.gaoxi.entity.order.ProcessReqEnum;
+import com.gaoxi.enumeration.order.ProcessReqEnum;
 import com.gaoxi.req.AbsReq;
 
 /**
  * @author 大闲人柴毛毛
- * @date 2017/11/6 下午2:39
+ * @date 2017/11/9 下午1:47
  *
  * @description 订单受理请求
  */
 public class OrderProcessReq <T> extends AbsReq {
-
-    /** 是否终止下面的流程 */
-    private boolean isStop = false;
 
     /** 受理人ID */
     private String userId;
@@ -20,11 +17,11 @@ public class OrderProcessReq <T> extends AbsReq {
     /** 订单ID */
     private String orderId;
 
-    /** 订单受理请求 */
+    /** 受理器枚举 */
     private ProcessReqEnum processReqEnum;
 
-    /** 额外的参数 */
-    private T t;
+    /** 自定义的请求参数 */
+    private T reqData;
 
     public String getUserId() {
         return userId;
@@ -50,31 +47,21 @@ public class OrderProcessReq <T> extends AbsReq {
         this.processReqEnum = processReqEnum;
     }
 
-    public T getT() {
-        return t;
+    public T getReqData() {
+        return reqData;
     }
 
-    public void setT(T t) {
-        this.t = t;
+    public void setReqData(T reqData) {
+        this.reqData = reqData;
     }
 
     @Override
     public String toString() {
         return "OrderProcessReq{" +
-                "isStop=" + isStop +
-                ", userId='" + userId + '\'' +
+                "userId='" + userId + '\'' +
                 ", orderId='" + orderId + '\'' +
                 ", processReqEnum=" + processReqEnum +
-                ", t=" + t +
+                ", reqData=" + reqData +
                 '}';
     }
-
-    public boolean isStop() {
-        return isStop;
-    }
-
-    public void setStop(boolean stop) {
-        isStop = stop;
-    }
-
 }

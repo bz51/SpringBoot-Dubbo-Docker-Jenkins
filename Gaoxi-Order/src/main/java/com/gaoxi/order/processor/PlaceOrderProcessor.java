@@ -2,12 +2,11 @@ package com.gaoxi.order.processor;
 
 import com.gaoxi.order.annotation.InjectComponents;
 import com.gaoxi.order.component.BaseComponent;
-import com.gaoxi.order.component.changestate.BaseChangeStateComponent;
-import com.gaoxi.order.component.checkparam.BaseCheckParamComponent;
 import com.gaoxi.order.component.checkparam.PlaceOrderCheckParamComponent;
 import com.gaoxi.order.component.checkstock.CheckStockComponent;
 import com.gaoxi.order.component.idempotent.PlaceOrderIdempotentComponent;
-import com.gaoxi.order.component.pay.BasePayComponent;
+import com.gaoxi.order.component.pay.CommonPayComponent;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -17,6 +16,7 @@ import java.util.List;
  *
  * @description 下单受理器
  */
+@Component
 public class PlaceOrderProcessor extends Processor {
 
     @InjectComponents({
@@ -27,9 +27,9 @@ public class PlaceOrderProcessor extends Processor {
             // 库存检查
             CheckStockComponent.class,
             // 支付
-            BasePayComponent.class,
+            CommonPayComponent.class,
             // 修改订单状态
-            BaseChangeStateComponent.class
+//            BaseChangeStateComponent.class
     })
     /** 业务组件列表(当前处理器需要处理的组件列表) */
     protected List<BaseComponent> componentList;

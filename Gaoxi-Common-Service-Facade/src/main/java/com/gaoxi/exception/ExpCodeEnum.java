@@ -82,6 +82,8 @@ public enum ExpCodeEnum {
     PRODUCTIDCOUNT_NULL(OrderExpPrefix + "012", "prodIdCountMap为空"),
     SELLER_DIFFERENT(OrderExpPrefix + "013", "产品的卖家必须相同"),
     TARGETSTATE_NULL(OrderExpPrefix + "014", "更新订单状态时，订单目标状态不能为空"),
+    PROCESSCONTEXT_NULL(OrderExpPrefix + "015", "订单受理上下文为空"),
+    PAYMODECODE_ERROR(OrderExpPrefix + "016", "支付方式code不存在"),
 
 
     /** Analysis模块异常 */

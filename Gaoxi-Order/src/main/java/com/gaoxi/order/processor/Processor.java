@@ -1,6 +1,7 @@
 package com.gaoxi.order.processor;
 
 import com.alibaba.dubbo.common.utils.CollectionUtils;
+import com.gaoxi.context.OrderProcessContext;
 import com.gaoxi.exception.CommonSysException;
 import com.gaoxi.exception.ExpCodeEnum;
 import com.gaoxi.order.component.BaseComponent;
@@ -28,9 +29,9 @@ public abstract class Processor {
 
     /**
      * 处理函数
-     * @param orderProcessReq
+     * @param orderProcessContext
      */
-    public void handle(OrderProcessReq orderProcessReq) {
+    public void handle(OrderProcessContext orderProcessContext) {
 
         // componentList为空
         if (CollectionUtils.isEmpty(componentList)) {
@@ -40,9 +41,9 @@ public abstract class Processor {
 
         // 依次执行所有业务组件
         for (BaseComponent component : componentList) {
-            component.handle(orderProcessReq);
+            component.handle(orderProcessContext);
             // 终止
-            if (orderProcessReq.isStop()) {
+            if (orderProcessContext.isStop()) {
                 break;
             }
         }

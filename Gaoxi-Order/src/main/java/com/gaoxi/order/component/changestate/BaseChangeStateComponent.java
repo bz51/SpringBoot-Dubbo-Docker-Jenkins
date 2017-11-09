@@ -1,5 +1,6 @@
 package com.gaoxi.order.component.changestate;
 
+import com.gaoxi.context.OrderProcessContext;
 import com.gaoxi.entity.order.OrderStateTimeEntity;
 import com.gaoxi.enumeration.order.OrderStateEnum;
 import com.gaoxi.exception.CommonSysException;
@@ -17,7 +18,7 @@ import java.sql.Timestamp;
  *
  * @description 订单状态流转组件
  */
-public abstract class BaseChangeStateComponent extends BaseComponent {
+public class BaseChangeStateComponent extends BaseComponent {
 
     /** 是否终止 */
     protected boolean isStop = false;
@@ -30,24 +31,28 @@ public abstract class BaseChangeStateComponent extends BaseComponent {
 
 
     /** 状态改变前的前置处理 */
-    protected abstract void preChange(OrderProcessReq orderProcessReq);
+    protected void preChange(OrderProcessContext orderProcessContext) {
+
+    }
 
     /** 状态改变后的后置处理 */
-    protected abstract void afterChange(OrderProcessReq orderProcessReq);
+    protected void afterChange(OrderProcessContext orderProcessContext) {
+
+    }
 
 
     /**
      * 将指定订单的状态更新成指定值
-     * @param orderProcessReq 订单受理请求
+     * @param orderProcessContext 订单受理上下文
      * @param targetOrderState 订单目标状态
      */
-    private void changeState(OrderProcessReq orderProcessReq, OrderStateEnum targetOrderState) {
+    private void changeState(OrderProcessContext orderProcessContext, OrderStateEnum targetOrderState) {
 
         // 目标状态为空
         checkParam(targetOrderState);
 
         // 获取订单ID
-        String orderId = orderProcessReq.getOrderId();
+        String orderId = orderProcessContext.getOrderProcessReq().getOrderId();
 
         // 更新订单状态
         updateOrderState(orderId, targetOrderState);
@@ -90,21 +95,24 @@ public abstract class BaseChangeStateComponent extends BaseComponent {
     }
 
     @Override
-    public void handle(OrderProcessReq orderProcessReq) {
+    public void handle(OrderProcessContext orderProcessContext) {
         // 前置处理
-        this.preChange(orderProcessReq);
+        this.preChange(orderProcessContext);
         if (this.isStop) {
             return;
         }
 
         // 改变状态
-        this.changeState(orderProcessReq, this.targetOrderState);
+        this.changeState(orderProcessContext, this.targetOrderState);
         if (this.isStop) {
             return;
         }
 
         // 后置处理
-        this.afterChange(orderProcessReq);
+        this.afterChange(orderProcessContext);
     }
 
+    public void setTargetOrderState(OrderStateEnum targetOrderState) {
+        this.targetOrderState = targetOrderState;
+    }
 }

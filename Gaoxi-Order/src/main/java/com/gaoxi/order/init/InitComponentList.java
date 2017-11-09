@@ -12,6 +12,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import java.lang.reflect.Field;
@@ -25,6 +26,7 @@ import java.util.List;
  * @description 初始化组件列表
  */
 @PackageScan("com.gaoxi.order.processor")
+@Component
 public class InitComponentList implements CommandLineRunner, ApplicationContextAware {
 
     private ApplicationContext applicationContext;
@@ -102,9 +104,9 @@ public class InitComponentList implements CommandLineRunner, ApplicationContextA
         }
 
         // 遍历components
-        for (Class componentClass : componentClassList) {
-            // 创建Component对象
-            BaseComponent componentInstance = (BaseComponent) componentClass.newInstance();
+        for (Class<BaseComponent> componentClass : componentClassList) {
+            // 获取IOC容器中的Component对象
+            BaseComponent componentInstance = applicationContext.getBean(componentClass);
             // 加入容器
             componentList.add(componentInstance);
         }

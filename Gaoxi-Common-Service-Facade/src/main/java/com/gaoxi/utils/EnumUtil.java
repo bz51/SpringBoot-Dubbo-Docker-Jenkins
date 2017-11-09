@@ -26,6 +26,23 @@ public class EnumUtil {
         return null;
     }
 
+    /**
+     * 根据msg获取枚举
+     * @param enumClass
+     * @param msg
+     * @param <E>
+     * @return
+     */
+    public static <E extends Enum<?> & BaseEnum> E msgOf(Class<E> enumClass, String msg) {
+        E[] enumConstants = enumClass.getEnumConstants();
+        for (E e : enumConstants) {
+            if (e.getMsg() == msg) {
+                return e;
+            }
+        }
+        return null;
+    }
+
 
 
 }

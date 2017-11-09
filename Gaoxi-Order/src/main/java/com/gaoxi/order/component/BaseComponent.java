@@ -1,5 +1,6 @@
 package com.gaoxi.order.component;
 
+import com.gaoxi.context.OrderProcessContext;
 import com.gaoxi.req.order.OrderProcessReq;
 
 /**
@@ -10,6 +11,6 @@ import com.gaoxi.req.order.OrderProcessReq;
  */
 public abstract class BaseComponent {
 
-    public abstract void handle(OrderProcessReq orderProcessReq);
+    public abstract void handle(OrderProcessContext orderProcessContext);
 
 }

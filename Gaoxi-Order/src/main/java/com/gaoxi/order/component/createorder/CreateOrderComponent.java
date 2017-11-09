@@ -2,6 +2,7 @@ package com.gaoxi.order.component.createorder;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.gaoxi.context.OrderProcessContext;
 import com.gaoxi.entity.order.OrdersEntity;
 import com.gaoxi.entity.product.ProductEntity;
 import com.gaoxi.entity.user.UserEntity;
@@ -17,6 +18,7 @@ import com.gaoxi.req.product.ProdQueryReq;
 import com.gaoxi.utils.EnumUtil;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
@@ -30,6 +32,7 @@ import static java.util.stream.Collectors.groupingBy;
  *
  * @description 创建订单组件
  */
+@Component
 public class CreateOrderComponent extends BaseComponent {
 
     @Autowired
@@ -39,10 +42,10 @@ public class CreateOrderComponent extends BaseComponent {
     private ProductService productService;
 
     @Override
-    public void handle(OrderProcessReq orderProcessReq) {
+    public void handle(OrderProcessContext orderProcessContext) {
 
         // 获取订单创建请求
-        OrderInsertReq orderInsertReq = getOrderInsertReq(orderProcessReq);
+        OrderInsertReq orderInsertReq = getOrderInsertReq(orderProcessContext);
 
         // 参数校验
         checkParam(orderInsertReq);
@@ -162,11 +165,11 @@ public class CreateOrderComponent extends BaseComponent {
 
     /**
      * 获取订单创建请求
-     * @param orderProcessReq 订单受理请求
+     * @param orderProcessContext 订单受理上下文
      * @return 订单创建请求
      */
-    private OrderInsertReq getOrderInsertReq(OrderProcessReq orderProcessReq) {
-        Object orderInsertReq = orderProcessReq.getT();
+    private OrderInsertReq getOrderInsertReq(OrderProcessContext orderProcessContext) {
+        Object orderInsertReq = orderProcessContext.getOrderProcessReq().getReqData();
         if (orderInsertReq == null) {
             throw new CommonBizException(ExpCodeEnum.ORDER_INSERT_REQ_NULL);
         }
