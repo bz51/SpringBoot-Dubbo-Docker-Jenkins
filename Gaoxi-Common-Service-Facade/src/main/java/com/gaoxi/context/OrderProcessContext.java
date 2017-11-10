@@ -20,7 +20,7 @@ public class OrderProcessContext <T> implements Serializable {
     private OrderProcessReq orderProcessReq;
 
     /** 订单受理结果 */
-    private Result orderProcessRsp;
+    private T orderProcessRsp;
 
     public boolean isStop() {
         return isStop;
@@ -38,11 +38,11 @@ public class OrderProcessContext <T> implements Serializable {
         this.orderProcessReq = orderProcessReq;
     }
 
-    public Result getOrderProcessRsp() {
+    public T getOrderProcessRsp() {
         return orderProcessRsp;
     }
 
-    public void setOrderProcessRsp(Result orderProcessRsp) {
+    public void setOrderProcessRsp(T orderProcessRsp) {
         this.orderProcessRsp = orderProcessRsp;
     }
 

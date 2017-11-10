@@ -27,4 +27,54 @@ public class ReceiptEntity implements Serializable {
     /** 发票内容 */
     private String content;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public ReceiptTypeEnum getReceiptTypeEnum() {
+        return receiptTypeEnum;
+    }
+
+    public void setReceiptTypeEnum(ReceiptTypeEnum receiptTypeEnum) {
+        this.receiptTypeEnum = receiptTypeEnum;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTaxpayerNo() {
+        return taxpayerNo;
+    }
+
+    public void setTaxpayerNo(String taxpayerNo) {
+        this.taxpayerNo = taxpayerNo;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return "ReceiptEntity{" +
+                "id='" + id + '\'' +
+                ", receiptTypeEnum=" + receiptTypeEnum +
+                ", title='" + title + '\'' +
+                ", taxpayerNo='" + taxpayerNo + '\'' +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gaoxi.order.dao.OrderDAO" >
+
+    <resultMap id="findOrderResultMap" type="com.gaoxi.entity.order.OrdersEntity">
+        <result property="id" column="id"/>
+        <association property="buyer" javaType="com.gaoxi.entity.user.UserEntity">
+            <result property="id" column="buyer_id"/>
+            <result property="username" column="buyer_name"/>
+            <result property="phone" column="buyer_phone"/>
+            <result property="mail" column="buyer_mail"/>
+        </association>
+        <association property="company" javaType="com.gaoxi.entity.user.UserEntity">
+            <result property="id" column="company_id"/>
+            <result property="username" column="company_name"/>
+            <result property="phone" column="company_phone"/>
+            <result property="mail" column="company_mail"/>
+            <result property="licencePic" column="company_licence_pic"/>
+            <result property="registerTime" column="company_register_time"/>
+        </association>
+        <collection property="productOrderList" ofType="com.gaoxi.entity.order.ProductOrderEntity">
+            <result property="orderId" column="product_order_order_id"/>
+            <result property="count" column="product_order_count"/>
+            <association property="productEntity" javaType="com.gaoxi.entity.product.ProductEntity">
+                <result property="id" column="product_id"/>
+                <result property="prodName" column="product_prodName"/>
+                <result property="marketPrice" column="product_market_price"/>
+                <result property="shopPrice" column="product_shop_price"/>
+                <result property="stock" column="product_stock"/>
+                <result property="sales" column="product_sales"/>
+                <result property="weight" column="product_weight"/>
+            </association>
+        </collection>
+        <result property="orderStateEnum" column="order_state" typeHandler="com.gaoxi.typehandler.EnumTypeHandler"/>
+        <collection property="orderStateTimeList" ofType="com.gaoxi.entity.order.OrderStateTimeEntity">
+            <result property="orderStateEnum" column="order_state_time_order_state"/>
+            <result property="time" column="order_state_time_time"/>
+        </collection>
+        <result property="payModeEnum" column="pay_mode" typeHandler="com.gaoxi.typehandler.EnumTypeHandler"/>
+        <result property="totalPrice" column="total_price"/>
+        <association property="receiptEntity" javaType="com.gaoxi.entity.order.ReceiptEntity">
+            <result property="id" column="receipt_id"/>
+            <result property="receiptTypeEnum" column="receipt_type"/>
+            <result property="title" column="receipt_title"/>
+            <result property="taxpayerNo" column="receipt_taxpayer_no"/>
+            <result property="content" column="receipt_content"/>
+        </association>
+        <association property="locationEntity" javaType="com.gaoxi.entity.user.LocationEntity">
+            <result property="id" column="location_id"/>
+            <result property="location" column="location"/>
+            <result property="name" column="location_name"/>
+            <result property="phone" column="location_phone"/>
+            <result property="postCode" column="location_post_code"/>
+        </association>
+        <result property="remark" column="remark"/>
+        <result property="expressNo" column="express_no"/>
+    </resultMap>
+
+
+
+    <select id="findOrders" resultMap="findOrderResultMap">
+      SELECT
+--       orders表
+         orders.id as id,
+         orders.company_id as company_id,
+         orders.user_id as user_id,
+         orders.order_state as order_state,
+         orders.pay_mode as pay_mode,
+         orders.total_price as total_price,
+         orders.receipt_id as receipt_id,
+         orders.location_id as location_id,
+         orders.remark as remark,
+         orders.express_no as express_no,
+
+--       user表
+         company.id as company_id,
+         company.username as company_name,
+         company.phone as company_phone,
+         company.mail as company_mail,
+         company.licence_pic as company_licence_pic,
+         company.register_time as company_register_time,
+
+--       user表
+         buyer.id as buyer_id,
+         buyer.username as buyer_name,
+         buyer.phone as buyer_phone,
+         buyer.mail as buyer_mail,
+
+--       product_order表
+         product_order.order_id as product_order_order_id,
+         product_order."count" as product_order_count,
+
+--       product表
+         product.id as product_id,
+         product.prod_name as product_prodName,
+         product.market_price as product_market_price,
+         product.shop_price as product_shop_price,
+         product.stock as product_stock,
+         product.sales as product_sales,
+         product.weight as product_weight,
+
+--       order_state_time表
+         order_state_time.order_state as order_state_time_order_state,
+         order_state_time."time" as order_state_time_time,
+
+--       receipt表
+         receipt.id as receipt_id,
+         receipt.receipt_type as receipt_type,
+         receipt.title as receipt_title,
+         receipt.taxpayer_no as receipt_taxpayer_no,
+         receipt.content as receipt_content,
+
+--       location表
+         location.id as location_id,
+         location.location as location,
+         location.name as location_name,
+         location.phone as location_phone,
+         location.post_code as location_post_code
+
+
+      FROM
+        gaoxi.orders as orders
+        LEFT JOIN gaoxi.sys_user as company ON orders.company_id=company.id
+        LEFT JOIN gaoxi.sys_user as buyer ON orders.user_id=buyer.id
+        LEFT JOIN gaoxi.product_order as product_order ON product_order.order_id=orders.id
+        LEFT JOIN gaoxi.product as product ON product.id=product_order.product_id
+        LEFT JOIN gaoxi.order_state_time as order_state_time ON order_state_time.order_id=orders.id
+        LEFT JOIN gaoxi.receipt as receipt ON receipt.id=orders.receipt_id
+        LEFT JOIN gaoxi.location as location ON location.id=orders.location_id
+
+
+      <where>
+          <if test="orderQueryReq.id != null">
+              AND id = #{orderQueryReq.id}
+          </if>
+          <if test="orderQueryReq.buyerName != null">
+              AND buyer_name like CONCAT('%',#{userQueryReq.buyer.username},'%')
+          </if>
+          <if test="orderQueryReq.buyerMail != null">
+              AND buyer_mail = #{userQueryReq.buyer.mail}
+          </if>
+          <if test="orderQueryReq.sellerCompanyName != null">
+              AND company_name like CONCAT('%',#{userQueryReq.company.username},'%')
+          </if>
+          <if test="orderQueryReq.sellerPhone != null">
+              AND company_phone = #{userQueryReq.company.phone}
+          </if>
+          <if test="orderQueryReq.sellerMail != null">
+              AND company_mail = #{userQueryReq.company.mail}
+          </if>
+          <if test="orderQueryReq.orderStateCode != null">
+              AND order_state = #{userQueryReq.orderStateCode}
+          </if>
+          <if test="orderQueryReq.recipientName != null">
+              AND location_name like CONCAT('%',#{userQueryReq.recipientName},'%')
+          </if>
+          <if test="orderQueryReq.recipientPhone != null">
+              AND location_phone like CONCAT('%',#{userQueryReq.recipientPhone},'%')
+          </if>
+          <if test="orderQueryReq.recipientLocation != null">
+              AND location like CONCAT('%',#{userQueryReq.recipientLocation},'%')
+          </if>
+          <if test="orderQueryReq.payModeCode != null">
+              AND pay_mode = #{userQueryReq.payModeCode}
+          </if>
+          <if test="orderQueryReq.expressNo != null">
+              AND express_no = #{userQueryReq.expressNo}
+          </if>
+          <if test="orderQueryReq.placeOrderStartTime != null">
+              AND order_state_time_order_state = 0
+              AND order_state_time_time &gt; #{orderQueryReq.placeOrderStartTime}
+          </if>
+          <if test="orderQueryReq.placeOrderEndTime != null">
+              AND order_state_time_order_state = 0
+              AND order_state_time_time &lt; #{orderQueryReq.placeOrderEndTime}
+          </if>
+      </where>
+    </select>
+
+    <update id="updateOrder">
+        UPDATE gaoxi.orders SET order_state = #{ordersEntity.orderStateEnum.code}
+        WHERE id = #{ordersEntity.id}
+    </update>
+
+    <delete id="deleteOrderStateTime">
+      DELETE FROM gaoxi.order_state_time as order_state_time
+      WHERE order_state_time.order_id = #{orderStateTimeEntity.orderId} AND
+      order_state_time.order_state = #{orderStateTimeEntity.orderStateEnum.code}
+    </delete>
+
+
+    <insert id="insertOrderStateTime">
+        INSERT INTO gaoxi.order_state_time
+        (order_id, order_state, "time")
+        VALUES
+        (#{orderStateTimeEntity.orderId},#{orderStateTimeEntity.orderStateEnum.code},#{orderStateTimeEntity.time})
+    </insert>
+
+</mapper>

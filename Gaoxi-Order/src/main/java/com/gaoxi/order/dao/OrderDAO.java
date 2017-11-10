@@ -5,6 +5,7 @@ import com.gaoxi.entity.order.OrdersEntity;
 import com.gaoxi.req.order.OrderQueryReq;
 import com.gaoxi.req.order.OrderUpdateReq;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,24 +22,24 @@ public interface OrderDAO {
      * @param orderQueryReq 订单查询请求
      * @return 订单查询结果
      */
-    List<OrdersEntity> findOrders(OrderQueryReq orderQueryReq);
+    List<OrdersEntity> findOrders(@Param("orderQueryReq") OrderQueryReq orderQueryReq);
 
     /**
-     * 更新订单
+     * 更新订单状态
      * @param ordersEntity 订单更新请求
      */
-    void updateOrder(OrdersEntity ordersEntity);
+    void updateOrder(@Param("ordersEntity") OrdersEntity ordersEntity);
 
     /**
      * 删除订单某一状态的时间
      * @param orderStateTimeEntity 订单状态-时间的对应关系
      */
-    void deleteOrderStateTime(OrderStateTimeEntity orderStateTimeEntity);
+    void deleteOrderStateTime(@Param("orderStateTimeEntity") OrderStateTimeEntity orderStateTimeEntity);
 
     /**
      * 插入订单某一状态的时间
      * @param orderStateTimeEntity 订单状态-时间的对应关系
      */
-    void insertOrderStateTime(OrderStateTimeEntity orderStateTimeEntity);
+    void insertOrderStateTime(@Param("orderStateTimeEntity") OrderStateTimeEntity orderStateTimeEntity);
 
 }

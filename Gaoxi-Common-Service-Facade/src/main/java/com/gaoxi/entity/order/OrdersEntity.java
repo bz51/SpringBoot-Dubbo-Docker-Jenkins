@@ -21,7 +21,7 @@ public class OrdersEntity implements Serializable {
     private String id;
 
     /** 买家ID */
-    private String userId;
+    private UserEntity buyer;
 
     /** 卖家详情 */
     private UserEntity company;
@@ -62,13 +62,6 @@ public class OrdersEntity implements Serializable {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
     public UserEntity getCompany() {
         return company;
@@ -150,11 +143,19 @@ public class OrdersEntity implements Serializable {
         this.expressNo = expressNo;
     }
 
+    public UserEntity getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(UserEntity buyer) {
+        this.buyer = buyer;
+    }
+
     @Override
     public String toString() {
         return "OrdersEntity{" +
                 "id='" + id + '\'' +
-                ", userId='" + userId + '\'' +
+                ", buyer=" + buyer +
                 ", company=" + company +
                 ", productOrderList=" + productOrderList +
                 ", orderStateEnum=" + orderStateEnum +

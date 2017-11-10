@@ -12,7 +12,10 @@ import com.gaoxi.enumeration.BaseEnum;
 public enum ProcessReqEnum implements BaseEnum{
 
     PlaceOrder(1, "PlaceOrderProcessor"),
-    ;
+    Pay(2, "PayProcessor"),
+    CancelOrder(3, "CancelOrderProcessor"),
+    ConfirmDelivery(4, "ConfirmDeliveryProcessor"),
+    ConfirmReceive(5, "ConfirmReceiveProcessor");
 
     private int code;
     private String msg;

@@ -3,6 +3,7 @@ package com.gaoxi.entity.product;
 import com.gaoxi.entity.user.UserEntity;
 import com.gaoxi.enumeration.product.ProdStateEnum;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  * @Date 2017/10/31 下午2:20
  * 产品实体类
  */
-public class ProductEntity {
+public class ProductEntity implements Serializable {
 
     /** 产品ID（主键） */
     private String id;

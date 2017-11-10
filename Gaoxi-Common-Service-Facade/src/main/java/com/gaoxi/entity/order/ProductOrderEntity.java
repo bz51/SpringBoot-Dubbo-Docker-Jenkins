@@ -21,4 +21,36 @@ public class ProductOrderEntity implements Serializable {
     /** 产品数量 */
     private int count;
 
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public ProductEntity getProductEntity() {
+        return productEntity;
+    }
+
+    public void setProductEntity(ProductEntity productEntity) {
+        this.productEntity = productEntity;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductOrderEntity{" +
+                "orderId='" + orderId + '\'' +
+                ", productEntity=" + productEntity +
+                ", count=" + count +
+                '}';
+    }
 }
