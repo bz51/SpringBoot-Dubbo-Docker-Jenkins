@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 public class OrderControllerImpl implements OrderController {
 
-    @Reference
+    @Reference(version = "1.0.0")
     private OrderService orderService;
 
     @Autowired

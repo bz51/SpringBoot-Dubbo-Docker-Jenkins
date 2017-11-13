@@ -23,7 +23,7 @@ import java.util.List;
  * @description
  */
 @org.springframework.stereotype.Service
-@Service
+@Service(version = "1.0.0")
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
