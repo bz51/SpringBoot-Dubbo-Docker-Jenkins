@@ -16,8 +16,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 
-@Service(version = "1.0.0")
 @Component
+@Service(version = "1.0.0")
 public class RedisUtilsImpl implements RedisUtils {
 
     @SuppressWarnings("rawtypes")
