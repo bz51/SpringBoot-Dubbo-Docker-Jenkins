@@ -25,7 +25,7 @@ public class UserUtil {
     @Value("${session.SessionIdName}")
     private String sessionIdName;
 
-    @Reference
+    @Reference(version = "1.0.0")
     private RedisUtils redisUtils;
 
 

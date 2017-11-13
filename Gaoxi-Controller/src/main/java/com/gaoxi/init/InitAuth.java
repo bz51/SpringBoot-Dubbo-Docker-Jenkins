@@ -38,7 +38,7 @@ public class InitAuth implements CommandLineRunner {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Reference
+    @Reference(version = "1.0.0")
     /** Redis工具包 */
     private RedisUtils redisUtils;
 

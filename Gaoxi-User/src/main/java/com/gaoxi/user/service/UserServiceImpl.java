@@ -30,7 +30,7 @@ import java.util.Map;
  * @date 2017/11/1 上午10:06
  * @description 用户相关操作
  */
-@Service
+@Service(version = "1.0.0")
 @org.springframework.stereotype.Service
 public class UserServiceImpl implements UserService {
 

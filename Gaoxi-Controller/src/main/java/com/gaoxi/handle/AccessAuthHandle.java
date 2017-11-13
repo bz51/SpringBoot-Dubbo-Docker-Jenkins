@@ -43,7 +43,7 @@ public class AccessAuthHandle {
     @Value("${session.SessionIdName}")
     private String sessionIdName;
 
-    @Reference
+    @Reference(version = "1.0.0")
     private RedisUtils redisUtils;
 
     /** 反斜杠 */

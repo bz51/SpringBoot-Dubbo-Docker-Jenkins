@@ -30,10 +30,10 @@ import java.util.List;
 @RestController
 public class UserControllerImpl implements UserController {
 
-    @Reference
+    @Reference(version = "1.0.0")
     private UserService userService;
 
-    @Reference
+    @Reference(version = "1.0.0")
     private RedisUtils redisUtils;
 
     /** Session有效时间 */
