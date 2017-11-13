@@ -89,6 +89,7 @@
 		<module>Gaoxi-Order</module>
 		<module>Gaoxi-Product</module>
 		<module>Gaoxi-User</module>
+		<module>Gaoxi-Redis</module>
 		<module>Gaoxi-Controller</module>
 		<module>Gaoxi-Common-Service-Facade</module>
 	</modules>
