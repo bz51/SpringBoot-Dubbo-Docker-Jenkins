@@ -34,7 +34,7 @@ import static java.util.stream.Collectors.groupingBy;
 @Component
 public class PlaceOrderCheckParamComponent extends BaseCheckParamComponent {
 
-    @Reference
+    @Reference(version = "1.0.0")
     private ProductService productService;
 
     @Override
@@ -64,6 +64,7 @@ public class PlaceOrderCheckParamComponent extends BaseCheckParamComponent {
         checkProductCount(orderInsertReq.getProdIdCountMap().values());
 
         // 产品ID列表对应的卖家必须是同一个
+        // TODO ProductService本地无法调用，先注释掉!!!
         checkIsSameSeller(orderInsertReq.getProdIdCountMap());
     }
 

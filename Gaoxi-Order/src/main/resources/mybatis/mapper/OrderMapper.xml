@@ -89,7 +89,7 @@
 
 --       product_order表
          product_order.order_id as product_order_order_id,
-         product_order."count" as product_order_count,
+         product_order.counts as product_order_count,
 
 --       product表
          product.id as product_id,
@@ -102,7 +102,7 @@
 
 --       order_state_time表
          order_state_time.order_state as order_state_time_order_state,
-         order_state_time."time" as order_state_time_time,
+         order_state_time.times as order_state_time_time,
 
 --       receipt表
          receipt.id as receipt_id,
@@ -201,6 +201,21 @@
         (order_id, order_state, "time")
         VALUES
         (#{orderStateTimeEntity.orderId},#{orderStateTimeEntity.orderStateEnum.code},#{orderStateTimeEntity.time})
+    </insert>
+    <insert id="insertOrder">
+        INSERT INTO gaoxi.orders
+        (id, user_id, company_id, order_state, pay_mode, total_price, receipt_id, location_id, remark, express_no)
+        VALUES
+        (#{ordersEntity.id},#{ordersEntity.buyer.id},#{ordersEntity.company.id},#{ordersEntity.orderStateEnum.code},#{ordersEntity.payModeEnum.code}
+        ,#{ordersEntity.totalPrice},#{ordersEntity.receiptEntity.id},#{ordersEntity.locationEntity.id}
+        ,#{ordersEntity.remark})
+    </insert>
+
+    <insert id="insertOrderProduct">
+        INSERT INTO gaoxi.product_order
+        (product_id, order_id, counts)
+        VALUES
+        (#{productOrderEntity.productEntity.id},#{productOrderEntity.orderId},#{productOrderEntity.count})
     </insert>
 
 </mapper>

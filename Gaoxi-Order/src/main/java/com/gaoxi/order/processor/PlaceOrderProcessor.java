@@ -6,6 +6,8 @@ import com.gaoxi.order.component.BaseComponent;
 import com.gaoxi.order.component.checkparam.PlaceOrderCheckParamComponent;
 import com.gaoxi.order.component.checkstock.BaseCheckStockComponent;
 import com.gaoxi.order.component.checkstock.CommonCheckStockComponent;
+import com.gaoxi.order.component.createorder.CreateOrderComponent;
+import com.gaoxi.order.component.datatransfer.ProdCountMapTransferComponent;
 import com.gaoxi.order.component.idempotent.PlaceOrderIdempotentComponent;
 import com.gaoxi.order.component.pay.CommonPayComponent;
 import org.springframework.stereotype.Component;
@@ -26,8 +28,12 @@ public class PlaceOrderProcessor extends Processor {
             PlaceOrderCheckParamComponent.class,
             // 幂等检查
             PlaceOrderIdempotentComponent.class,
+            // 数据转化(prodIdCountMap——>prodEntityCountMap)
+            ProdCountMapTransferComponent.class,
             // 库存检查
             CommonCheckStockComponent.class,
+            // 创建订单
+            CreateOrderComponent.class,
             // 支付
             CommonPayComponent.class,
     })

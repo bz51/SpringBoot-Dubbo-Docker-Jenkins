@@ -2,6 +2,7 @@ package com.gaoxi.order.dao;
 
 import com.gaoxi.entity.order.OrderStateTimeEntity;
 import com.gaoxi.entity.order.OrdersEntity;
+import com.gaoxi.entity.order.ProductOrderEntity;
 import com.gaoxi.req.order.OrderQueryReq;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -41,4 +42,15 @@ public interface OrderDAO {
      */
     void insertOrderStateTime(@Param("orderStateTimeEntity") OrderStateTimeEntity orderStateTimeEntity);
 
+    /**
+     * 插入订单
+     * @param ordersEntity
+     */
+    void insertOrder(@Param("ordersEntity") OrdersEntity ordersEntity);
+
+    /**
+     * 插入订单产品
+     * @param productOrderEntity
+     */
+    void insertOrderProduct(@Param("productOrderEntity") ProductOrderEntity productOrderEntity);
 }

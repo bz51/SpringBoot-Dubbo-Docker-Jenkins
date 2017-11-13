@@ -34,6 +34,9 @@ public abstract class BaseIdempotencyComponent extends BaseComponent {
      */
     @Override
     public void handle(OrderProcessContext orderProcessContext) {
+
+        setAllowStateList();
+
         preHandle(orderProcessContext);
 
         // 获取订单当前状态

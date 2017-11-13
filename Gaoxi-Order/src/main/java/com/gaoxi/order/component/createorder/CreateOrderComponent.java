@@ -3,22 +3,31 @@ package com.gaoxi.order.component.createorder;
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.gaoxi.context.OrderProcessContext;
+import com.gaoxi.entity.order.OrderStateTimeEntity;
 import com.gaoxi.entity.order.OrdersEntity;
+import com.gaoxi.entity.order.ProductOrderEntity;
+import com.gaoxi.entity.order.ReceiptEntity;
 import com.gaoxi.entity.product.ProductEntity;
+import com.gaoxi.entity.user.LocationEntity;
 import com.gaoxi.entity.user.UserEntity;
+import com.gaoxi.enumeration.order.OrderStateEnum;
 import com.gaoxi.enumeration.order.PayModeEnum;
 import com.gaoxi.exception.CommonBizException;
 import com.gaoxi.exception.ExpCodeEnum;
 import com.gaoxi.facade.product.ProductService;
+import com.gaoxi.order.component.datatransfer.ProdCountMapTransferComponent;
 import com.gaoxi.order.dao.OrderDAO;
 import com.gaoxi.order.component.BaseComponent;
 import com.gaoxi.req.order.OrderInsertReq;
 import com.gaoxi.req.product.ProdQueryReq;
 import com.gaoxi.utils.EnumUtil;
+import com.gaoxi.utils.KeyGenerator;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -45,14 +54,8 @@ public class CreateOrderComponent extends BaseComponent {
 
         preHandle(orderProcessContext);
 
-        // 获取订单创建请求
-        OrderInsertReq orderInsertReq = getOrderInsertReq(orderProcessContext);
-
-        // 参数校验
-        checkParam(orderInsertReq);
-
-        // 构造OrdersEntity
-        OrdersEntity ordersEntity = buildUserEntity(orderInsertReq);
+        // 获取订单插入请求
+        OrderInsertReq orderInsertReq = (OrderInsertReq) orderProcessContext.getOrderProcessReq().getReqData();
 
         // 创建订单
         createOrder(orderInsertReq);
@@ -75,38 +78,137 @@ public class CreateOrderComponent extends BaseComponent {
      * @param orderInsertReq 订单创建请求
      */
     private void createOrder(OrderInsertReq orderInsertReq) {
+        // 计算总价
+        String orderTotalPrice = calculateTotalPrice(orderInsertReq);
 
+        // 插入order表
+        String orderId = insertOrder(orderInsertReq, orderTotalPrice);
+
+        // 插入product_order表
+        insertOrderProduct(orderInsertReq.getProdIdCountMap(), orderId);
+
+        // 插入order_state_time表
+        insertOrderStateTime(orderId);
     }
 
     /**
-     * 参数校验
-     * @param orderInsertReq 订单创建请求
+     * 插入order_state_time表
+     * @param orderId
      */
-    private void checkParam(OrderInsertReq orderInsertReq) {
-        // 买家ID不能为空
-        if (StringUtils.isEmpty(orderInsertReq.getUserId())) {
-            throw new CommonBizException(ExpCodeEnum.USERID_NULL);
+    private void insertOrderStateTime(String orderId) {
+        OrderStateTimeEntity orderStateTimeEntity = new OrderStateTimeEntity();
+        orderStateTimeEntity.setOrderId(orderId);
+        orderStateTimeEntity.setTime(new Timestamp(System.currentTimeMillis()));
+        orderStateTimeEntity.setOrderStateEnum(OrderStateEnum.INIT);
+
+        orderDAO.insertOrderStateTime(orderStateTimeEntity);
+    }
+
+    /**
+     * 插入product_order表
+     * @param prodIdCountMap
+     * @param orderId
+     */
+    private void insertOrderProduct(Map<String, Integer> prodIdCountMap, String orderId) {
+        List<ProductOrderEntity> productOrderEntityList = Lists.newArrayList();
+        for (String prodId : prodIdCountMap.keySet()) {
+            ProductOrderEntity productOrderEntity = new ProductOrderEntity();
+
+            // 数量
+            productOrderEntity.setCount(prodIdCountMap.get(prodId));
+
+            // 产品ID
+            ProductEntity productEntity = new ProductEntity();
+            productEntity.setId(prodId);
+            productOrderEntity.setProductEntity(productEntity);
+
+            // 订单Id
+            productOrderEntity.setOrderId(orderId);
+
+            productOrderEntityList.add(productOrderEntity);
         }
 
-        // 支付方式不能为空 & 符合枚举值
-        if (orderInsertReq.getPayModeCode() == null ||
-                EnumUtil.codeOf(PayModeEnum.class, orderInsertReq.getPayModeCode()) == null) {
-            throw new CommonBizException(ExpCodeEnum.PAYMODE_NULL);
+        // 插入
+        for (ProductOrderEntity productOrderEntity : productOrderEntityList) {
+            orderDAO.insertOrderProduct(productOrderEntity);
+        }
+    }
+
+    /**
+     * 插入Order表
+     * @param orderInsertReq 订单插入请求
+     * @param orderTotalPrice 订单总价
+     * @return orderId
+     */
+    private String insertOrder(OrderInsertReq orderInsertReq, String orderTotalPrice) {
+        // 构造OrdersEntity
+        OrdersEntity ordersEntity = buildOrdersEntity(orderInsertReq, orderTotalPrice);
+
+        // 插入
+        orderDAO.insertOrder(ordersEntity);
+
+        return ordersEntity.getId();
+    }
+
+    /**
+     * 构造OrdersEntity
+     * @param orderInsertReq
+     * @param orderTotalPrice
+     * @return
+     */
+    private OrdersEntity buildOrdersEntity(OrderInsertReq orderInsertReq, String orderTotalPrice) {
+        OrdersEntity ordersEntity = new OrdersEntity();
+        ordersEntity.setId(KeyGenerator.getKey());
+
+        UserEntity buyer = new UserEntity();
+        buyer.setId(orderInsertReq.getUserId());
+        ordersEntity.setBuyer(buyer);
+
+        LocationEntity locationEntity = new LocationEntity();
+        locationEntity.setId(orderInsertReq.getLocationId());
+        ordersEntity.setLocationEntity(locationEntity);
+
+        ReceiptEntity receiptEntity = new ReceiptEntity();
+        receiptEntity.setId(orderInsertReq.getReceiptId());
+        ordersEntity.setReceiptEntity(receiptEntity);
+
+        ordersEntity.setPayModeEnum(EnumUtil.codeOf(PayModeEnum.class, orderInsertReq.getPayModeCode()));
+
+        ordersEntity.setRemark(orderInsertReq.getRemark());
+
+        ordersEntity.setCompany(orderInsertReq.getProdEntityCountMap().keySet().toArray(new ProductEntity[1])[0].getCompanyEntity());
+
+        ordersEntity.setTotalPrice(orderTotalPrice);
+
+        ordersEntity.setOrderStateEnum(OrderStateEnum.INIT);
+
+        return ordersEntity;
+    }
+
+    /**
+     * 计算订单总价
+     * @param orderInsertReq 订单插入请求
+     * @return 订单总价
+     */
+    private String calculateTotalPrice(OrderInsertReq orderInsertReq) {
+        // 获取prodEntityCountMap
+        Map<ProductEntity, Integer> prodEntityCountMap = orderInsertReq.getProdEntityCountMap();
+
+        // 计算订单总价
+        BigDecimal orderTotalPrice = new BigDecimal("0");
+        for (ProductEntity productEntity : prodEntityCountMap.keySet()) {
+            // 本店单价
+            BigDecimal shopPrice = new BigDecimal(productEntity.getShopPrice());
+            // 购买数量
+            BigDecimal count = new BigDecimal(prodEntityCountMap.get(productEntity));
+            // 单品总价(本店单价*购买数量)
+            BigDecimal prodTotalPrice = shopPrice.multiply(count);
+            // 订单总价
+            orderTotalPrice = orderTotalPrice.add(prodTotalPrice);
         }
 
-        // 收货地址不能为空
-        if (StringUtils.isEmpty(orderInsertReq.getLocationId())) {
-            throw new CommonBizException(ExpCodeEnum.LOCATION_NULL);
-        }
-
-        // 所需购买的产品ID和对应的数量不能为空
-        if (orderInsertReq.getProdIdCountMap() == null ||
-                orderInsertReq.getProdIdCountMap().size() <= 0) {
-            throw new CommonBizException(ExpCodeEnum.PRODUCTIDCOUNT_NULL);
-        }
-
-        // 检查产品ID列表对应的卖家是否是同一个
-        checkIsSameSeller(orderInsertReq.getProdIdCountMap());
+        // 保留两位小数 & 四舍五入
+        return orderTotalPrice.setScale(2).toString();
     }
 
     /**
@@ -162,21 +264,6 @@ public class CreateOrderComponent extends BaseComponent {
         }
 
         return prodQueryReqList;
-    }
-
-
-    /**
-     * 获取订单创建请求
-     * @param orderProcessContext 订单受理上下文
-     * @return 订单创建请求
-     */
-    private OrderInsertReq getOrderInsertReq(OrderProcessContext orderProcessContext) {
-        Object orderInsertReq = orderProcessContext.getOrderProcessReq().getReqData();
-        if (orderInsertReq == null) {
-            throw new CommonBizException(ExpCodeEnum.ORDER_INSERT_REQ_NULL);
-        }
-
-        return (OrderInsertReq) orderInsertReq;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.gaoxi.req.order;
 
+import com.gaoxi.entity.product.ProductEntity;
 import com.gaoxi.req.AbsReq;
 
 import java.util.Map;
@@ -17,6 +18,7 @@ public class OrderInsertReq extends AbsReq {
 
     /** 产品ID-数量 */
     private Map<String, Integer> prodIdCountMap;
+    private Map<ProductEntity, Integer> prodEntityCountMap;
 
     /** 支付方式 {@link com.gaoxi.enumeration.order.PayModeEnum} */
     private Integer payModeCode;
@@ -79,11 +81,20 @@ public class OrderInsertReq extends AbsReq {
         this.remark = remark;
     }
 
+    public Map<ProductEntity, Integer> getProdEntityCountMap() {
+        return prodEntityCountMap;
+    }
+
+    public void setProdEntityCountMap(Map<ProductEntity, Integer> prodEntityCountMap) {
+        this.prodEntityCountMap = prodEntityCountMap;
+    }
+
     @Override
     public String toString() {
         return "OrderInsertReq{" +
                 "userId='" + userId + '\'' +
                 ", prodIdCountMap=" + prodIdCountMap +
+                ", prodEntityCountMap=" + prodEntityCountMap +
                 ", payModeCode=" + payModeCode +
                 ", receiptId='" + receiptId + '\'' +
                 ", locationId='" + locationId + '\'' +

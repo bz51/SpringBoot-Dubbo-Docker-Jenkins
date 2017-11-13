@@ -6,6 +6,7 @@ import com.gaoxi.entity.order.OrdersEntity;
 import com.gaoxi.entity.order.ProductOrderEntity;
 import com.gaoxi.exception.CommonBizException;
 import com.gaoxi.exception.ExpCodeEnum;
+import com.gaoxi.order.component.datatransfer.ProdCountMapTransferComponent;
 import com.gaoxi.order.dao.OrderDAO;
 import com.gaoxi.req.order.OrderInsertReq;
 import com.gaoxi.req.order.OrderQueryReq;
@@ -28,6 +29,9 @@ public class PayBaseCheckStockComponent extends BaseCheckStockComponent {
     @Autowired
     private OrderDAO orderDAO;
 
+    @Autowired
+    private ProdCountMapTransferComponent prodCountMapTransferComponent;
+
     @Override
     protected void preHandle(OrderProcessContext orderProcessContext) {
         super.preHandle(orderProcessContext);
@@ -44,6 +48,9 @@ public class PayBaseCheckStockComponent extends BaseCheckStockComponent {
 
         // 装入context
         setIntoContext(ordersEntity, orderProcessContext);
+
+        // 将Context中的prodIdCountMap——>prodEntityCountMap
+        prodCountMapTransferComponent.handle(orderProcessContext);
 
     }
 
