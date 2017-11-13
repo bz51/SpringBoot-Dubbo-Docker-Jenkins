@@ -7,7 +7,7 @@ import com.gaoxi.enumeration.BaseEnum;
  * @date 2017/11/6 下午1:53
  *
  * @description 订单受理请求枚举
- * 特别注意：msg必须和Processor的类名保持一直！！！
+ * 特别注意：msg必须和Processor的类名保持一致！！！
  */
 public enum ProcessReqEnum implements BaseEnum{
 

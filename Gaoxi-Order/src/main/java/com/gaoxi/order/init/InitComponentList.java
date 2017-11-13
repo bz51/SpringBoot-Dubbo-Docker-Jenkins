@@ -1,10 +1,8 @@
 package com.gaoxi.order.init;
 
-import com.gaoxi.entity.order.OrdersEntity;
 import com.gaoxi.order.annotation.InjectComponents;
 import com.gaoxi.order.annotation.PackageScan;
 import com.gaoxi.order.component.BaseComponent;
-import com.gaoxi.order.processor.Processor;
 import com.gaoxi.utils.AnnotationUtil;
 import com.gaoxi.utils.ClassUtil;
 import com.google.common.collect.Lists;
@@ -16,7 +14,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -52,7 +49,7 @@ public class InitComponentList implements CommandLineRunner, ApplicationContextA
 
         // 遍历类
         for (Class clazz : classes) {
-            Field[] fields = clazz.getFields();
+            Field[] fields = clazz.getDeclaredFields();
             if (fields==null || fields.length==0) {
                 continue;
             }
@@ -85,8 +82,15 @@ public class InitComponentList implements CommandLineRunner, ApplicationContextA
         // 获取Processor对象
         Object processor = applicationContext.getBean(clazz);
 
+        // 将field设为public
+        field.setAccessible(true);
+
         // 赋值
         field.set(processor, componentList);
+
+        System.out.println(processor);
+        System.out.println(componentList);
+        System.out.println("---------------");
     }
 
     /**

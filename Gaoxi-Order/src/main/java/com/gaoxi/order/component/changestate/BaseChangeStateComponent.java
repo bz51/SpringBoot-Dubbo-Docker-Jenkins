@@ -7,7 +7,6 @@ import com.gaoxi.exception.CommonSysException;
 import com.gaoxi.exception.ExpCodeEnum;
 import com.gaoxi.order.dao.OrderDAO;
 import com.gaoxi.order.component.BaseComponent;
-import com.gaoxi.req.order.OrderProcessReq;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Timestamp;

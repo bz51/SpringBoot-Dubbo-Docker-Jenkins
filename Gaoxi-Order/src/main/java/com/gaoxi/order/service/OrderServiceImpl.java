@@ -4,7 +4,6 @@ import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.gaoxi.context.OrderProcessContext;
 import com.gaoxi.entity.order.OrdersEntity;
-import com.gaoxi.enumeration.order.OrderStateEnum;
 import com.gaoxi.enumeration.order.ProcessReqEnum;
 import com.gaoxi.exception.CommonBizException;
 import com.gaoxi.exception.ExpCodeEnum;

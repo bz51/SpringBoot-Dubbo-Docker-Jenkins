@@ -1,6 +1,7 @@
 package com.gaoxi.order.component.idempotent;
 
 import com.gaoxi.enumeration.order.OrderStateEnum;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
@@ -9,6 +10,7 @@ import java.util.Arrays;
  * @date 2017/11/13 上午8:54
  * @description
  */
+@Component
 public class ConfirmReceiveIdemopotentComponent extends BaseIdempotencyComponent {
     @Override
     protected void setAllowStateList() {

@@ -31,4 +31,9 @@ public class ConfirmDeliveryProcessor extends Processor {
     })
     /** 业务组件列表(当前处理器需要处理的组件列表) */
     protected List<BaseComponent> componentList;
+
+    @Override
+    protected void overrideSuperComponentList() {
+        super.componentList = this.componentList;
+    }
 }

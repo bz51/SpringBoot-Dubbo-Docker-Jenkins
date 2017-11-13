@@ -12,6 +12,7 @@ import com.google.common.collect.Maps;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
@@ -37,7 +38,7 @@ public class InitProcessorMap implements CommandLineRunner, ApplicationContextAw
     /**
      * 初始化ProcessorEngine的processorMap
      */
-    private void initProcessorMap() throws ClassNotFoundException, NoSuchFieldException {
+    private void initProcessorMap() throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
         // 获取ProcessEngine所在的路径
         String pkg = getPackage();
 
@@ -45,7 +46,7 @@ public class InitProcessorMap implements CommandLineRunner, ApplicationContextAw
         Class<ProcessEngine> processEngineClazz = (Class<ProcessEngine>) Class.forName(pkg);
 
         // 获取processorMapField
-        Field processorMapField = processEngineClazz.getField("processorMap");
+        Field processorMapField = processEngineClazz.getDeclaredField("processorMap");
 
         // 获取@InjectProcessors
         InjectProcessors injectProcessors = processorMapField.getAnnotation(InjectProcessors.class);
@@ -53,7 +54,25 @@ public class InitProcessorMap implements CommandLineRunner, ApplicationContextAw
         // 创建processorMap对象
         Map<ProcessReqEnum, Processor> processorMap = createProcessorMap(injectProcessors);
 
+        // 赋值
+        setValueForProcessorMap(processorMap, processorMapField);
 
+    }
+
+    /**
+     * 给ProcessorEngine的processorMap对象赋值
+     * @param processorMap processorMap对象
+     * @param processorMapField processorMap的Field对象
+     */
+    private void setValueForProcessorMap(Map<ProcessReqEnum, Processor> processorMap, Field processorMapField) throws IllegalAccessException {
+        // 获取ProcessEngine对象
+        ProcessEngine processEngine = applicationContext.getBean(ProcessEngine.class);
+
+        // 将processorMapField设为public
+        processorMapField.setAccessible(true);
+
+        // 赋值
+        processorMapField.set(processEngine, processorMap);
     }
 
     /**
@@ -80,8 +99,12 @@ public class InitProcessorMap implements CommandLineRunner, ApplicationContextAw
             ProcessReqEnum processReqEnum = EnumUtil.msgOf(ProcessReqEnum.class, processorClazz.getSimpleName());
             // 加入map
             processorMap.put(processReqEnum, processor);
+
+            System.out.println(processor);
+            System.out.println("------------");
         }
 
+        System.out.println(processorMap);
         return processorMap;
     }
 

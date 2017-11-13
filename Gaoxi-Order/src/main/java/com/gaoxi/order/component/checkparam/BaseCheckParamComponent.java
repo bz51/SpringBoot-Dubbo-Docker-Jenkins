@@ -7,6 +7,7 @@ import com.gaoxi.enumeration.order.ProcessReqEnum;
 import com.gaoxi.exception.CommonBizException;
 import com.gaoxi.exception.ExpCodeEnum;
 import com.gaoxi.order.component.BaseComponent;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.List;

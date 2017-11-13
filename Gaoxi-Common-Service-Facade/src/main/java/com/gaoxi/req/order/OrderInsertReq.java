@@ -1,15 +1,7 @@
 package com.gaoxi.req.order;
 
-import com.gaoxi.entity.order.OrderStateTimeEntity;
-import com.gaoxi.entity.order.ProductOrderEntity;
-import com.gaoxi.entity.order.ReceiptEntity;
-import com.gaoxi.entity.user.LocationEntity;
-import com.gaoxi.entity.user.UserEntity;
-import com.gaoxi.enumeration.order.OrderStateEnum;
-import com.gaoxi.enumeration.order.PayModeEnum;
 import com.gaoxi.req.AbsReq;
 
-import java.util.List;
 import java.util.Map;
 
 /**

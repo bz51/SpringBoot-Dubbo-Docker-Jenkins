@@ -11,6 +11,7 @@ import com.gaoxi.req.order.OrderInsertReq;
 import com.gaoxi.req.order.OrderProcessReq;
 import com.gaoxi.req.product.ProdQueryReq;
 import com.google.common.collect.Lists;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,7 @@ import java.util.Set;
  * @date 2017/11/7 下午1:17
  * @description 库存校验组件
  */
-public class CheckStockComponent extends BaseComponent {
+public class BaseCheckStockComponent extends BaseComponent {
 
     @Reference
     private ProductService productService;

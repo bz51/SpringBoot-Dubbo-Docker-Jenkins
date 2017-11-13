@@ -3,7 +3,6 @@ package com.gaoxi.order.dao;
 import com.gaoxi.entity.order.OrderStateTimeEntity;
 import com.gaoxi.entity.order.OrdersEntity;
 import com.gaoxi.req.order.OrderQueryReq;
-import com.gaoxi.req.order.OrderUpdateReq;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

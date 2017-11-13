@@ -5,6 +5,11 @@
 
     <resultMap id="findOrderResultMap" type="com.gaoxi.entity.order.OrdersEntity">
         <result property="id" column="id"/>
+        <result property="orderStateEnum" column="order_state" typeHandler="com.gaoxi.typehandler.EnumTypeHandler"/>
+        <result property="payModeEnum" column="pay_mode" typeHandler="com.gaoxi.typehandler.EnumTypeHandler"/>
+        <result property="totalPrice" column="total_price"/>
+        <result property="remark" column="remark"/>
+        <result property="expressNo" column="express_no"/>
         <association property="buyer" javaType="com.gaoxi.entity.user.UserEntity">
             <result property="id" column="buyer_id"/>
             <result property="username" column="buyer_name"/>
@@ -19,26 +24,6 @@
             <result property="licencePic" column="company_licence_pic"/>
             <result property="registerTime" column="company_register_time"/>
         </association>
-        <collection property="productOrderList" ofType="com.gaoxi.entity.order.ProductOrderEntity">
-            <result property="orderId" column="product_order_order_id"/>
-            <result property="count" column="product_order_count"/>
-            <association property="productEntity" javaType="com.gaoxi.entity.product.ProductEntity">
-                <result property="id" column="product_id"/>
-                <result property="prodName" column="product_prodName"/>
-                <result property="marketPrice" column="product_market_price"/>
-                <result property="shopPrice" column="product_shop_price"/>
-                <result property="stock" column="product_stock"/>
-                <result property="sales" column="product_sales"/>
-                <result property="weight" column="product_weight"/>
-            </association>
-        </collection>
-        <result property="orderStateEnum" column="order_state" typeHandler="com.gaoxi.typehandler.EnumTypeHandler"/>
-        <collection property="orderStateTimeList" ofType="com.gaoxi.entity.order.OrderStateTimeEntity">
-            <result property="orderStateEnum" column="order_state_time_order_state"/>
-            <result property="time" column="order_state_time_time"/>
-        </collection>
-        <result property="payModeEnum" column="pay_mode" typeHandler="com.gaoxi.typehandler.EnumTypeHandler"/>
-        <result property="totalPrice" column="total_price"/>
         <association property="receiptEntity" javaType="com.gaoxi.entity.order.ReceiptEntity">
             <result property="id" column="receipt_id"/>
             <result property="receiptTypeEnum" column="receipt_type"/>
@@ -53,8 +38,23 @@
             <result property="phone" column="location_phone"/>
             <result property="postCode" column="location_post_code"/>
         </association>
-        <result property="remark" column="remark"/>
-        <result property="expressNo" column="express_no"/>
+        <collection property="productOrderList" ofType="com.gaoxi.entity.order.ProductOrderEntity">
+            <result property="orderId" column="product_order_order_id"/>
+            <result property="count" column="product_order_count"/>
+            <association property="productEntity" javaType="com.gaoxi.entity.product.ProductEntity">
+                <result property="id" column="product_id"/>
+                <result property="prodName" column="product_prodName"/>
+                <result property="marketPrice" column="product_market_price"/>
+                <result property="shopPrice" column="product_shop_price"/>
+                <result property="stock" column="product_stock"/>
+                <result property="sales" column="product_sales"/>
+                <result property="weight" column="product_weight"/>
+            </association>
+        </collection>
+        <collection property="orderStateTimeList" ofType="com.gaoxi.entity.order.OrderStateTimeEntity">
+            <result property="orderStateEnum" column="order_state_time_order_state"/>
+            <result property="time" column="order_state_time_time"/>
+        </collection>
     </resultMap>
 
 

@@ -1,6 +1,7 @@
 package com.gaoxi.order.component.changestate;
 
 import com.gaoxi.enumeration.order.OrderStateEnum;
+import org.springframework.stereotype.Component;
 
 /**
  * @author 大闲人柴毛毛
@@ -8,6 +9,7 @@ import com.gaoxi.enumeration.order.OrderStateEnum;
  *
  * @description 买家待收货状态
  */
+@Component
 public class BuyerReceivingChangeStateComponent extends BaseChangeStateComponent {
     @Override
     public void setTargetOrderState() {

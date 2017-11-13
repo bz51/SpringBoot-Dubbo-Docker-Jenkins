@@ -23,7 +23,7 @@ import java.util.Map;
  * @description 支付前的库存检查。先要查出订单中的所有产品
  */
 @Component
-public class PayCheckStockComponent extends CheckStockComponent {
+public class PayBaseCheckStockComponent extends BaseCheckStockComponent {
 
     @Autowired
     private OrderDAO orderDAO;

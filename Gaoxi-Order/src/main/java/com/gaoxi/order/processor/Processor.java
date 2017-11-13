@@ -32,6 +32,7 @@ public abstract class Processor {
      * @param orderProcessContext
      */
     public void handle(OrderProcessContext orderProcessContext) {
+        overrideSuperComponentList();
 
         // componentList为空
         if (CollectionUtils.isEmpty(componentList)) {
@@ -48,5 +49,7 @@ public abstract class Processor {
             }
         }
     }
+
+    protected abstract void overrideSuperComponentList();
 
 }

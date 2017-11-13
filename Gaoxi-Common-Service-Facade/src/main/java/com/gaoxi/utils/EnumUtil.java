@@ -36,7 +36,7 @@ public class EnumUtil {
     public static <E extends Enum<?> & BaseEnum> E msgOf(Class<E> enumClass, String msg) {
         E[] enumConstants = enumClass.getEnumConstants();
         for (E e : enumConstants) {
-            if (e.getMsg() == msg) {
+            if (e.getMsg().equals(msg)) {
                 return e;
             }
         }

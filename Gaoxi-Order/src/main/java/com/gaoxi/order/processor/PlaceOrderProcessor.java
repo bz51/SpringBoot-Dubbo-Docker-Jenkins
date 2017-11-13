@@ -1,9 +1,11 @@
 package com.gaoxi.order.processor;
 
+import com.gaoxi.context.OrderProcessContext;
 import com.gaoxi.order.annotation.InjectComponents;
 import com.gaoxi.order.component.BaseComponent;
 import com.gaoxi.order.component.checkparam.PlaceOrderCheckParamComponent;
-import com.gaoxi.order.component.checkstock.CheckStockComponent;
+import com.gaoxi.order.component.checkstock.BaseCheckStockComponent;
+import com.gaoxi.order.component.checkstock.CommonCheckStockComponent;
 import com.gaoxi.order.component.idempotent.PlaceOrderIdempotentComponent;
 import com.gaoxi.order.component.pay.CommonPayComponent;
 import org.springframework.stereotype.Component;
@@ -25,11 +27,15 @@ public class PlaceOrderProcessor extends Processor {
             // 幂等检查
             PlaceOrderIdempotentComponent.class,
             // 库存检查
-            CheckStockComponent.class,
+            CommonCheckStockComponent.class,
             // 支付
             CommonPayComponent.class,
     })
     /** 业务组件列表(当前处理器需要处理的组件列表) */
     protected List<BaseComponent> componentList;
 
+    @Override
+    protected void overrideSuperComponentList() {
+        super.componentList = this.componentList;
+    }
 }

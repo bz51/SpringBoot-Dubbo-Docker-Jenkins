@@ -13,7 +13,6 @@ import com.gaoxi.facade.product.ProductService;
 import com.gaoxi.order.dao.OrderDAO;
 import com.gaoxi.order.component.BaseComponent;
 import com.gaoxi.req.order.OrderInsertReq;
-import com.gaoxi.req.order.OrderProcessReq;
 import com.gaoxi.req.product.ProdQueryReq;
 import com.gaoxi.utils.EnumUtil;
 import com.google.common.collect.Lists;
