@@ -13,6 +13,9 @@ import org.springframework.stereotype.Component;
 public class UnionPayComponent extends BaseComponent {
     @Override
     public void handle(OrderProcessContext orderProcessContext) {
+        preHandle(orderProcessContext);
         // TODO 银联支付
+
+        afterHandle(orderProcessContext);
     }
 }

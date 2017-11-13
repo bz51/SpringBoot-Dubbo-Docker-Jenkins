@@ -44,6 +44,8 @@ public class CreateOrderComponent extends BaseComponent {
     @Override
     public void handle(OrderProcessContext orderProcessContext) {
 
+        preHandle(orderProcessContext);
+
         // 获取订单创建请求
         OrderInsertReq orderInsertReq = getOrderInsertReq(orderProcessContext);
 
@@ -56,6 +58,7 @@ public class CreateOrderComponent extends BaseComponent {
         // 创建订单
         createOrder(orderInsertReq);
 
+        afterHandle(orderProcessContext);
 
     }
 

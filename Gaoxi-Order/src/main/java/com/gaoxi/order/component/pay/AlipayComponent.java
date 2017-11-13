@@ -13,7 +13,17 @@ import org.springframework.stereotype.Component;
 public class AlipayComponent extends BaseComponent {
 
     @Override
+    public void preHandle(OrderProcessContext orderProcessContext) {
+
+    }
+
+    @Override
     public void handle(OrderProcessContext orderProcessContext) {
         // TODO
+    }
+
+    @Override
+    public void afterHandle(OrderProcessContext orderProcessContext) {
+
     }
 }

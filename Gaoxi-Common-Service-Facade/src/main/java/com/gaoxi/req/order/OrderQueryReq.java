@@ -23,6 +23,9 @@ public class OrderQueryReq extends QueryReq {
     /** 订单编号(主键) */
     private String id;
 
+    /** 买家ID(买家只能查自己的订单) */
+    private String buyerId;
+
     /** 买家用户名(模糊查询) */
     private String buyerName;
 
@@ -31,6 +34,9 @@ public class OrderQueryReq extends QueryReq {
 
     /** 买家邮箱 */
     private String buyerMail;
+
+    /** 卖家ID(卖家只能查自己的订单) */
+    private String sellerId;
 
     /** 卖家的企业名称(模糊查询) */
     private String sellerCompanyName;
@@ -184,13 +190,31 @@ public class OrderQueryReq extends QueryReq {
         this.expressNo = expressNo;
     }
 
+    public String getBuyerId() {
+        return buyerId;
+    }
+
+    public void setBuyerId(String buyerId) {
+        this.buyerId = buyerId;
+    }
+
+    public String getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(String sellerId) {
+        this.sellerId = sellerId;
+    }
+
     @Override
     public String toString() {
         return "OrderQueryReq{" +
                 "id='" + id + '\'' +
+                ", buyerId='" + buyerId + '\'' +
                 ", buyerName='" + buyerName + '\'' +
                 ", buyerPhone='" + buyerPhone + '\'' +
                 ", buyerMail='" + buyerMail + '\'' +
+                ", sellerId='" + sellerId + '\'' +
                 ", sellerCompanyName='" + sellerCompanyName + '\'' +
                 ", sellerPhone='" + sellerPhone + '\'' +
                 ", sellerMail='" + sellerMail + '\'' +

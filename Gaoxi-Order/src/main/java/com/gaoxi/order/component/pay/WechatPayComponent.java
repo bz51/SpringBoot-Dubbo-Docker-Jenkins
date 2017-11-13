@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 public class WechatPayComponent extends BaseComponent {
     @Override
     public void handle(OrderProcessContext orderProcessContext) {
+        preHandle(orderProcessContext);
         // TODO 微信支付
+        afterHandle(orderProcessContext);
     }
 }

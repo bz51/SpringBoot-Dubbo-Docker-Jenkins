@@ -21,18 +21,30 @@ import java.util.List;
 public interface OrderController {
 
     /**
-     * 订单查询
+     * 订单查询(供买家查询)
      * @param orderQueryReq 订单查询请求
+     * @param httpReq HTTP请求
      * @return 订单查询结果
      */
-    @GetMapping("/orders")
+    @GetMapping("/buyerOrders")
+    @Login
+    Result<List<OrdersEntity>> findOrdersForBuyer(OrderQueryReq orderQueryReq, HttpServletRequest httpReq);
+
+    /**
+     * 订单查询(供卖家查询)
+     * @param orderQueryReq 订单查询请求
+     * @param httpReq HTTP请求
+     * @return 订单查询结果
+     */
+    @GetMapping("/sellerOrders")
     @Login
     @Permission("orders:query")
-    Result<List<OrdersEntity>> findOrders(OrderQueryReq orderQueryReq);
+    Result<List<OrdersEntity>> findOrdersForSeller(OrderQueryReq orderQueryReq, HttpServletRequest httpReq);
 
     /**
      * 下单(包含支付)
      * @param orderInsertReq 下单请求
+     * @param httpReq HTTP请求
      * @return 返回支付页面的HTML代码
      */
     @PostMapping("/placeOrder")
@@ -42,6 +54,7 @@ public interface OrderController {
     /**
      * 支付(仅供状态为"待支付"的订单使用)
      * @param orderId 待支付订单ID
+     * @param httpReq HTTP请求
      * @return 返回支付页面的HTML代码
      */
     @PostMapping("/pay")

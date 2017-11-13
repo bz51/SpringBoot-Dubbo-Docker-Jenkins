@@ -43,7 +43,7 @@ public class UserUtil {
         }
 
         // 获取UserEntity
-        Object userEntity =  redisUtils.get(sessionIdName);
+        Object userEntity =  redisUtils.get(sessionID);
         if (userEntity == null) {
             return null;
         }

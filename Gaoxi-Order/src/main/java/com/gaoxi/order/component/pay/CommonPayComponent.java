@@ -33,8 +33,12 @@ public class CommonPayComponent extends BaseComponent {
 
     @Override
     public void handle(OrderProcessContext orderProcessContext) {
+        preHandle(orderProcessContext);
+
         // 处理支付请求
         doPay(orderProcessContext);
+
+        afterHandle(orderProcessContext);
     }
 
 
@@ -56,13 +60,6 @@ public class CommonPayComponent extends BaseComponent {
             case UNIONPAY:
                 unionPayComponent.handle(orderProcessContext);
                 break;
-
-            // 未找到相应的支付方式
-            default:
-                // 将订单状态流转为"未支付"
-                BaseChangeStateComponent baseChangeStateComponent = new BaseChangeStateComponent();
-                baseChangeStateComponent.setTargetOrderState(OrderStateEnum.BUYER_UNPAID);
-                baseChangeStateComponent.handle(orderProcessContext);
         }
 
     }

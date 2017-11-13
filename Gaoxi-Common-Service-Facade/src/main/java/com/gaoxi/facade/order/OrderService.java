@@ -14,9 +14,11 @@ import java.util.List;
 public interface OrderService {
 
 
-    List<OrdersEntity> findOrders(OrderQueryReq orderQueryReq);
+    List<OrdersEntity> findOrdersForBuyer(OrderQueryReq orderQueryReq, String buyerId);
 
-    String placeOrder(OrderInsertReq orderInsertReq);
+    List<OrdersEntity> findOrdersForSeller(OrderQueryReq orderQueryReq, String sellerId);
+
+    String placeOrder(OrderInsertReq orderInsertReq, String buyerId);
 
     String pay(String orderId, String userId);
 

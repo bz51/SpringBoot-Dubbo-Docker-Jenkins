@@ -28,6 +28,7 @@ public enum OrderStateEnum implements BaseEnum {
     REFUND_SUCCESS(15,"退款成功"),
     REFUND_FAIL(16,"退款失败"),
     FINISHED_RETURN(17,"退货已完成"),
+    CANCEL(18,"订单已取消"),
     ;
 
     private int code;

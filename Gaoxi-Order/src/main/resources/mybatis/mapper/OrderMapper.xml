@@ -175,6 +175,12 @@
               AND order_state_time_order_state = 0
               AND order_state_time_time &lt; #{orderQueryReq.placeOrderEndTime}
           </if>
+          <if test="orderQueryReq.buyerId != null">
+              AND buyer_id = #{orderQueryReq.buyerId}
+          </if>
+          <if test="orderQueryReq.sellerId != null">
+              AND company_id = #{orderQueryReq.sellerId}
+          </if>
       </where>
     </select>
 

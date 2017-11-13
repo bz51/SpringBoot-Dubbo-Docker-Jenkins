@@ -63,19 +63,20 @@ public class ProcessEngine {
             throw new CommonSysException(ExpCodeEnum.PROCESSREQ_NULL);
         }
 
-        // orderId为空
-        if (orderProcessContext.getOrderProcessReq().getOrderId() == null) {
+        // 受理请求枚举为空
+        if (orderProcessContext.getOrderProcessReq().getProcessReqEnum() == null) {
+            throw new CommonSysException(ExpCodeEnum.PROCESSREQ_ENUM_NULL);
+        }
+
+        // orderId为空(除下单外)
+        if (orderProcessContext.getOrderProcessReq().getOrderId() == null
+                && orderProcessContext.getOrderProcessReq().getProcessReqEnum() != ProcessReqEnum.PlaceOrder) {
             throw new CommonSysException(ExpCodeEnum.PROCESSREQ_ORDERID_NULL);
         }
 
         // userId为空
         if (orderProcessContext.getOrderProcessReq().getUserId() == null) {
             throw new CommonSysException(ExpCodeEnum.PROCESSREQ_USERID_NULL);
-        }
-
-        // 受理请求枚举为空
-        if (orderProcessContext.getOrderProcessReq().getProcessReqEnum() == null) {
-            throw new CommonSysException(ExpCodeEnum.PROCESSREQ_ENUM_NULL);
         }
     }
 

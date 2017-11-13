@@ -35,11 +35,15 @@ public abstract class BaseIdempotencyComponent extends BaseComponent {
      */
     @Override
     public void handle(OrderProcessContext orderProcessContext) {
+        preHandle(orderProcessContext);
+
         // 获取订单当前状态
         OrderStateEnum curOrderState = getOrderState(orderProcessContext);
 
         // 幂等性检查
         checkIdempotency(curOrderState, allowStateList);
+
+        afterHandle(orderProcessContext);
     }
 
     /**
@@ -76,10 +80,11 @@ public abstract class BaseIdempotencyComponent extends BaseComponent {
 
         // 查询订单
         OrderQueryReq orderQueryReq = new OrderQueryReq();
-        orderQueryReq.setId(orderProcessContext.getOrderProcessReq().getOrderId());
+        orderQueryReq.setId(orderId);
         List<OrdersEntity> ordersEntityList = orderDAO.findOrders(orderQueryReq);
 
         // 订单不存在
+        // TODO 下单是否需要幂等性检查？？？
         if (CollectionUtils.isEmpty(ordersEntityList)) {
             return OrderStateEnum.INIT;
         }

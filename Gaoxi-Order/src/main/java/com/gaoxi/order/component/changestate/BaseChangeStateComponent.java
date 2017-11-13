@@ -18,7 +18,7 @@ import java.sql.Timestamp;
  *
  * @description 订单状态流转组件
  */
-public class BaseChangeStateComponent extends BaseComponent {
+public abstract class BaseChangeStateComponent extends BaseComponent {
 
     /** 是否终止 */
     protected boolean isStop = false;
@@ -31,12 +31,14 @@ public class BaseChangeStateComponent extends BaseComponent {
 
 
     /** 状态改变前的前置处理 */
-    protected void preChange(OrderProcessContext orderProcessContext) {
+    @Override
+    protected void preHandle(OrderProcessContext orderProcessContext) {
 
     }
 
     /** 状态改变后的后置处理 */
-    protected void afterChange(OrderProcessContext orderProcessContext) {
+    @Override
+    protected void afterHandle(OrderProcessContext orderProcessContext) {
 
     }
 
@@ -96,8 +98,11 @@ public class BaseChangeStateComponent extends BaseComponent {
 
     @Override
     public void handle(OrderProcessContext orderProcessContext) {
+        // 设置目标状态
+        setTargetOrderState();
+
         // 前置处理
-        this.preChange(orderProcessContext);
+        this.preHandle(orderProcessContext);
         if (this.isStop) {
             return;
         }
@@ -109,10 +114,8 @@ public class BaseChangeStateComponent extends BaseComponent {
         }
 
         // 后置处理
-        this.afterChange(orderProcessContext);
+        this.afterHandle(orderProcessContext);
     }
 
-    public void setTargetOrderState(OrderStateEnum targetOrderState) {
-        this.targetOrderState = targetOrderState;
-    }
+    public abstract void setTargetOrderState();
 }

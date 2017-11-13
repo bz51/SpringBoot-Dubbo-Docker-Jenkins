@@ -11,6 +11,14 @@ import com.gaoxi.req.order.OrderProcessReq;
  */
 public abstract class BaseComponent {
 
+    protected void preHandle(OrderProcessContext orderProcessContext) {
+
+    }
+
     public abstract void handle(OrderProcessContext orderProcessContext);
+
+    protected void afterHandle(OrderProcessContext orderProcessContext) {
+
+    }
 
 }

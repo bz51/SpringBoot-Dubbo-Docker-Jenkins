@@ -3,6 +3,8 @@ package com.gaoxi.controller.order;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.gaoxi.entity.order.OrdersEntity;
 import com.gaoxi.entity.user.UserEntity;
+import com.gaoxi.exception.CommonBizException;
+import com.gaoxi.exception.ExpCodeEnum;
 import com.gaoxi.facade.order.OrderService;
 import com.gaoxi.req.order.OrderInsertReq;
 import com.gaoxi.req.order.OrderQueryReq;
@@ -27,11 +29,27 @@ public class OrderControllerImpl implements OrderController {
     @Autowired
     private UserUtil userUtil;
 
+
     @Override
-    public Result<List<OrdersEntity>> findOrders(OrderQueryReq orderQueryReq) {
+    public Result<List<OrdersEntity>> findOrdersForBuyer(OrderQueryReq orderQueryReq, HttpServletRequest httpReq) {
+        // 获取买家ID
+        String buyerId = getUserId(httpReq);
 
         // 查询
-        List<OrdersEntity> ordersEntityList = orderService.findOrders(orderQueryReq);
+        List<OrdersEntity> ordersEntityList = orderService.findOrdersForBuyer(orderQueryReq, buyerId);
+
+        // 查询成功
+        return Result.newSuccessResult(ordersEntityList);
+    }
+
+
+    @Override
+    public Result<List<OrdersEntity>> findOrdersForSeller(OrderQueryReq orderQueryReq, HttpServletRequest httpReq) {
+        // 获取卖家ID
+        String sellerId = getUserId(httpReq);
+
+        // 查询
+        List<OrdersEntity> ordersEntityList = orderService.findOrdersForSeller(orderQueryReq, sellerId);
 
         // 查询成功
         return Result.newSuccessResult(ordersEntityList);
@@ -39,12 +57,11 @@ public class OrderControllerImpl implements OrderController {
 
     @Override
     public Result<String> placeOrder(OrderInsertReq orderInsertReq, HttpServletRequest httpReq) {
-        // 获取 & 设置 买家信息
-        UserEntity userEntity = userUtil.getUser(httpReq);
-        orderInsertReq.setUserId(userEntity.getId());
+        // 获取买家ID
+        String buyerId = getUserId(httpReq);
 
         // 下单
-        String html = orderService.placeOrder(orderInsertReq);
+        String html = orderService.placeOrder(orderInsertReq, buyerId);
 
         // 成功
         return Result.newSuccessResult(html);
@@ -52,11 +69,11 @@ public class OrderControllerImpl implements OrderController {
 
     @Override
     public Result<String> pay(String orderId, HttpServletRequest httpReq) {
-        // 获取用户信息
-        UserEntity userEntity = userUtil.getUser(httpReq);
+        // 获取买家ID
+        String buyerId = getUserId(httpReq);
 
         // 支付
-        String html = orderService.pay(orderId, userEntity.getId());
+        String html = orderService.pay(orderId, buyerId);
 
         // 成功
         return Result.newSuccessResult(html);
@@ -64,11 +81,11 @@ public class OrderControllerImpl implements OrderController {
 
     @Override
     public Result cancelOrder(String orderId, HttpServletRequest httpReq) {
-        // 获取用户信息
-        UserEntity userEntity = userUtil.getUser(httpReq);
+        // 获取买家ID
+        String buyerId = getUserId(httpReq);
 
         // 取消订单
-        orderService.cancelOrder(orderId, userEntity.getId());
+        orderService.cancelOrder(orderId, buyerId);
 
         // 成功
         return Result.newSuccessResult();
@@ -76,11 +93,11 @@ public class OrderControllerImpl implements OrderController {
 
     @Override
     public Result confirmDelivery(String orderId, String expressNo, HttpServletRequest httpReq) {
-        // 获取用户信息
-        UserEntity userEntity = userUtil.getUser(httpReq);
+        // 获取卖家ID
+        String sellerId = getUserId(httpReq);
 
         // 确认收货
-        orderService.confirmDelivery(orderId, expressNo, userEntity.getId());
+        orderService.confirmDelivery(orderId, expressNo, sellerId);
 
         // 成功
         return Result.newSuccessResult();
@@ -88,13 +105,33 @@ public class OrderControllerImpl implements OrderController {
 
     @Override
     public Result confirmReceive(String orderId, HttpServletRequest httpReq) {
-        // 获取用户信息
-        UserEntity userEntity = userUtil.getUser(httpReq);
+        // 获取买家ID
+        String buyerId = getUserId(httpReq);
 
         // 确认收货
-        orderService.confirmReceive(orderId, userEntity.getId());
+        orderService.confirmReceive(orderId, buyerId);
 
         // 成功
         return Result.newSuccessResult();
+    }
+
+
+
+
+
+
+
+    /**
+     * 获取用户ID
+     * @param httpReq HTTP请求
+     * @return 用户ID
+     */
+    private String getUserId(HttpServletRequest httpReq) {
+        UserEntity userEntity = userUtil.getUser(httpReq);
+        if (userEntity == null) {
+            throw new CommonBizException(ExpCodeEnum.UNLOGIN);
+        }
+
+        return userEntity.getId();
     }
 }

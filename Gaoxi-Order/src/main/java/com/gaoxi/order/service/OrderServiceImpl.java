@@ -1,9 +1,13 @@
 package com.gaoxi.order.service;
 
+import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.gaoxi.context.OrderProcessContext;
 import com.gaoxi.entity.order.OrdersEntity;
+import com.gaoxi.enumeration.order.OrderStateEnum;
 import com.gaoxi.enumeration.order.ProcessReqEnum;
+import com.gaoxi.exception.CommonBizException;
+import com.gaoxi.exception.ExpCodeEnum;
 import com.gaoxi.facade.order.OrderService;
 import com.gaoxi.order.dao.OrderDAO;
 import com.gaoxi.order.engine.ProcessEngine;
@@ -31,44 +35,50 @@ public class OrderServiceImpl implements OrderService {
     private ProcessEngine processEngine;
 
     @Override
-    public List<OrdersEntity> findOrders(OrderQueryReq orderQueryReq) {
+    public List<OrdersEntity> findOrdersForBuyer(OrderQueryReq orderQueryReq, String buyerId) {
+        // 参数校验
+        checkParam(orderQueryReq, ExpCodeEnum.ORDERQUERYREQ_NULL);
+
+        // 设置买家ID
+        orderQueryReq.setBuyerId(buyerId);
+
+        // 查询
+        return orderDAO.findOrders(orderQueryReq);
+    }
+
+
+    @Override
+    public List<OrdersEntity> findOrdersForSeller(OrderQueryReq orderQueryReq, String sellerId) {
+        // 参数校验
+        checkParam(orderQueryReq, ExpCodeEnum.ORDERQUERYREQ_NULL);
+
+        // 设置卖家ID
+        orderQueryReq.setSellerId(sellerId);
+
+        // 查询
         return orderDAO.findOrders(orderQueryReq);
     }
 
     @Override
-    public String placeOrder(OrderInsertReq orderInsertReq) {
+    public String placeOrder(OrderInsertReq orderInsertReq, String buyerId) {
+        // 参数校验
+        checkParam(orderInsertReq, ExpCodeEnum.ORDER_INSERT_REQ_NULL);
+
         // 构造受理上下文
-        OrderProcessContext<String> context = buildContext(orderInsertReq);
+        orderInsertReq.setUserId(buyerId);
+        OrderProcessContext<String> context = buildContext(null, buyerId, orderInsertReq, ProcessReqEnum.PlaceOrder);
 
         // 受理下单请求
         processEngine.process(context);
 
         // 获取结果
         return context.getOrderProcessRsp();
-    }
-
-    /**
-     * 构造订单受理上下文
-     * @param orderInsertReq 订单插入请求
-     * @return 订单受理上下文
-     */
-    private OrderProcessContext<String> buildContext(OrderInsertReq orderInsertReq) {
-        OrderProcessContext context = new OrderProcessContext();
-
-        // 受理请求
-        OrderProcessReq<OrderInsertReq> req = new OrderProcessReq<>();
-        req.setProcessReqEnum(ProcessReqEnum.PlaceOrder);
-        req.setUserId(orderInsertReq.getUserId());
-        req.setReqData(orderInsertReq);
-
-        context.setOrderProcessReq(req);
-        return context;
     }
 
     @Override
     public String pay(String orderId, String userId) {
         // 构造受理上下文
-        OrderProcessContext<String> context = buildContext(orderId, userId, ProcessReqEnum.Pay);
+        OrderProcessContext<String> context = buildContext(orderId, userId,null, ProcessReqEnum.Pay);
 
         // 受理下单请求
         processEngine.process(context);
@@ -77,23 +87,10 @@ public class OrderServiceImpl implements OrderService {
         return context.getOrderProcessRsp();
     }
 
-    private OrderProcessContext<String> buildContext(String orderId, String userId, ProcessReqEnum processReqEnum) {
-        OrderProcessContext context = new OrderProcessContext();
-
-        // 受理请求
-        OrderProcessReq req = new OrderProcessReq();
-        req.setProcessReqEnum(processReqEnum);
-        req.setUserId(userId);
-        req.setOrderId(orderId);
-
-        context.setOrderProcessReq(req);
-        return context;
-    }
-
     @Override
     public void cancelOrder(String orderId, String userId) {
         // 构造受理上下文
-        OrderProcessContext<String> context = buildContext(orderId, userId, ProcessReqEnum.CancelOrder);
+        OrderProcessContext<String> context = buildContext(orderId, userId,null, ProcessReqEnum.CancelOrder);
 
         // 受理下单请求
         processEngine.process(context);
@@ -102,7 +99,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void confirmDelivery(String orderId, String expressNo, String userId) {
         // 构造受理上下文
-        OrderProcessContext<String> context = buildContext(orderId, userId, ProcessReqEnum.ConfirmDelivery);
+        OrderProcessContext<String> context = buildContext(orderId, userId, expressNo, ProcessReqEnum.ConfirmDelivery);
 
         // 受理下单请求
         processEngine.process(context);
@@ -111,9 +108,43 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void confirmReceive(String orderId, String userId) {
         // 构造受理上下文
-        OrderProcessContext<String> context = buildContext(orderId, userId, ProcessReqEnum.ConfirmReceive);
+        OrderProcessContext<String> context = buildContext(orderId, userId,null, ProcessReqEnum.ConfirmReceive);
 
         // 受理下单请求
         processEngine.process(context);
+    }
+
+
+    /**
+     * 请求参数校验
+     * @param req 请求参数
+     * @param expCodeEnum 异常枚举
+     * @param <T> 请求参数类型
+     */
+    private <T> void checkParam(T req, ExpCodeEnum expCodeEnum) {
+        if (req == null) {
+            throw new CommonBizException(expCodeEnum);
+        }
+    }
+
+
+    private <T> OrderProcessContext<String> buildContext(String orderId, String userId, T reqData, ProcessReqEnum processReqEnum) {
+        OrderProcessContext context = new OrderProcessContext();
+
+        // 受理请求
+        OrderProcessReq req = new OrderProcessReq();
+        req.setProcessReqEnum(processReqEnum);
+        req.setUserId(userId);
+
+        if (StringUtils.isNotEmpty(orderId)) {
+            req.setOrderId(orderId);
+        }
+
+        if (reqData != null) {
+            req.setReqData(reqData);
+        }
+
+        context.setOrderProcessReq(req);
+        return context;
     }
 }

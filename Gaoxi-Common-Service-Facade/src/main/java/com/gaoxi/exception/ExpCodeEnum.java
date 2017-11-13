@@ -85,6 +85,11 @@ public enum ExpCodeEnum {
     TARGETSTATE_NULL(OrderExpPrefix + "014", "更新订单状态时，订单目标状态不能为空"),
     PROCESSCONTEXT_NULL(OrderExpPrefix + "015", "订单受理上下文为空"),
     PAYMODECODE_ERROR(OrderExpPrefix + "016", "支付方式code不存在"),
+    ORDERQUERYREQ_NULL(OrderExpPrefix + "017", "orderQueryReq为空"),
+    PRODUCTIDCOUNT_ERROR(OrderExpPrefix + "018", "产品的数量必须大于0"),
+    PRODUCT_ID_NO_EXISTENT(OrderExpPrefix + "019", "产品ID不存在"),
+    ORDER_NULL(OrderExpPrefix + "020", "查无此单"),
+    EXPRESS_NO_NULL(OrderExpPrefix + "021", "物流单号不能为空"),
 
 
     /** Analysis模块异常 */
