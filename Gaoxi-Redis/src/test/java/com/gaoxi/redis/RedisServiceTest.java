@@ -1,5 +1,6 @@
 package com.gaoxi.redis;
 
+import com.gaoxi.redis.service.RedisServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +9,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RedisUtilsTest {
+public class RedisServiceTest {
 
     @Autowired
-    private RedisUtilsImpl redisUtilsImpl;
+    private RedisServiceImpl redisServiceImpl;
 
     @Test
     public void remove() throws Exception {
@@ -35,8 +36,8 @@ public class RedisUtilsTest {
 
     @Test
     public void set() throws Exception {
-        redisUtilsImpl.set("name","chai");
-        System.out.println(redisUtilsImpl.get("name").toString());
+        redisServiceImpl.set("name","chai");
+        System.out.println(redisServiceImpl.get("name").toString());
         System.out.println();
     }
 

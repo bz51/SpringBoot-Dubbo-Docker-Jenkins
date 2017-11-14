@@ -1,15 +1,11 @@
 package com.gaoxi.controller.user;
 
-import com.alibaba.dubbo.common.utils.CollectionUtils;
-import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.gaoxi.entity.user.MenuEntity;
 import com.gaoxi.entity.user.PermissionEntity;
 import com.gaoxi.entity.user.RoleEntity;
 import com.gaoxi.entity.user.UserEntity;
-import com.gaoxi.exception.CommonBizException;
-import com.gaoxi.exception.ExpCodeEnum;
-import com.gaoxi.facade.redis.RedisUtils;
+import com.gaoxi.facade.redis.RedisService;
 import com.gaoxi.facade.user.UserService;
 import com.gaoxi.req.BatchReq;
 import com.gaoxi.req.user.*;
@@ -34,7 +30,7 @@ public class UserControllerImpl implements UserController {
     private UserService userService;
 
     @Reference(version = "1.0.0")
-    private RedisUtils redisUtils;
+    private RedisService redisService;
 
     /** Session有效时间 */
     @Value("${session.expireTime}")
@@ -159,7 +155,7 @@ public class UserControllerImpl implements UserController {
         String sessionID = RedisPrefixUtil.SessionID_Prefix + KeyGenerator.getKey();
 
         // 将 SessionID-UserEntity 存入Redis
-        redisUtils.set(sessionID, userEntity, sessionExpireTime);
+        redisService.set(sessionID, userEntity, sessionExpireTime);
 
         // 将SessionID存入HTTP响应头
         Cookie cookie = new Cookie(sessionIdName, sessionID);

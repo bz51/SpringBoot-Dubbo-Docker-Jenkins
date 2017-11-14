@@ -1,4 +1,4 @@
-package com.gaoxi.redis;
+package com.gaoxi.redis.service;
 
 /**
  * @author 大闲人柴毛毛
@@ -10,15 +10,14 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.gaoxi.facade.redis.RedisUtils;
+import com.gaoxi.facade.redis.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.stereotype.Component;
 
 @org.springframework.stereotype.Service
 @Service(version = "1.0.0")
-public class RedisUtilsImpl implements RedisUtils {
+public class RedisServiceImpl implements RedisService {
 
     @Autowired
     private RedisTemplate redisTemplate;

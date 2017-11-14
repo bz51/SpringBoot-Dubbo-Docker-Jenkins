@@ -1,6 +1,7 @@
 package com.gaoxi.redis;
 
 import com.gaoxi.entity.user.UserEntity;
+import com.gaoxi.redis.service.RedisServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class GaoxiRedisApplicationTests {
 	@Autowired
-	private RedisUtilsImpl redisUtil;
+	private RedisServiceImpl redisUtil;
 
 	@Test
 	public void contextLoads() throws InterruptedException {

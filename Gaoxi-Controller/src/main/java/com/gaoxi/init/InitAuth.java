@@ -6,7 +6,7 @@ import com.gaoxi.annotation.AuthScan;
 import com.gaoxi.annotation.Login;
 import com.gaoxi.annotation.Permission;
 import com.gaoxi.enumeration.HttpMethodEnum;
-import com.gaoxi.facade.redis.RedisUtils;
+import com.gaoxi.facade.redis.RedisService;
 import com.gaoxi.utils.AnnotationUtil;
 import com.gaoxi.utils.ClassUtil;
 import com.gaoxi.utils.RedisPrefixUtil;
@@ -40,7 +40,7 @@ public class InitAuth implements CommandLineRunner {
 
     @Reference(version = "1.0.0")
     /** Redis工具包 */
-    private RedisUtils redisUtils;
+    private RedisService redisService;
 
     /** 接口权限列表 */
     private Map<String,AccessAuthEntity> accessAuthMap = Maps.newHashMap();
@@ -94,7 +94,7 @@ public class InitAuth implements CommandLineRunner {
         }
         // 存至Redis
         // TODO 本地调试临时将redis注释掉!!!
-        redisUtils.set(RedisPrefixUtil.Access_Auth_Prefix, accessAuthMap);
+        redisService.set(RedisPrefixUtil.Access_Auth_Prefix, accessAuthMap);
     }
 
     /**

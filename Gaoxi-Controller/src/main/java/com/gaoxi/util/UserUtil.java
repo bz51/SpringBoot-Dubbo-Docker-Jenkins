@@ -5,7 +5,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.gaoxi.entity.user.UserEntity;
 import com.gaoxi.exception.CommonBizException;
 import com.gaoxi.exception.ExpCodeEnum;
-import com.gaoxi.facade.redis.RedisUtils;
+import com.gaoxi.facade.redis.RedisService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +26,7 @@ public class UserUtil {
     private String sessionIdName;
 
     @Reference(version = "1.0.0")
-    private RedisUtils redisUtils;
+    private RedisService redisService;
 
 
 
@@ -43,7 +43,7 @@ public class UserUtil {
         }
 
         // 获取UserEntity
-        Object userEntity =  redisUtils.get(sessionID);
+        Object userEntity =  redisService.get(sessionID);
         if (userEntity == null) {
             return null;
         }

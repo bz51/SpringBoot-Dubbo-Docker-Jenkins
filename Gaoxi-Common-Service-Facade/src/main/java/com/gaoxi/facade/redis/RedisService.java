@@ -5,7 +5,7 @@ package com.gaoxi.facade.redis;
  * @date 2017/11/1 下午3:33
  * @description Redis服务接口
  */
-public interface RedisUtils {
+public interface RedisService {
 
     /**
      * 批量删除

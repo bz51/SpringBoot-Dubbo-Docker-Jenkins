@@ -195,8 +195,8 @@ Caused by: org.springframework.boot.autoconfigure.jdbc.DataSourceProperties$Data
 
 2017-11-03 15:56:02.082  INFO 1675 --- [DubboShutdownHook] com.alibaba.dubbo.config.AbstractConfig  :  [DUBBO] Run shutdown hook now., dubbo version: 2.5.3, current host: 127.0.0.1
 2017-11-03 15:56:02.084  INFO 1675 --- [DubboShutdownHook] c.a.d.r.support.AbstractRegistryFactory  :  [DUBBO] Close all registries [], dubbo version: 2.5.3, current host: 127.0.0.1
-2017-11-03 17:34:04.118  INFO 2071 --- [main] com.gaoxi.redis.RedisUtilsTest           : Starting RedisUtilsTest on MacBook-Pro.local with PID 2071 (started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Redis)
-2017-11-03 17:34:04.121  INFO 2071 --- [main] com.gaoxi.redis.RedisUtilsTest           : The following profiles are active: dev
+2017-11-03 17:34:04.118  INFO 2071 --- [main] com.gaoxi.redis.RedisServiceTest           : Starting RedisUtilsTest on MacBook-Pro.local with PID 2071 (started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Redis)
+2017-11-03 17:34:04.121  INFO 2071 --- [main] com.gaoxi.redis.RedisServiceTest           : The following profiles are active: dev
 2017-11-03 17:34:04.233  INFO 2071 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@156b88f5: startup date [Fri Nov 03 17:34:04 CST 2017]; root of context hierarchy
 2017-11-03 17:34:05.985  WARN 2071 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.gaoxi.redis]' package. Please check your configuration.
 2017-11-03 17:34:06.025  INFO 2071 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
@@ -206,10 +206,10 @@ Caused by: org.springframework.boot.autoconfigure.jdbc.DataSourceProperties$Data
 2017-11-03 17:34:08.553  INFO 2071 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2017-11-03 17:34:08.554  INFO 2071 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2017-11-03 17:34:08.627  INFO 2071 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2017-11-03 17:34:09.587  INFO 2071 --- [main] com.gaoxi.redis.RedisUtilsTest           : Started RedisUtilsTest in 6.376 seconds (JVM running for 7.666)
-2017-11-03 17:34:09.650 ERROR 2071 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3444d69d] to prepare test instance [com.gaoxi.redis.RedisUtilsTest@1a0c5e9]
+2017-11-03 17:34:09.587  INFO 2071 --- [main] com.gaoxi.redis.RedisServiceTest           : Started RedisUtilsTest in 6.376 seconds (JVM running for 7.666)
+2017-11-03 17:34:09.650 ERROR 2071 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3444d69d] to prepare test instance [com.gaoxi.redis.RedisServiceTest@1a0c5e9]
 
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'com.gaoxi.redis.RedisUtilsTest': Unsatisfied dependency expressed through field 'redisUtils'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.gaoxi.redis.RedisUtils' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'com.gaoxi.redis.RedisServiceTest': Unsatisfied dependency expressed through field 'redisUtils'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.gaoxi.redis.RedisUtils' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
 	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
@@ -247,8 +247,8 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 	... 28 common frames omitted
 
 2017-11-03 17:34:09.688  INFO 2071 --- [Thread-4] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@156b88f5: startup date [Fri Nov 03 17:34:04 CST 2017]; root of context hierarchy
-2017-11-03 17:34:37.934  INFO 2078 --- [main] com.gaoxi.redis.RedisUtilsTest           : Starting RedisUtilsTest on MacBook-Pro.local with PID 2078 (started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Redis)
-2017-11-03 17:34:37.937  INFO 2078 --- [main] com.gaoxi.redis.RedisUtilsTest           : The following profiles are active: dev
+2017-11-03 17:34:37.934  INFO 2078 --- [main] com.gaoxi.redis.RedisServiceTest           : Starting RedisUtilsTest on MacBook-Pro.local with PID 2078 (started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Redis)
+2017-11-03 17:34:37.937  INFO 2078 --- [main] com.gaoxi.redis.RedisServiceTest           : The following profiles are active: dev
 2017-11-03 17:34:38.050  INFO 2078 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@156b88f5: startup date [Fri Nov 03 17:34:38 CST 2017]; root of context hierarchy
 2017-11-03 17:34:39.972  WARN 2078 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.gaoxi.redis]' package. Please check your configuration.
 2017-11-03 17:34:40.011  INFO 2078 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
@@ -258,10 +258,10 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 2017-11-03 17:34:42.432  INFO 2078 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2017-11-03 17:34:42.432  INFO 2078 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2017-11-03 17:34:42.534  INFO 2078 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2017-11-03 17:34:43.520  INFO 2078 --- [main] com.gaoxi.redis.RedisUtilsTest           : Started RedisUtilsTest in 6.387 seconds (JVM running for 7.738)
+2017-11-03 17:34:43.520  INFO 2078 --- [main] com.gaoxi.redis.RedisServiceTest           : Started RedisUtilsTest in 6.387 seconds (JVM running for 7.738)
 2017-11-03 17:34:43.595  INFO 2078 --- [Thread-4] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@156b88f5: startup date [Fri Nov 03 17:34:38 CST 2017]; root of context hierarchy
-2017-11-03 17:35:40.311  INFO 2082 --- [main] com.gaoxi.redis.RedisUtilsTest           : Starting RedisUtilsTest on MacBook-Pro.local with PID 2082 (started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Redis)
-2017-11-03 17:35:40.312  INFO 2082 --- [main] com.gaoxi.redis.RedisUtilsTest           : The following profiles are active: dev
+2017-11-03 17:35:40.311  INFO 2082 --- [main] com.gaoxi.redis.RedisServiceTest           : Starting RedisUtilsTest on MacBook-Pro.local with PID 2082 (started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Redis)
+2017-11-03 17:35:40.312  INFO 2082 --- [main] com.gaoxi.redis.RedisServiceTest           : The following profiles are active: dev
 2017-11-03 17:35:40.438  INFO 2082 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@178213b: startup date [Fri Nov 03 17:35:40 CST 2017]; root of context hierarchy
 2017-11-03 17:35:41.810  WARN 2082 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.gaoxi.redis]' package. Please check your configuration.
 2017-11-03 17:35:41.847  INFO 2082 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
@@ -271,10 +271,10 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 2017-11-03 17:35:44.677  INFO 2082 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2017-11-03 17:35:44.677  INFO 2082 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2017-11-03 17:35:44.764  INFO 2082 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2017-11-03 17:35:46.209  INFO 2082 --- [main] com.gaoxi.redis.RedisUtilsTest           : Started RedisUtilsTest in 6.454 seconds (JVM running for 7.692)
+2017-11-03 17:35:46.209  INFO 2082 --- [main] com.gaoxi.redis.RedisServiceTest           : Started RedisUtilsTest in 6.454 seconds (JVM running for 7.692)
 2017-11-03 17:36:12.874  INFO 2082 --- [Thread-4] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@178213b: startup date [Fri Nov 03 17:35:40 CST 2017]; root of context hierarchy
-2017-11-03 17:42:23.268  INFO 2117 --- [main] com.gaoxi.redis.RedisUtilsTest           : Starting RedisUtilsTest on MacBook-Pro.local with PID 2117 (started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Redis)
-2017-11-03 17:42:23.271  INFO 2117 --- [main] com.gaoxi.redis.RedisUtilsTest           : The following profiles are active: dev
+2017-11-03 17:42:23.268  INFO 2117 --- [main] com.gaoxi.redis.RedisServiceTest           : Starting RedisUtilsTest on MacBook-Pro.local with PID 2117 (started by chibozhou in /Users/chibozhou/IdeaProjects/Gaoxi/Gaoxi-Redis)
+2017-11-03 17:42:23.271  INFO 2117 --- [main] com.gaoxi.redis.RedisServiceTest           : The following profiles are active: dev
 2017-11-03 17:42:23.393  INFO 2117 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@57d7f8ca: startup date [Fri Nov 03 17:42:23 CST 2017]; root of context hierarchy
 2017-11-03 17:42:25.154  WARN 2117 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.gaoxi.redis]' package. Please check your configuration.
 2017-11-03 17:42:25.183  INFO 2117 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
@@ -284,5 +284,5 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 2017-11-03 17:42:27.548  INFO 2117 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2017-11-03 17:42:27.549  INFO 2117 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
 2017-11-03 17:42:27.644  INFO 2117 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2017-11-03 17:42:28.580  INFO 2117 --- [main] com.gaoxi.redis.RedisUtilsTest           : Started RedisUtilsTest in 6.196 seconds (JVM running for 7.559)
+2017-11-03 17:42:28.580  INFO 2117 --- [main] com.gaoxi.redis.RedisServiceTest           : Started RedisUtilsTest in 6.196 seconds (JVM running for 7.559)
 2017-11-03 17:42:28.872  INFO 2117 --- [Thread-4] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@57d7f8ca: startup date [Fri Nov 03 17:42:23 CST 2017]; root of context hierarchy

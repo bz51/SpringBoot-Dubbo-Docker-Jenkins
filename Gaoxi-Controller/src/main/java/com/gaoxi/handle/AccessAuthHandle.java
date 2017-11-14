@@ -7,7 +7,7 @@ import com.gaoxi.entity.user.PermissionEntity;
 import com.gaoxi.entity.user.UserEntity;
 import com.gaoxi.exception.CommonBizException;
 import com.gaoxi.exception.ExpCodeEnum;
-import com.gaoxi.facade.redis.RedisUtils;
+import com.gaoxi.facade.redis.RedisService;
 import com.gaoxi.init.AccessAuthEntity;
 import com.gaoxi.utils.RedisPrefixUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -44,7 +44,7 @@ public class AccessAuthHandle {
     private String sessionIdName;
 
     @Reference(version = "1.0.0")
-    private RedisUtils redisUtils;
+    private RedisService redisService;
 
     /** 反斜杠 */
     private static final String Back_Slash = "/";
@@ -165,7 +165,7 @@ public class AccessAuthHandle {
      */
     private AccessAuthEntity getAccessAuthEntity(String method, String url) {
         // 获取所有接口的访问权限
-        Map<String,AccessAuthEntity> accessAuthMap = (Map<String, AccessAuthEntity>) redisUtils.get(RedisPrefixUtil.Access_Auth_Prefix);
+        Map<String,AccessAuthEntity> accessAuthMap = (Map<String, AccessAuthEntity>) redisService.get(RedisPrefixUtil.Access_Auth_Prefix);
 
         // 遍历所有接口的访问权限
         if (accessAuthMap!=null && accessAuthMap.size()>0) {
@@ -234,7 +234,7 @@ public class AccessAuthHandle {
         }
 
         // 获取UserEntity
-        Object userEntity = redisUtils.get(sessionID);
+        Object userEntity = redisService.get(sessionID);
         if (userEntity==null) {
             return null;
         }
