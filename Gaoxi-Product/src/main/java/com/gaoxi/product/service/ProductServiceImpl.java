@@ -27,8 +27,8 @@ import java.util.List;
  * @date 2017/10/31 下午8:43
  * @description
  */
-@Service(version = "1.0.0")
 @org.springframework.stereotype.Service
+@Service(version = "1.0.0")
 public class ProductServiceImpl implements ProductService {
 
     @Autowired

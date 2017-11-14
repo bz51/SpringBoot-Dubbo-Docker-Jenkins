@@ -14,6 +14,8 @@ import com.gaoxi.rsp.Result;
 import com.gaoxi.utils.KeyGenerator;
 import com.gaoxi.utils.RedisPrefixUtil;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
@@ -164,4 +166,5 @@ public class UserControllerImpl implements UserController {
         Cookie cookie = new Cookie(sessionIdName, sessionID);
         httpRsp.addCookie(cookie);
     }
+
 }

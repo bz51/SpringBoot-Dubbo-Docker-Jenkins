@@ -46,7 +46,7 @@ public class CreateOrderComponent extends BaseComponent {
     @Autowired
     private OrderDAO orderDAO;
 
-    @Reference
+    @Reference(version = "1.0.0")
     private ProductService productService;
 
     @Override

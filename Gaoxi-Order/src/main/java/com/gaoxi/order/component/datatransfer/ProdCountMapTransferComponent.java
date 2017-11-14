@@ -25,7 +25,7 @@ import java.util.Map;
 @Component
 public class ProdCountMapTransferComponent extends BaseDataTransferComponent {
 
-    @Reference
+    @Reference(version = "1.0.0")
     private ProductService productService;
 
     @Override

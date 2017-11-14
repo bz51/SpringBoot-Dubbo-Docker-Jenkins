@@ -24,7 +24,7 @@ import java.util.Set;
  */
 public class BaseCheckStockComponent extends BaseComponent {
 
-    @Reference
+    @Reference(version = "1.0.0")
     private ProductService productService;
 
     @Override
