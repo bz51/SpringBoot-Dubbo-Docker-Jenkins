@@ -133,9 +133,9 @@ public interface ProductController {
      * @param brandQueryReq 品牌查询请求
      * @return 品牌查询结果
      */
-    @GetMapping("product")
+    @GetMapping("brand")
     @Login
-    @Permission("product:query")
+    @Permission("brand:query")
     public Result<List<BrandEntity>> findBrands(BrandQueryReq brandQueryReq);
 
 }
