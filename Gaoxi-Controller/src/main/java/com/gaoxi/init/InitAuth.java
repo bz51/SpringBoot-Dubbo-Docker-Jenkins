@@ -93,8 +93,8 @@ public class InitAuth implements CommandLineRunner {
             }
         }
         // 存至Redis
-        // TODO 本地调试临时将redis注释掉!!!
         redisService.set(RedisPrefixUtil.Access_Auth_Prefix, accessAuthMap);
+        logger.info("接口访问权限已加载完毕！"+redisService.get(RedisPrefixUtil.Access_Auth_Prefix));
     }
 
     /**
