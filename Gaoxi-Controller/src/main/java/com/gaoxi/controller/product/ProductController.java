@@ -102,9 +102,9 @@ public interface ProductController {
      * @param categoryQueryReq 类别查询请求
      * @return 类别查询结果
      */
-    @GetMapping("product")
+    @GetMapping("category")
     @Login
-    @Permission("product:query")
+    @Permission("category:query")
     public Result<List<CategoryEntity>> findCategorys(CategoryQueryReq categoryQueryReq);
 
 
