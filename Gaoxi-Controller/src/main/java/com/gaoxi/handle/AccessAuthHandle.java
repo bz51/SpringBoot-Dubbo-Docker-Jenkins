@@ -9,6 +9,7 @@ import com.gaoxi.exception.CommonBizException;
 import com.gaoxi.exception.ExpCodeEnum;
 import com.gaoxi.facade.redis.RedisService;
 import com.gaoxi.entity.user.AccessAuthEntity;
+import com.gaoxi.redis.RedisServiceTemp;
 import com.gaoxi.utils.RedisPrefixUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -165,7 +166,9 @@ public class AccessAuthHandle {
      */
     private AccessAuthEntity getAccessAuthEntity(String method, String url) {
         // 获取所有接口的访问权限
-        Map<String,AccessAuthEntity> accessAuthMap = redisService.getMap(RedisPrefixUtil.Access_Auth_Prefix);
+        // TODO 暂时存储在本地
+//        Map<String,AccessAuthEntity> accessAuthMap = redisService.getMap(RedisPrefixUtil.Access_Auth_Prefix);
+        Map<String,AccessAuthEntity> accessAuthMap = RedisServiceTemp.accessAuthMap;
 
         // 遍历所有接口的访问权限
         if (accessAuthMap!=null && accessAuthMap.size()>0) {
@@ -234,7 +237,9 @@ public class AccessAuthHandle {
         }
 
         // 获取UserEntity
-        Object userEntity = redisService.get(sessionID);
+        // TODO 暂时存储本地
+//        Object userEntity = redisService.get(sessionID);
+        Object userEntity = RedisServiceTemp.userMap.get(sessionID);
         if (userEntity==null) {
             return null;
         }

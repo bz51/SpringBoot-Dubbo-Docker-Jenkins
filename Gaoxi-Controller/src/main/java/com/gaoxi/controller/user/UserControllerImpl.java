@@ -7,6 +7,7 @@ import com.gaoxi.entity.user.RoleEntity;
 import com.gaoxi.entity.user.UserEntity;
 import com.gaoxi.facade.redis.RedisService;
 import com.gaoxi.facade.user.UserService;
+import com.gaoxi.redis.RedisServiceTemp;
 import com.gaoxi.req.BatchReq;
 import com.gaoxi.req.user.*;
 import com.gaoxi.rsp.Result;
@@ -155,7 +156,9 @@ public class UserControllerImpl implements UserController {
         String sessionID = RedisPrefixUtil.SessionID_Prefix + KeyGenerator.getKey();
 
         // 将 SessionID-UserEntity 存入Redis
-        redisService.set(sessionID, userEntity, sessionExpireTime);
+        // TODO 暂时存储本地
+//        redisService.set(sessionID, userEntity, sessionExpireTime);
+        RedisServiceTemp.userMap.put(sessionID, userEntity);
 
         // 将SessionID存入HTTP响应头
         Cookie cookie = new Cookie(sessionIdName, sessionID);

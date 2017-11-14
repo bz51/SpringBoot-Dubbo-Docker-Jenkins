@@ -8,6 +8,7 @@ import com.gaoxi.annotation.Permission;
 import com.gaoxi.entity.user.AccessAuthEntity;
 import com.gaoxi.enumeration.HttpMethodEnum;
 import com.gaoxi.facade.redis.RedisService;
+import com.gaoxi.redis.RedisServiceTemp;
 import com.gaoxi.utils.AnnotationUtil;
 import com.gaoxi.utils.ClassUtil;
 import com.gaoxi.utils.RedisPrefixUtil;
@@ -94,8 +95,10 @@ public class InitAuth implements CommandLineRunner {
             }
         }
         // 存至Redis
-        redisService.setMap(RedisPrefixUtil.Access_Auth_Prefix, accessAuthMap, null);
-        logger.info("接口访问权限已加载完毕！"+redisService.get(RedisPrefixUtil.Access_Auth_Prefix));
+        // TODO 暂时存储在本地
+//        redisService.setMap(RedisPrefixUtil.Access_Auth_Prefix, accessAuthMap, null);
+        RedisServiceTemp.accessAuthMap = accessAuthMap;
+        logger.info("接口访问权限已加载完毕！"+accessAuthMap);
     }
 
     /**
