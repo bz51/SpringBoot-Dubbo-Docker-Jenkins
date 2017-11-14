@@ -76,4 +76,15 @@ public class AccessAuthEntity implements Serializable {
     public void setPermission(String permission) {
         this.permission = permission;
     }
+
+    @Override
+    public String toString() {
+        return "AccessAuthEntity{" +
+                "url='" + url + '\'' +
+                ", methodName='" + methodName + '\'' +
+                ", httpMethodEnum=" + httpMethodEnum +
+                ", isLogin=" + isLogin +
+                ", permission='" + permission + '\'' +
+                '}';
+    }
 }
