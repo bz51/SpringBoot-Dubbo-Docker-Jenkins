@@ -105,6 +105,8 @@ public enum ExpCodeEnum implements Serializable {
         this.message = message;
     }
 
+    ExpCodeEnum(){}
+
     public String getCode() {
         return code;
     }

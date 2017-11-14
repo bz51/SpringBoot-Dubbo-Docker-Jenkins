@@ -16,4 +16,8 @@ public class CommonSysException extends RuntimeException implements Serializable
         super(codeEnum.getMessage());
         this.codeEnum = codeEnum;
     }
+
+    public CommonSysException() {
+
+    }
 }

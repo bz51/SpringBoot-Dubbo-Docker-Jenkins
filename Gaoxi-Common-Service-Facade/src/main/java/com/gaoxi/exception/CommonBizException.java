@@ -15,6 +15,8 @@ public class CommonBizException extends RuntimeException implements Serializable
         this.codeEnum = codeEnum;
     }
 
+    public CommonBizException(){}
+
     public ExpCodeEnum getCodeEnum() {
         return codeEnum;
     }
