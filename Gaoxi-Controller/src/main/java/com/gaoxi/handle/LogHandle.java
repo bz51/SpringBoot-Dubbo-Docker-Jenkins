@@ -5,6 +5,8 @@ import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -16,8 +18,8 @@ import javax.servlet.http.HttpServletRequest;
  * @Date 2017/10/29 下午12:58
  * REST接口统一的日志处理
  */
-@Aspect
-@Component
+@ControllerAdvice
+@ResponseBody
 public class LogHandle {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
