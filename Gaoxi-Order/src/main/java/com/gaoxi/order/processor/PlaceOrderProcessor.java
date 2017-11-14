@@ -26,8 +26,6 @@ public class PlaceOrderProcessor extends Processor {
     @InjectComponents({
             // 参数校验
             PlaceOrderCheckParamComponent.class,
-            // 幂等检查
-            PlaceOrderIdempotentComponent.class,
             // 数据转化(prodIdCountMap——>prodEntityCountMap)
             ProdCountMapTransferComponent.class,
             // 库存检查

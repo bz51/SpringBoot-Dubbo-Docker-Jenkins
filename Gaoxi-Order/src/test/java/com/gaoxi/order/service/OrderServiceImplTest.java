@@ -26,6 +26,7 @@ public class OrderServiceImplTest {
 
     private static final String BUYER_ID = "1";
     private static final String SELLER_ID = "2";
+    private static final String ORDER_ID = "e9c8108c7d5a4e498bcf2f01699164a8";
 
     @Test
     public void findOrdersForBuyer() throws Exception {
@@ -37,6 +38,10 @@ public class OrderServiceImplTest {
 
     @Test
     public void findOrdersForSeller() throws Exception {
+        OrderQueryReq orderQueryReq = new OrderQueryReq();
+
+        List<OrdersEntity> ordersEntityList = orderService.findOrdersForSeller(orderQueryReq, SELLER_ID);
+        System.out.println(ordersEntityList);
     }
 
     @Test
@@ -57,18 +62,22 @@ public class OrderServiceImplTest {
 
     @Test
     public void pay() throws Exception {
+        orderService.pay(ORDER_ID, BUYER_ID);
     }
 
     @Test
     public void cancelOrder() throws Exception {
+        orderService.cancelOrder(ORDER_ID, BUYER_ID);
     }
 
     @Test
     public void confirmDelivery() throws Exception {
+        orderService.confirmDelivery(ORDER_ID, "11222333", SELLER_ID);
     }
 
     @Test
     public void confirmReceive() throws Exception {
+        orderService.confirmReceive(ORDER_ID, BUYER_ID);
     }
 
 }

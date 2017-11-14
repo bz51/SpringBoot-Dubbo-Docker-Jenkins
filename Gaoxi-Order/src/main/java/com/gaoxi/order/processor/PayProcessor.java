@@ -3,7 +3,9 @@ package com.gaoxi.order.processor;
 import com.gaoxi.order.annotation.InjectComponents;
 import com.gaoxi.order.component.BaseComponent;
 import com.gaoxi.order.component.checkparam.NoPrivateCheckParamComponent;
-import com.gaoxi.order.component.checkstock.PayBaseCheckStockComponent;
+import com.gaoxi.order.component.checkstock.CommonCheckStockComponent;
+import com.gaoxi.order.component.datatransfer.ProdCountMapTransferComponent;
+import com.gaoxi.order.component.datatransfer.ProdIdCountMapTransferComponent;
 import com.gaoxi.order.component.idempotent.PayIdempotentComponent;
 import com.gaoxi.order.component.pay.CommonPayComponent;
 import org.springframework.stereotype.Component;
@@ -24,8 +26,12 @@ public class PayProcessor extends Processor {
             NoPrivateCheckParamComponent.class,
             // 幂等检查
             PayIdempotentComponent.class,
+            // 根据orderId还原prodIdCountMap
+            ProdIdCountMapTransferComponent.class,
+            // prodIdCountMap——>prodEntityCountMap
+            ProdCountMapTransferComponent.class,
             // 库存检查
-            PayBaseCheckStockComponent.class,
+            CommonCheckStockComponent.class,
             // 支付
             CommonPayComponent.class,
     })

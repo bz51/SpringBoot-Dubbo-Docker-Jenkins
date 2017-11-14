@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class ConfirmDeliveryIdempotentComponent extends BaseIdempotencyComponent {
     @Override
     protected void setAllowStateList() {
-        // 订单状态只有为"买家待收货"才允许确认收货
+        // 订单状态只有为"买家待收货"才允许确认发货
         this.allowStateList = Arrays.asList(OrderStateEnum.BUYER_PAID);
     }
 }

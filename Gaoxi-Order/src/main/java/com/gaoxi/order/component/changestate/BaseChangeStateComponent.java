@@ -2,6 +2,7 @@ package com.gaoxi.order.component.changestate;
 
 import com.gaoxi.context.OrderProcessContext;
 import com.gaoxi.entity.order.OrderStateTimeEntity;
+import com.gaoxi.entity.order.OrdersEntity;
 import com.gaoxi.enumeration.order.OrderStateEnum;
 import com.gaoxi.exception.CommonSysException;
 import com.gaoxi.exception.ExpCodeEnum;
@@ -73,6 +74,12 @@ public abstract class BaseChangeStateComponent extends BaseComponent {
 
         // 插入该订单的该条状态
         orderDAO.insertOrderStateTime(orderStateTimeEntity);
+
+        // 更新order表中的订单状态
+        OrdersEntity ordersEntity = new OrdersEntity();
+        ordersEntity.setId(orderId);
+        ordersEntity.setOrderStateEnum(targetOrderState);
+        orderDAO.updateOrder(ordersEntity);
     }
 
     /**

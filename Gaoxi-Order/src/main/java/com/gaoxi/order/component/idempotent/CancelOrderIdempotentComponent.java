@@ -14,6 +14,6 @@ import java.util.Arrays;
 public class CancelOrderIdempotentComponent extends BaseIdempotencyComponent {
     @Override
     protected void setAllowStateList() {
-        this.allowStateList = Arrays.asList(OrderStateEnum.INIT);
+        this.allowStateList = Arrays.asList(OrderStateEnum.INIT, OrderStateEnum.BUYER_UNPAID);
     }
 }

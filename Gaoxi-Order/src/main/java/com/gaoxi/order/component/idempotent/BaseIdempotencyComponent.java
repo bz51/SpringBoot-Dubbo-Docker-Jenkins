@@ -1,6 +1,7 @@
 package com.gaoxi.order.component.idempotent;
 
 import com.alibaba.dubbo.common.utils.CollectionUtils;
+import com.alibaba.dubbo.common.utils.StringUtils;
 import com.gaoxi.context.OrderProcessContext;
 import com.gaoxi.entity.order.OrdersEntity;
 import com.gaoxi.enumeration.order.OrderStateEnum;
@@ -79,6 +80,9 @@ public abstract class BaseIdempotencyComponent extends BaseComponent {
     private OrderStateEnum getOrderState(OrderProcessContext orderProcessContext) {
         // 获取订单ID
         String orderId = orderProcessContext.getOrderProcessReq().getOrderId();
+        if (StringUtils.isEmpty(orderId)) {
+            throw new CommonBizException(ExpCodeEnum.PROCESSREQ_ORDERID_NULL);
+        }
 
         // 查询订单
         OrderQueryReq orderQueryReq = new OrderQueryReq();
@@ -86,13 +90,21 @@ public abstract class BaseIdempotencyComponent extends BaseComponent {
         List<OrdersEntity> ordersEntityList = orderDAO.findOrders(orderQueryReq);
 
         // 订单不存在
-        // TODO 下单是否需要幂等性检查？？？
         if (CollectionUtils.isEmpty(ordersEntityList)) {
-            return OrderStateEnum.INIT;
+            throw new CommonBizException(ExpCodeEnum.ORDER_NULL);
         }
 
-        // 订单存在
-        return ordersEntityList.get(0).getOrderStateEnum();
+        // 获取订单状态
+        // TODO 更新订单状态时，要连带更新order表中的状态
+        OrderStateEnum orderStateEnum = ordersEntityList.get(0).getOrderStateEnum();
+
+        // 订单存在 & 订单状态不存在
+        if (orderStateEnum == null) {
+            throw new CommonBizException(ExpCodeEnum.ORDER_STATE_NULL);
+        }
+
+        // 返回订单状态
+        return orderStateEnum;
     }
 
     /**

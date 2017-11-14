@@ -31,7 +31,7 @@ public class BaseCheckStockComponent extends BaseComponent {
     public void handle(OrderProcessContext orderProcessContext) {
         preHandle(orderProcessContext);
 
-        // 获取产品Map
+        // 获取产品Entity的Map
         OrderInsertReq orderInsertReq = (OrderInsertReq) orderProcessContext.getOrderProcessReq().getReqData();
         Map<ProductEntity ,Integer> prodEntityCountMap = orderInsertReq.getProdEntityCountMap();
 
@@ -49,7 +49,7 @@ public class BaseCheckStockComponent extends BaseComponent {
         // 校验库存
         for (ProductEntity productEntity : prodEntityCountMap.keySet()) {
             // 获取购买量
-            Integer count = prodEntityCountMap.get(productEntity.getId());
+            Integer count = prodEntityCountMap.get(productEntity);
             // 校验
             if (productEntity.getStock() < count) {
                 throw new CommonBizException(ExpCodeEnum.STOCK_LOW);

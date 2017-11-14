@@ -107,10 +107,11 @@ public class CreateOrderComponent extends BaseComponent {
     /**
      * 插入product_order表
      * @param prodIdCountMap
-     * @param orderId
+     * @param orderId 订单编号
      */
     private void insertOrderProduct(Map<String, Integer> prodIdCountMap, String orderId) {
         List<ProductOrderEntity> productOrderEntityList = Lists.newArrayList();
+
         for (String prodId : prodIdCountMap.keySet()) {
             ProductOrderEntity productOrderEntity = new ProductOrderEntity();
 

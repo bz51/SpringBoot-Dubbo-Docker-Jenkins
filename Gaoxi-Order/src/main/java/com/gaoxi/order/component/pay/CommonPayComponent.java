@@ -86,4 +86,5 @@ public class CommonPayComponent extends BaseComponent {
         }
         return payModeEnum;
     }
+
 }

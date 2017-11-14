@@ -4,6 +4,7 @@ import com.alibaba.dubbo.common.utils.CollectionUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.gaoxi.context.OrderProcessContext;
 import com.gaoxi.entity.product.ProductEntity;
+import com.gaoxi.enumeration.product.ProdStateEnum;
 import com.gaoxi.exception.CommonBizException;
 import com.gaoxi.exception.ExpCodeEnum;
 import com.gaoxi.facade.product.ProductService;
@@ -11,6 +12,8 @@ import com.gaoxi.req.order.OrderInsertReq;
 import com.gaoxi.req.product.ProdQueryReq;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -24,6 +27,8 @@ import java.util.Map;
  */
 @Component
 public class ProdCountMapTransferComponent extends BaseDataTransferComponent {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Reference(version = "1.0.0")
     private ProductService productService;
@@ -61,6 +66,7 @@ public class ProdCountMapTransferComponent extends BaseDataTransferComponent {
      */
     private Map<ProductEntity, Integer> buildProductEntityIntegerMap(List<ProductEntity> productEntityList, Map<String, Integer> prodIdCountMap) {
         Map<ProductEntity, Integer> map = Maps.newHashMap();
+
         if (CollectionUtils.isEmpty(productEntityList)) {
             return map;
         }
@@ -101,7 +107,8 @@ public class ProdCountMapTransferComponent extends BaseDataTransferComponent {
 
             // 产品ID不存在
             if (productEntitys.size() <= 0) {
-                throw new CommonBizException(ExpCodeEnum.PRODUCT_ID_NO_EXISTENT);
+                logger.error("查询产品详情时，上线中 & 产品ID=" + prodQueryReq.getId() + "的产品不存在！");
+                throw new CommonBizException(ExpCodeEnum.PRODUCT_NO_EXISTENT);
             }
 
             productEntityList.add(productEntitys.get(0));
@@ -121,6 +128,8 @@ public class ProdCountMapTransferComponent extends BaseDataTransferComponent {
         for (String prodId : prodIdCountMap.keySet()) {
             ProdQueryReq prodQueryReq = new ProdQueryReq();
             prodQueryReq.setId(prodId);
+            // 必须是"上线中"的产品
+            prodQueryReq.setProdStateCode(ProdStateEnum.OPEN.getCode());
             prodQueryReqList.add(prodQueryReq);
         }
 

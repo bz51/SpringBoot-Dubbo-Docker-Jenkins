@@ -52,7 +52,7 @@
             </association>
         </collection>
         <collection property="orderStateTimeList" ofType="com.gaoxi.entity.order.OrderStateTimeEntity">
-            <result property="orderStateEnum" column="order_state_time_order_state"/>
+            <result property="orderStateEnum" column="order_state_time_order_state" typeHandler="com.gaoxi.typehandler.EnumTypeHandler"/>
             <result property="time" column="order_state_time_time"/>
         </collection>
     </resultMap>
@@ -132,7 +132,7 @@
 
       <where>
           <if test="orderQueryReq.id != null">
-              AND id = #{orderQueryReq.id}
+              AND orders.id = #{orderQueryReq.id}
           </if>
           <if test="orderQueryReq.buyerName != null">
               AND buyer_name like CONCAT('%',#{userQueryReq.buyer.username},'%')
@@ -176,7 +176,7 @@
               AND order_state_time_time &lt; #{orderQueryReq.placeOrderEndTime}
           </if>
           <if test="orderQueryReq.buyerId != null">
-              AND buyer_id = #{orderQueryReq.buyerId}
+              AND buyer.id = #{orderQueryReq.buyerId}
           </if>
           <if test="orderQueryReq.sellerId != null">
               AND company_id = #{orderQueryReq.sellerId}
@@ -185,20 +185,26 @@
     </select>
 
     <update id="updateOrder">
-        UPDATE gaoxi.orders SET order_state = #{ordersEntity.orderStateEnum.code}
+        UPDATE gaoxi.orders
+        <if test="ordersEntity.orderStateEnum != null">
+          SET order_state = #{ordersEntity.orderStateEnum.code}
+        </if>
+        <if test="ordersEntity.expressNo != null">
+            SET express_no = #{ordersEntity.expressNo}
+        </if>
         WHERE id = #{ordersEntity.id}
     </update>
 
     <delete id="deleteOrderStateTime">
-      DELETE FROM gaoxi.order_state_time as order_state_time
-      WHERE order_state_time.order_id = #{orderStateTimeEntity.orderId} AND
-      order_state_time.order_state = #{orderStateTimeEntity.orderStateEnum.code}
+      DELETE FROM gaoxi.order_state_time
+      WHERE order_id = #{orderStateTimeEntity.orderId} AND
+      order_state = #{orderStateTimeEntity.orderStateEnum.code}
     </delete>
 
 
     <insert id="insertOrderStateTime">
         INSERT INTO gaoxi.order_state_time
-        (order_id, order_state, "time")
+        (order_id, order_state, times)
         VALUES
         (#{orderStateTimeEntity.orderId},#{orderStateTimeEntity.orderStateEnum.code},#{orderStateTimeEntity.time})
     </insert>
@@ -208,7 +214,7 @@
         VALUES
         (#{ordersEntity.id},#{ordersEntity.buyer.id},#{ordersEntity.company.id},#{ordersEntity.orderStateEnum.code},#{ordersEntity.payModeEnum.code}
         ,#{ordersEntity.totalPrice},#{ordersEntity.receiptEntity.id},#{ordersEntity.locationEntity.id}
-        ,#{ordersEntity.remark})
+        ,#{ordersEntity.remark},#{ordersEntity.remark})
     </insert>
 
     <insert id="insertOrderProduct">

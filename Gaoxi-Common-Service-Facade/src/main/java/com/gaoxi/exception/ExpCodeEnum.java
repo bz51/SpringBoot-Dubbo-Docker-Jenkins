@@ -52,6 +52,7 @@ public enum ExpCodeEnum implements Serializable {
     PRODUCT_CREATE_FAIL(ProdExpPrefix + "009", "产品新增失败"),
     PRODUCT_UPDATE_FAIL(ProdExpPrefix + "010", "产品更新失败"),
     PRODUCT_SELECT_FAIL(ProdExpPrefix + "011", "没有符合条件的查询结果，产品查询失败"),
+    PRODUCT_NO_EXISTENT(ProdExpPrefix + "025", "产品不存在，或者已下架"),
     /** Category异常 前缀统一使用 ProdExpPrefix */
     CATEGORY_NAME_NULL(ProdExpPrefix + "012","类别名称为空"),
     CATEGORY_CREATE_FAIL(ProdExpPrefix + "013","类别新增失败"),
@@ -92,6 +93,7 @@ public enum ExpCodeEnum implements Serializable {
     PRODUCT_ID_NO_EXISTENT(OrderExpPrefix + "019", "产品ID不存在"),
     ORDER_NULL(OrderExpPrefix + "020", "查无此单"),
     EXPRESS_NO_NULL(OrderExpPrefix + "021", "物流单号不能为空"),
+    ORDER_STATE_NULL(OrderExpPrefix + "022", "该订单的状态字段为空"),
 
 
     /** Analysis模块异常 */

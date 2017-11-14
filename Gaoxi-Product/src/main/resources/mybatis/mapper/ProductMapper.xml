@@ -23,12 +23,17 @@
             <result property="category" column="sub_cate_name"/>
         </association>
 
+        <association property="companyEntity" javaType="com.gaoxi.entity.user.UserEntity">
+            <result property="id" column="company_id"/>
+            <result property="username" column="company_name"/>
+        </association>
+
         <association property="brandEntity" javaType="com.gaoxi.entity.product.BrandEntity">
             <result property="id" column="brand.id"/>
             <result property="brand" column="brand_name"/>
             <result property="brandLogoUrl" column="brand_logo"/>
             <association property="companyEntity" javaType="com.gaoxi.entity.user.UserEntity">
-                <result property="id" column="sys_user.id"/>
+                <result property="id" column="company_id"/>
                 <result property="username" column="company_name"/>
             </association>
         </association>
@@ -46,7 +51,7 @@
                 brand.id,
                 brand.brand_name AS brand_name,
                 brand.brand_logo_url AS brand_logo,
-                sys_user.id,
+                sys_user.id as company_id,
                 sys_user.username AS company_name,
                 prod_image.prod_image_url as prod_image_url
         FROM
@@ -66,6 +71,7 @@
             LEFT JOIN
             prod_image
             ON product.id = prod_image.product_id
+
         <where>
             <if test="id != null">
                 AND product.id = #{id}

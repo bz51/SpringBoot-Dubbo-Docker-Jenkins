@@ -38,7 +38,6 @@ import java.util.Map;
 @Component
 public class InitAuth implements CommandLineRunner {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /** Redis工具包 */
     @Reference(version = "1.0.0")
