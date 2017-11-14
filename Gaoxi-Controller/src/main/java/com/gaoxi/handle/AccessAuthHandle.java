@@ -165,7 +165,7 @@ public class AccessAuthHandle {
      */
     private AccessAuthEntity getAccessAuthEntity(String method, String url) {
         // 获取所有接口的访问权限
-        Map<String,AccessAuthEntity> accessAuthMap = (Map<String, AccessAuthEntity>) redisService.get(RedisPrefixUtil.Access_Auth_Prefix);
+        Map<String,AccessAuthEntity> accessAuthMap = redisService.getMap(RedisPrefixUtil.Access_Auth_Prefix);
 
         // 遍历所有接口的访问权限
         if (accessAuthMap!=null && accessAuthMap.size()>0) {

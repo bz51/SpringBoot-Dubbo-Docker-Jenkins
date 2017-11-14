@@ -1,5 +1,8 @@
 package com.gaoxi.facade.redis;
 
+import java.io.Serializable;
+import java.util.Map;
+
 /**
  * @author 大闲人柴毛毛
  * @date 2017/11/1 下午3:33
@@ -37,7 +40,7 @@ public interface RedisService {
      * @param key
      * @return
      */
-    public Object get(final String key);
+    public Serializable get(final String key);
 
     /**
      * 添加key-value（使用默认失效时间）
@@ -45,7 +48,7 @@ public interface RedisService {
      * @param value
      * @return
      */
-    public boolean set(final String key, Object value);
+    public boolean set(final String key, Serializable value);
 
     /**
      * 添加key-value（指定失效时间）
@@ -54,5 +57,25 @@ public interface RedisService {
      * @param expireTime 失效时间（单位秒）
      * @return
      */
-    public boolean set(final String key, Object value, Long expireTime);
+    public boolean set(final String key, Serializable value, Long expireTime);
+
+    /**
+     * 存储map
+     * @param key
+     * @param map
+     * @param expireTime 失效时间为null则永久生效（单位秒）
+     * @return
+     */
+    public <K,HK,HV> boolean setMap(K key, Map<HK, HV> map, Long expireTime);
+
+
+    /**
+     * 获取map
+     * @param key
+     * @param <K>
+     * @param <HK>
+     * @param <HV>
+     * @return
+     */
+    public <K,HK,HV> Map<HK,HV> getMap(final K key);
 }
