@@ -8,7 +8,7 @@ import com.gaoxi.entity.user.UserEntity;
 import com.gaoxi.exception.CommonBizException;
 import com.gaoxi.exception.ExpCodeEnum;
 import com.gaoxi.facade.redis.RedisService;
-import com.gaoxi.init.AccessAuthEntity;
+import com.gaoxi.entity.user.AccessAuthEntity;
 import com.gaoxi.utils.RedisPrefixUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

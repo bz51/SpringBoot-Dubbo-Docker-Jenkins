@@ -5,6 +5,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.gaoxi.annotation.AuthScan;
 import com.gaoxi.annotation.Login;
 import com.gaoxi.annotation.Permission;
+import com.gaoxi.entity.user.AccessAuthEntity;
 import com.gaoxi.enumeration.HttpMethodEnum;
 import com.gaoxi.facade.redis.RedisService;
 import com.gaoxi.utils.AnnotationUtil;

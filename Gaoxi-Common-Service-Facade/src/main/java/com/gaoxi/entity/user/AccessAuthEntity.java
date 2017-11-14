@@ -1,4 +1,4 @@
-package com.gaoxi.init;
+package com.gaoxi.entity.user;
 
 import com.gaoxi.enumeration.HttpMethodEnum;
 
