@@ -2,6 +2,8 @@ package com.gaoxi.exception;
 
 import com.gaoxi.utils.ExpPrefixUtil;
 
+import java.io.Serializable;
+
 import static com.gaoxi.utils.ExpPrefixUtil.*;
 
 /**
@@ -11,7 +13,7 @@ import static com.gaoxi.utils.ExpPrefixUtil.*;
  *
  * PS:异常码一共由5位组成，前两位为固定前缀，请参考{@link com.gaoxi.utils.ExpPrefixUtil}
  */
-public enum ExpCodeEnum {
+public enum ExpCodeEnum implements Serializable {
 
     /** 通用异常 */
     UNKNOW_ERROR(ComExpPrefix + "000", "未知异常"),
