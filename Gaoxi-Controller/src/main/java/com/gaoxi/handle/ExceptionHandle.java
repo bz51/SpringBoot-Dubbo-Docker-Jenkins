@@ -1,9 +1,11 @@
 package com.gaoxi.handle;
 
+import com.gaoxi.exception.ExpCodeEnum;
 import com.gaoxi.rsp.Result;
 import com.gaoxi.exception.CommonBizException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,6 +30,16 @@ public class ExceptionHandle {
     @ExceptionHandler(CommonBizException.class)
     public <T> Result<T> exceptionHandler(CommonBizException exception) {
         return Result.newFailureResult(exception);
+    }
+
+    /**
+     * 请求方法不正确
+     * @param exception
+     * @return
+     */
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public Result HttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exception) {
+        throw new CommonBizException(ExpCodeEnum.HTTP_REQ_METHOD_ERROR);
     }
 
     /**

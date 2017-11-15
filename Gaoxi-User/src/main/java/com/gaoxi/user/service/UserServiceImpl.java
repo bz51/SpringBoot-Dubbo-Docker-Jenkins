@@ -197,12 +197,12 @@ public class UserServiceImpl implements UserService {
             throw new CommonBizException(ExpCodeEnum.PARAM_NULL);
         }
 
-        // roleId不能为空
+        // roleId不能为空 & TODO roleId 必须存在
         if (StringUtils.isEmpty(rolePermissionReq.getRoleId())) {
             throw new CommonBizException(ExpCodeEnum.ROLEID_NULL);
         }
 
-        // 权限Id列表不能为空
+        // 权限Id列表不能为空 & 权限Id必须都存在
         if (CollectionUtils.isEmpty(rolePermissionReq.getPermissionIdList())) {
             throw new CommonBizException(ExpCodeEnum.PERMISSIONIDLIST_NULL);
         }
@@ -216,11 +216,12 @@ public class UserServiceImpl implements UserService {
         }
 
         // roleId不能为空
+        // TODO 确保roleId存在
         if (StringUtils.isEmpty(roleMenuReq.getRoleId())) {
             throw new CommonBizException(ExpCodeEnum.ROLEID_NULL);
         }
 
-        // menuId列表不能为空
+        // menuId列表不能为空 & TODO menuId必须存在
         if (CollectionUtils.isEmpty(roleMenuReq.getMenuIdList())) {
             throw new CommonBizException(ExpCodeEnum.MENUIDLIST_NULL);
         }
@@ -262,17 +263,20 @@ public class UserServiceImpl implements UserService {
         }
 
         // 用户名不能为空
+        // TODO 用户名不能重复
         if (StringUtils.isEmpty(adminCreateReq.getUsername())) {
            throw new CommonBizException(ExpCodeEnum.USERNAME_NULL);
         }
 
         // 电话不能为空
+        // TODO 电话不能重复
         if (StringUtils.isEmpty(adminCreateReq.getPhone())) {
             throw new CommonBizException(ExpCodeEnum.PHONE_NULL);
         }
 
         // 角色不能为空
-        if (adminCreateReq.getRoleId() == null) {
+        // TODO 角色必须已存在
+        if (StringUtils.isEmpty(adminCreateReq.getRoleId())) {
             throw new CommonBizException(ExpCodeEnum.ROLE_NULL);
         }
 

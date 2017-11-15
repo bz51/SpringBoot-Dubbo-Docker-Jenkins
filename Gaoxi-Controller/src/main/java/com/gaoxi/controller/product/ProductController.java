@@ -30,8 +30,8 @@ public interface ProductController {
      * @return 是否创建成功
      */
     @PostMapping("product")
-//    @Login
-//    @Permission("product:create")
+    @Login
+    @Permission("product:create")
     public Result createProduct(ProdInsertReq prodInsertReq);
 
     /**
@@ -42,7 +42,7 @@ public interface ProductController {
      */
     @PostMapping("image")
     @Login
-//    @Permission("image:upload")
+    @Permission("image:upload")
     public Result<ProdImageEntity> uploadImage(MultipartFile file);
 
     /**

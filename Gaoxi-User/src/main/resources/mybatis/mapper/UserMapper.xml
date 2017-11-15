@@ -83,30 +83,43 @@
 
         <where>
             <if test="userQueryReq.id != null">
-                id = #{userQueryReq.id}
+                user.id = #{userQueryReq.id}
             </if>
             <if test="userQueryReq.username != null">
-                username like CONCAT('%',#{userQueryReq.username},'%')
+                AND
+
+                  username = #{userQueryReq.username}
+            </if>
+            <if test="userQueryReq.password != null">
+                AND
+                password = #{userQueryReq.password}
             </if>
             <if test="userQueryReq.phone != null">
+                AND
                 phone = #{userQueryReq.phone}
             </if>
             <if test="userQueryReq.mail != null">
+                AND
                 mail = #{userQueryReq.mail}
             </if>
             <if test="userQueryReq.registerTimeStart != null">
+                AND
                 register_time &gt; #{userQueryReq.registerTimeStart}
             </if>
             <if test="userQueryReq.registerTimeEnd != null">
+                AND
                 register_time &lt; #{userQueryReq.registerTimeEnd}
             </if>
             <if test="userQueryReq.userType != null">
+                AND
                 user_type = #{userQueryReq.userType}
             </if>
             <if test="userQueryReq.userState != null">
+                AND
                 user_state = #{userQueryReq.userState}
             </if>
             <if test="userQueryReq.roleId != null">
+                AND
                 role_id = #{userQueryReq.roleId}
             </if>
         </where>

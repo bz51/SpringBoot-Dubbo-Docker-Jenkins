@@ -38,7 +38,6 @@ public interface OrderController {
      */
     @GetMapping("/sellerOrders")
     @Login
-    @Permission("orders:query")
     Result<List<OrdersEntity>> findOrdersForSeller(OrderQueryReq orderQueryReq, HttpServletRequest httpReq);
 
     /**
@@ -78,7 +77,6 @@ public interface OrderController {
      */
     @PutMapping("/delivery")
     @Login
-    @Permission("order:delivery")
     Result confirmDelivery(String orderId, String expressNo, HttpServletRequest httpReq);
 
     /**

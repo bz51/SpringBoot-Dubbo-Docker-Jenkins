@@ -39,6 +39,7 @@ public interface UserController {
      * @return 注册是否成功
      */
     @PostMapping("/register")
+    // TODO not test
     public Result register(RegisterReq registerReq, HttpServletResponse httpRsp);
 
 
@@ -60,6 +61,7 @@ public interface UserController {
     @PutMapping("/userState")
     @Login
     @Permission("userState:update")
+    // TODO not test
     public Result batchUpdateUserState(BatchReq<UserStateReq> userStateReqs);
 
     /**
@@ -80,6 +82,8 @@ public interface UserController {
     @Login
     @Permission("role:query")
     public Result<List<RoleEntity>> findRoles();
+
+    // TODO 添加创建角色
 
     /**
      * 删除指定角色

@@ -6,6 +6,7 @@ import com.gaoxi.entity.user.UserEntity;
 import com.gaoxi.exception.CommonBizException;
 import com.gaoxi.exception.ExpCodeEnum;
 import com.gaoxi.facade.redis.RedisService;
+import com.gaoxi.redis.RedisServiceTemp;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -43,7 +44,9 @@ public class UserUtil {
         }
 
         // 获取UserEntity
-        Object userEntity =  redisService.get(sessionID);
+//        Object userEntity =  redisService.get(sessionID);
+        // TODO 暂时使用本地redis
+        Object userEntity = RedisServiceTemp.userMap.get(sessionID);
         if (userEntity == null) {
             return null;
         }
