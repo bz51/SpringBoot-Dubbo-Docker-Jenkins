@@ -60,9 +60,9 @@ public interface ProductController {
      * @param prodQueryReq 产品查询请求
      * @return 产品查询结果
      */
-    @GetMapping("product")
-    @Login
-    @Permission("product:query")
+//    @GetMapping("product")
+//    @Login
+//    @Permission("product:query")
     public Result<List<ProductEntity>> findProducts(ProdQueryReq prodQueryReq);
 
     /**
