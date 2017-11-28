@@ -69,6 +69,11 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
+    public Result isLogin() {
+        return newSuccessResult();
+    }
+
+    @Override
     public Result<List<UserEntity>> findUsers(UserQueryReq userQueryReq) {
         // 查询
         List<UserEntity> userEntityList = userService.findUsers(userQueryReq);

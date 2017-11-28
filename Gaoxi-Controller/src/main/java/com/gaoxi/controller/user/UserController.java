@@ -42,6 +42,14 @@ public interface UserController {
     // TODO not test
     public Result register(RegisterReq registerReq, HttpServletResponse httpRsp);
 
+    /**
+     * 判断指定用户是否登录
+     * @return
+     */
+    @GetMapping("/isLogin")
+    @Login
+    public Result isLogin();
+
 
     /**
      * 查询用户信息
