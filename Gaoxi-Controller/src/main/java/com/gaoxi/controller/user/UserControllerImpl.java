@@ -22,6 +22,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+import static com.gaoxi.rsp.Result.newSuccessResult;
+
 /**
  * @Author 大闲人柴毛毛
  * @Date 2017/10/27 下午10:26
@@ -51,7 +53,7 @@ public class UserControllerImpl implements UserController {
 
         // 登录成功
         doLoginSuccess(userEntity, httpRsp);
-        return Result.newSuccessResult();
+        return Result.newSuccessResult(userEntity);
     }
 
 
@@ -63,7 +65,7 @@ public class UserControllerImpl implements UserController {
 
         // 登录成功
         doLoginSuccess(userEntity, httpRsp);
-        return Result.newSuccessResult();
+        return newSuccessResult();
     }
 
     @Override
@@ -72,7 +74,7 @@ public class UserControllerImpl implements UserController {
         List<UserEntity> userEntityList = userService.findUsers(userQueryReq);
 
         // 成功
-        return Result.newSuccessResult(userEntityList);
+        return newSuccessResult(userEntityList);
     }
 
     @Override
@@ -81,7 +83,7 @@ public class UserControllerImpl implements UserController {
         userService.batchUpdateUserState(userStateReqs);
 
         // 成功
-        return Result.newSuccessResult();
+        return newSuccessResult();
     }
 
     @Override
@@ -90,7 +92,7 @@ public class UserControllerImpl implements UserController {
         userService.createAdminUser(adminCreateReq);
 
         // 成功
-        return Result.newSuccessResult();
+        return newSuccessResult();
     }
 
     @Override
@@ -100,7 +102,7 @@ public class UserControllerImpl implements UserController {
         List<RoleEntity> roleEntityList = userService.findRoles();
 
         // 成功
-        return Result.newSuccessResult(roleEntityList);
+        return newSuccessResult(roleEntityList);
     }
 
     @Override
@@ -109,7 +111,7 @@ public class UserControllerImpl implements UserController {
         userService.deleteRole(roleId);
 
         // 成功
-        return Result.newSuccessResult();
+        return newSuccessResult();
     }
 
     @Override
@@ -118,7 +120,7 @@ public class UserControllerImpl implements UserController {
         userService.updateMenuOfRole(roleMenuReq);
 
         // 成功
-        return Result.newSuccessResult();
+        return newSuccessResult();
     }
 
     @Override
@@ -127,7 +129,7 @@ public class UserControllerImpl implements UserController {
         userService.updatePermissionOfRole(rolePermissionReq);
 
         // 成功
-        return Result.newSuccessResult();
+        return newSuccessResult();
     }
 
     @Override
@@ -136,7 +138,7 @@ public class UserControllerImpl implements UserController {
         List<PermissionEntity> permissionEntityList = userService.findPermissions();
 
         // 成功
-        return Result.newSuccessResult(permissionEntityList);
+        return newSuccessResult(permissionEntityList);
     }
 
     @Override
@@ -145,7 +147,7 @@ public class UserControllerImpl implements UserController {
         List<MenuEntity> menuEntityList = userService.findMenus();
 
         // 成功
-        return Result.newSuccessResult(menuEntityList);
+        return newSuccessResult(menuEntityList);
     }
 
     /**
