@@ -1,5 +1,6 @@
 package com.gaoxi.controller.user;
 
+import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.gaoxi.entity.user.MenuEntity;
 import com.gaoxi.entity.user.PermissionEntity;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -69,8 +71,10 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public Result isLogin() {
-        return newSuccessResult();
+    public Result isLogin(HttpServletRequest request) {
+        String sessionId = getSessionID(request);
+        UserEntity userEntity = getUserEntity(sessionId);
+        return newSuccessResult(userEntity);
     }
 
     @Override
@@ -172,6 +176,49 @@ public class UserControllerImpl implements UserController {
         // 将SessionID存入HTTP响应头
         Cookie cookie = new Cookie(sessionIdName, sessionID);
         httpRsp.addCookie(cookie);
+    }
+
+    /**
+     * 获取SessionID
+     * @param request 当前的请求对象
+     * @return SessionID的值
+     */
+    private String getSessionID(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+
+        // 遍历所有cookie，找出SessionID
+        String sessionID = null;
+        if (cookies!=null && cookies.length>0) {
+            for (Cookie cookie : cookies) {
+                if (sessionIdName.equals(cookie.getName())) {
+                    sessionID = cookie.getValue();
+                    break;
+                }
+            }
+        }
+
+        return sessionID;
+    }
+
+    /**
+     * 获取SessionID对应的用户信息
+     * @param sessionID
+     * @return
+     */
+    private UserEntity getUserEntity(String sessionID) {
+        // SessionID为空
+        if (StringUtils.isEmpty(sessionID)) {
+            return null;
+        }
+
+        // 获取UserEntity
+        // TODO 暂时存储本地
+//        Object userEntity = redisService.get(sessionID);
+        Object userEntity = RedisServiceTemp.userMap.get(sessionID);
+        if (userEntity==null) {
+            return null;
+        }
+        return (UserEntity) userEntity;
     }
 
 }

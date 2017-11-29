@@ -13,6 +13,7 @@ import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.PersistenceUnit;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public interface UserController {
      */
     @GetMapping("/isLogin")
     @Login
-    public Result isLogin();
+    public Result isLogin(HttpServletRequest request);
 
 
     /**
