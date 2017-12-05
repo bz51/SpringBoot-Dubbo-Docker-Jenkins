@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+import static com.gaoxi.rsp.Result.newFailureResult;
 import static com.gaoxi.rsp.Result.newSuccessResult;
 
 /**
@@ -74,6 +75,9 @@ public class UserControllerImpl implements UserController {
     public Result isLogin(HttpServletRequest request) {
         String sessionId = getSessionID(request);
         UserEntity userEntity = getUserEntity(sessionId);
+        if (userEntity==null) {
+            return newFailureResult();
+        }
         return newSuccessResult(userEntity);
     }
 
