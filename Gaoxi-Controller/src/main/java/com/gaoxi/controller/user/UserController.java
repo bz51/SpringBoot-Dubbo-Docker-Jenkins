@@ -34,6 +34,16 @@ public interface UserController {
     public Result login(LoginReq loginReq, HttpServletResponse httpRsp);
 
     /**
+     * 登出
+     * @param httpReq HTTP请求
+     * @param httpRsp HTTP响应
+     * @return 是否登出成功
+     */
+    @GetMapping("/logout")
+    @Login
+    public Result logout(HttpServletRequest httpReq, HttpServletResponse httpRsp);
+
+    /**
      * 注册
      * @param registerReq 注册请求
      * @param httpRsp HTTP响应

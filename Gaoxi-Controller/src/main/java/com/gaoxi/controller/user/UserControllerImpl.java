@@ -59,6 +59,30 @@ public class UserControllerImpl implements UserController {
         return Result.newSuccessResult(userEntity);
     }
 
+    @Override
+    public Result logout(HttpServletRequest httpReq, HttpServletResponse httpRsp) {
+
+        // 处理登出
+        doLogout(httpReq, httpRsp);
+
+        // 登出成功
+        return Result.newSuccessResult();
+    }
+
+    private void doLogout(HttpServletRequest httpReq, HttpServletResponse httpRsp) {
+        // 获取SessionID
+        String sessionID = getSessionID(httpReq);
+
+        // 将 SessionID-UserEntity 从Redis中移除
+        // TODO 暂时存储本地
+//        redisService.set(sessionID, userEntity, sessionExpireTime);
+        RedisServiceTemp.userMap.remove(sessionID);
+
+        // 将SessionID从HTTP响应头中删除
+        Cookie cookie = new Cookie(sessionIdName, null);
+        httpRsp.addCookie(cookie);
+    }
+
 
     @Override
     public Result register(RegisterReq registerReq, HttpServletResponse httpRsp) {
