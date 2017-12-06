@@ -1,9 +1,6 @@
 package com.gaoxi.user.dao;
 
-import com.gaoxi.entity.user.MenuEntity;
-import com.gaoxi.entity.user.PermissionEntity;
-import com.gaoxi.entity.user.RoleEntity;
-import com.gaoxi.entity.user.UserEntity;
+import com.gaoxi.entity.user.*;
 import com.gaoxi.req.user.RoleMenuReq;
 import com.gaoxi.req.user.RolePermissionReq;
 import com.gaoxi.req.user.UserQueryReq;
@@ -89,4 +86,16 @@ public interface UserDAO {
      */
     List<MenuEntity> findMenus();
 
+    /**
+     * 查询指定用户的地址信息
+     * @param userId 用户ID
+     * @return 地址信息列表
+     */
+    List<LocationEntity> findLocations(String userId);
+
+    /**
+     * 新增收货地址
+     * @param locationEntity 收货地址
+     */
+    void createLocation(LocationEntity locationEntity);
 }

@@ -40,6 +40,10 @@
             #{userId}
         </foreach>
     </update>
+    <insert id="createLocation">
+        INSERT INTO gaoxi.location (id, location, name, phone, post_code, user_id)
+        VALUES (#{id}, #{location}, #{name}, #{phone}, #{postCode}, #{userId} )
+    </insert>
 
     <delete id="deleteRole">
       DELETE FROM sys_role WHERE id = #{roleId}
@@ -143,6 +147,10 @@
 
     <select id="findMenus" resultType="com.gaoxi.entity.user.MenuEntity">
         SELECT * FROM sys_menu
+    </select>
+
+    <select id="findLocations" resultType="com.gaoxi.entity.user.LocationEntity">
+      SELECT  * FROM gaoxi.location WHERE gaoxi.location.user_id = #{userId}
     </select>
 
 

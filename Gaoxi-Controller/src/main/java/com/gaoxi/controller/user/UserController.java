@@ -2,10 +2,7 @@ package com.gaoxi.controller.user;
 
 import com.gaoxi.annotation.Login;
 import com.gaoxi.annotation.Permission;
-import com.gaoxi.entity.user.MenuEntity;
-import com.gaoxi.entity.user.PermissionEntity;
-import com.gaoxi.entity.user.RoleEntity;
-import com.gaoxi.entity.user.UserEntity;
+import com.gaoxi.entity.user.*;
 import com.gaoxi.req.BatchReq;
 import com.gaoxi.req.user.*;
 import com.gaoxi.rsp.Result;
@@ -151,5 +148,24 @@ public interface UserController {
     @Login
     @Permission("menu:query")
     public Result<List<MenuEntity>> findMenus();
+
+    /**
+     * 查询当前登录用户的所有地址信息
+     * @param httpReq HTTP请求
+     * @return 地址信息列表
+     */
+    @GetMapping("/location")
+    @Login
+    public Result<List<LocationEntity>> findLocations(HttpServletRequest httpReq);
+
+    /**
+     * 创建收货地址
+     * @param locationCreateReq 收货地址创建请求
+     * @param httpReq HTTP请求
+     * @return 收货地址的ID
+     */
+    @PostMapping("/location")
+    @Login
+    public Result<String> createLocation(LocationCreateReq locationCreateReq, HttpServletRequest httpReq);
 
 }

@@ -1,18 +1,14 @@
-package com.gaoxi.entity.user;
+package com.gaoxi.req.user;
 
-import java.io.Serializable;
+import com.gaoxi.req.AbsReq;
 
 /**
  * @author 大闲人柴毛毛
- * @date 2017/11/6 上午11:40
+ * @date 2017/12/6 下午4:07
  *
- * @description 地址信息
+ * @description 地址创建请求
  */
-public class LocationEntity implements Serializable{
-
-    /** 主键 */
-    private String id;
-
+public class LocationCreateReq extends AbsReq {
     /** 详细地址 */
     private String location;
 
@@ -24,16 +20,6 @@ public class LocationEntity implements Serializable{
 
     /** 邮编 */
     private String postCode;
-
-    private String userId;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getLocation() {
         return location;
@@ -67,23 +53,13 @@ public class LocationEntity implements Serializable{
         this.postCode = postCode;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
     @Override
     public String toString() {
-        return "LocationEntity{" +
-                "id='" + id + '\'' +
-                ", location='" + location + '\'' +
+        return "LocationCreateReq{" +
+                "location='" + location + '\'' +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", postCode='" + postCode + '\'' +
-                ", userId='" + userId + '\'' +
                 '}';
     }
 }

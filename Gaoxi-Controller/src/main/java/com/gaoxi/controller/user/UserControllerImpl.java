@@ -2,18 +2,19 @@ package com.gaoxi.controller.user;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.gaoxi.entity.user.MenuEntity;
-import com.gaoxi.entity.user.PermissionEntity;
-import com.gaoxi.entity.user.RoleEntity;
-import com.gaoxi.entity.user.UserEntity;
+import com.gaoxi.entity.user.*;
+import com.gaoxi.exception.CommonBizException;
+import com.gaoxi.exception.ExpCodeEnum;
 import com.gaoxi.facade.redis.RedisService;
 import com.gaoxi.facade.user.UserService;
 import com.gaoxi.redis.RedisServiceTemp;
 import com.gaoxi.req.BatchReq;
 import com.gaoxi.req.user.*;
 import com.gaoxi.rsp.Result;
+import com.gaoxi.util.UserUtil;
 import com.gaoxi.utils.KeyGenerator;
 import com.gaoxi.utils.RedisPrefixUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,6 +48,9 @@ public class UserControllerImpl implements UserController {
     /** HTTP Response中Session ID 的名字 */
     @Value("${session.SessionIdName}")
     private String sessionIdName;
+
+    @Autowired
+    private UserUtil userUtil;
 
     @Override
     public Result login(LoginReq loginReq, HttpServletResponse httpRsp) {
@@ -187,6 +191,29 @@ public class UserControllerImpl implements UserController {
         return newSuccessResult(menuEntityList);
     }
 
+    @Override
+    public Result<List<LocationEntity>> findLocations(HttpServletRequest httpReq) {
+        // 获取userId
+        String userId = getUserId(httpReq);
+
+        // 查询
+        List<LocationEntity> locationEntityList = userService.findLocations(userId);
+
+        return newSuccessResult(locationEntityList);
+    }
+
+    @Override
+    public Result<String> createLocation(LocationCreateReq locationCreateReq, HttpServletRequest httpReq) {
+        // 获取UserID
+        String userId = getUserId(httpReq);
+
+        // 新增
+        String locationId = userService.createLocation(locationCreateReq, userId);
+
+        // 新增成功
+        return newSuccessResult(locationId);
+    }
+
     /**
      * 处理登录成功
      * @param userEntity 用户信息
@@ -247,6 +274,22 @@ public class UserControllerImpl implements UserController {
             return null;
         }
         return (UserEntity) userEntity;
+    }
+
+
+
+    /**
+     * 获取用户ID
+     * @param httpReq HTTP请求
+     * @return 用户ID
+     */
+    private String getUserId(HttpServletRequest httpReq) {
+        UserEntity userEntity = userUtil.getUser(httpReq);
+        if (userEntity == null) {
+            throw new CommonBizException(ExpCodeEnum.UNLOGIN);
+        }
+
+        return userEntity.getId();
     }
 
 }

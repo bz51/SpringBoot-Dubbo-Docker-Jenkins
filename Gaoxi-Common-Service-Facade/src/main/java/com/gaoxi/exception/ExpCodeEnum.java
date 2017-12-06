@@ -39,6 +39,7 @@ public enum ExpCodeEnum implements Serializable {
     ROLEID_NULL(UserExpPrefix + "012", "roleId为空"),
     MENUIDLIST_NULL(UserExpPrefix + "013", "menuIdList为空"),
     PERMISSIONIDLIST_NULL(UserExpPrefix + "014", "permissionIdList为空"),
+    NAME_NULL(UserExpPrefix + "015", "name为空"),
 
     /** Product模块异常 */
     PRODUCT_NAME_NULL(ProdExpPrefix + "000", "产品名称为空"),

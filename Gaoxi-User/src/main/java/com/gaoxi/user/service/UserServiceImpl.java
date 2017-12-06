@@ -3,10 +3,7 @@ package com.gaoxi.user.service;
 import com.alibaba.dubbo.common.utils.CollectionUtils;
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Service;
-import com.gaoxi.entity.user.MenuEntity;
-import com.gaoxi.entity.user.PermissionEntity;
-import com.gaoxi.entity.user.RoleEntity;
-import com.gaoxi.entity.user.UserEntity;
+import com.gaoxi.entity.user.*;
 import com.gaoxi.enumeration.user.UserStateEnum;
 import com.gaoxi.enumeration.user.UserTypeEnum;
 import com.gaoxi.exception.CommonBizException;
@@ -19,6 +16,7 @@ import com.gaoxi.utils.KeyGenerator;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.IdGenerator;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -189,6 +187,76 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<MenuEntity> findMenus() {
         return userDAO.findMenus();
+    }
+
+    @Override
+    public List<LocationEntity> findLocations(String userId) {
+        return userDAO.findLocations(userId);
+    }
+
+    @Override
+    public String createLocation(LocationCreateReq locationCreateReq, String userId) {
+        // 参数校验
+        checkParam(locationCreateReq, userId);
+
+        // 构造LocationEntity
+        LocationEntity locationEntity = buildLocationEntity(locationCreateReq, userId);
+
+        // 新增
+        userDAO.createLocation(locationEntity);
+
+        // 返回ID
+        return locationEntity.getId();
+    }
+
+    private void checkParam(LocationCreateReq locationCreateReq, String userId) {
+        // 参数不能为空
+        if (locationCreateReq==null) {
+            throw new CommonBizException(ExpCodeEnum.PARAM_NULL);
+        }
+
+        // UserId不能为空
+        if (StringUtils.isEmpty(userId)) {
+            throw new CommonBizException(ExpCodeEnum.USERID_NULL);
+        }
+
+        // 地址不能为空
+        if (StringUtils.isEmpty(locationCreateReq.getLocation())) {
+            throw new CommonBizException(ExpCodeEnum.LOCATION_NULL);
+        }
+
+        // 电话不能为空
+        if (StringUtils.isEmpty(locationCreateReq.getPhone())) {
+            throw new CommonBizException(ExpCodeEnum.PHONE_NULL);
+        }
+
+        // 姓名不能为空
+        if (StringUtils.isEmpty(locationCreateReq.getName())) {
+            throw new CommonBizException(ExpCodeEnum.NAME_NULL);
+        }
+    }
+
+    /**
+     * 构建用于新增location的LocationEntity
+     * @param locationCreateReq 收货地址创建请求
+     * @param userId 用户ID
+     * @return
+     */
+    private LocationEntity buildLocationEntity(LocationCreateReq locationCreateReq, String userId) {
+        LocationEntity locationEntity = new LocationEntity();
+
+        // 生成ID
+        String id = KeyGenerator.getKey();
+
+        // 设置参数
+        locationEntity.setId(id);
+        locationEntity.setLocation(locationCreateReq.getLocation());
+        locationEntity.setName(locationCreateReq.getName());
+        locationEntity.setPhone(locationCreateReq.getPhone());
+        locationEntity.setPostCode(locationCreateReq.getPostCode());
+        locationEntity.setUserId(userId);
+
+        return locationEntity;
     }
 
     private void checkParam(RolePermissionReq rolePermissionReq) {

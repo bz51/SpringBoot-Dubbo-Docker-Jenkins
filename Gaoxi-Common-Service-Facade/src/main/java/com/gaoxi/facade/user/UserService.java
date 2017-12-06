@@ -1,9 +1,6 @@
 package com.gaoxi.facade.user;
 
-import com.gaoxi.entity.user.MenuEntity;
-import com.gaoxi.entity.user.PermissionEntity;
-import com.gaoxi.entity.user.RoleEntity;
-import com.gaoxi.entity.user.UserEntity;
+import com.gaoxi.entity.user.*;
 import com.gaoxi.req.BatchReq;
 import com.gaoxi.req.user.*;
 
@@ -38,4 +35,7 @@ public interface UserService {
 
     List<MenuEntity> findMenus();
 
+    List<LocationEntity> findLocations(String userId);
+
+    String createLocation(LocationCreateReq locationCreateReq, String userId);
 }
