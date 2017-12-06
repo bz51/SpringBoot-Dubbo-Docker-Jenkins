@@ -59,6 +59,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<OrdersEntity> findOrdersForAdmin(OrderQueryReq orderQueryReq) {
+        // 参数校验
+        checkParam(orderQueryReq, ExpCodeEnum.ORDERQUERYREQ_NULL);
+
+        // 查询
+        return orderDAO.findOrders(orderQueryReq);
+    }
+
+    @Override
     public String placeOrder(OrderInsertReq orderInsertReq, String buyerId) {
         // 参数校验
         checkParam(orderInsertReq, ExpCodeEnum.ORDER_INSERT_REQ_NULL);

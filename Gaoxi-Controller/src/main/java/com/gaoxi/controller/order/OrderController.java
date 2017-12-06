@@ -41,6 +41,16 @@ public interface OrderController {
     Result<List<OrdersEntity>> findOrdersForSeller(OrderQueryReq orderQueryReq, HttpServletRequest httpReq);
 
     /**
+     * 订单查询(供管理员查询)
+     * @param orderQueryReq 订单查询请求
+     * @param httpReq HTTP请求
+     * @return 订单查询结果
+     */
+    @GetMapping("/adminOrders")
+    @Login
+    Result<List<OrdersEntity>> findOrdersForAdmin(OrderQueryReq orderQueryReq, HttpServletRequest httpReq);
+
+    /**
      * 下单(包含支付)
      * @param orderInsertReq 下单请求
      * @param httpReq HTTP请求

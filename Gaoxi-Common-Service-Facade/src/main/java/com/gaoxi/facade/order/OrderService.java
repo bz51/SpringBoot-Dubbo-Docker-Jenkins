@@ -18,6 +18,8 @@ public interface OrderService {
 
     List<OrdersEntity> findOrdersForSeller(OrderQueryReq orderQueryReq, String sellerId);
 
+    List<OrdersEntity> findOrdersForAdmin(OrderQueryReq orderQueryReq);
+
     String placeOrder(OrderInsertReq orderInsertReq, String buyerId);
 
     String pay(String orderId, String userId);
@@ -27,4 +29,5 @@ public interface OrderService {
     void confirmDelivery(String orderId, String expressNo, String userId);
 
     void confirmReceive(String orderId, String userId);
+
 }

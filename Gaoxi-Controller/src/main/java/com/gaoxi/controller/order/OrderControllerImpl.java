@@ -56,6 +56,15 @@ public class OrderControllerImpl implements OrderController {
     }
 
     @Override
+    public Result<List<OrdersEntity>> findOrdersForAdmin(OrderQueryReq orderQueryReq, HttpServletRequest httpReq) {
+        // 查询
+        List<OrdersEntity> ordersEntityList = orderService.findOrdersForAdmin(orderQueryReq);
+
+        // 查询成功
+        return Result.newSuccessResult(ordersEntityList);
+    }
+
+    @Override
     public Result<String> placeOrder(OrderInsertReq orderInsertReq, HttpServletRequest httpReq) {
         // 获取买家ID
         String buyerId = getUserId(httpReq);
