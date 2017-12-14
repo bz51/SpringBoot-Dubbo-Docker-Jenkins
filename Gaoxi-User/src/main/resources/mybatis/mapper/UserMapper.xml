@@ -42,20 +42,21 @@
     </update>
     <update id="updateLocation">
       UPDATE location
-      set
-        <if test="location != null">
-            location = #{location},
+      <set>
+        <if test="locationUpdateReq.location != null">
+            location = #{locationUpdateReq.location},
         </if>
-        <if test="name != null">
-            name = #{name},
+        <if test="locationUpdateReq.name != null">
+            name = #{locationUpdateReq.name},
         </if>
-        <if test="phone != null">
-            phone = #{phone},
+        <if test="locationUpdateReq.phone != null">
+            phone = #{locationUpdateReq.phone},
         </if>
-        <if test="postCode != null">
-            post_code = #{postCode},
+        <if test="locationUpdateReq.postCode != null">
+            post_code = #{locationUpdateReq.postCode},
         </if>
-        WHERE id = #{locationId} AND user_id = #{userId}
+      </set>
+        WHERE id = #{locationUpdateReq.locationId} AND user_id = #{userId}
     </update>
     <insert id="createLocation">
         INSERT INTO gaoxi.location (id, location, name, phone, post_code, user_id)

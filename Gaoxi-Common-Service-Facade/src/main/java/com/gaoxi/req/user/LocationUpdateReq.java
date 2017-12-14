@@ -1,12 +1,14 @@
 package com.gaoxi.req.user;
 
+import com.gaoxi.req.AbsReq;
+
 /**
  * @author 大闲人柴毛毛
  * @date 2017/12/14 上午9:31
  *
  * @description 收货地址更新请求
  */
-public class LocationUpdateReq {
+public class LocationUpdateReq extends AbsReq {
     /** 收货地址ID */
     private String locationId;
 

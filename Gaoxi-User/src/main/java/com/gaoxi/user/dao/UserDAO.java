@@ -100,7 +100,7 @@ public interface UserDAO {
      */
     void createLocation(LocationEntity locationEntity);
 
-    void deleteLocation(String locationId, String userId);
+    void deleteLocation(@Param("locationId") String locationId, @Param("userId") String userId);
 
     /**
      * 修改收货地址
