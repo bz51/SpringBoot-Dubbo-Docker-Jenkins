@@ -38,4 +38,8 @@ public interface UserService {
     List<LocationEntity> findLocations(String userId);
 
     String createLocation(LocationCreateReq locationCreateReq, String userId);
+
+    void deleteLocation(String locationId, String userId);
+
+    void modifyLocation(LocationUpdateReq locationUpdateReq, String userId);
 }

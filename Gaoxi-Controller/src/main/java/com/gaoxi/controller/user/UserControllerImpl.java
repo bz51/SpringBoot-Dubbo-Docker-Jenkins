@@ -214,6 +214,30 @@ public class UserControllerImpl implements UserController {
         return newSuccessResult(locationId);
     }
 
+    @Override
+    public Result deleteLocation(String locationId, HttpServletRequest httpReq) {
+        // 获取UserID
+        String userId = getUserId(httpReq);
+
+        // 删除
+        userService.deleteLocation(locationId, userId);
+
+        // 删除成功
+        return newSuccessResult();
+    }
+
+    @Override
+    public Result modifyLocation(LocationUpdateReq locationUpdateReq, HttpServletRequest httpReq) {
+        // 获取UserID
+        String userId = getUserId(httpReq);
+
+        // 修改收货地址
+        userService.modifyLocation(locationUpdateReq, userId);
+
+        // 修改成功
+        return newSuccessResult();
+    }
+
     /**
      * 处理登录成功
      * @param userEntity 用户信息

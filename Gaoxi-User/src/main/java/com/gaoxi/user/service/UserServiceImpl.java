@@ -209,6 +209,43 @@ public class UserServiceImpl implements UserService {
         return locationEntity.getId();
     }
 
+    @Override
+    public void deleteLocation(String locationId, String userId) {
+        // 参数校验
+        checkParam(locationId, userId);
+
+        userDAO.deleteLocation(locationId, userId);
+    }
+
+    @Override
+    public void modifyLocation(LocationUpdateReq locationUpdateReq, String userId) {
+        // 参数校验
+        checkParam(locationUpdateReq, userId);
+
+        // 修改收货地址
+        userDAO.updateLocation(locationUpdateReq, userId);
+    }
+
+    private void checkParam(LocationUpdateReq locationUpdateReq, String userId) {
+        if (locationUpdateReq == null) {
+            throw new CommonBizException(ExpCodeEnum.LOCATIONUPDATEREQ_NULL);
+        }
+
+        // UserId不能为空
+        if (StringUtils.isEmpty(userId)) {
+            throw new CommonBizException(ExpCodeEnum.USERID_NULL);
+        }
+
+        // LocationUpdateReq中的参数不能全为空
+        if (StringUtils.isEmpty(locationUpdateReq.getLocation())
+                && StringUtils.isEmpty(locationUpdateReq.getLocationId())
+                && StringUtils.isEmpty(locationUpdateReq.getName())
+                && StringUtils.isEmpty(locationUpdateReq.getPhone())
+                && StringUtils.isEmpty(locationUpdateReq.getPostCode())) {
+            throw new CommonBizException(ExpCodeEnum.LOCATIONUPDATEREQ_NULL);
+        }
+    }
+
     private void checkParam(LocationCreateReq locationCreateReq, String userId) {
         // 参数不能为空
         if (locationCreateReq==null) {
@@ -233,6 +270,18 @@ public class UserServiceImpl implements UserService {
         // 姓名不能为空
         if (StringUtils.isEmpty(locationCreateReq.getName())) {
             throw new CommonBizException(ExpCodeEnum.NAME_NULL);
+        }
+    }
+
+    private void checkParam(String locationId, String userId) {
+        // locationId不能为空
+        if (StringUtils.isEmpty(locationId)) {
+            throw new CommonBizException(ExpCodeEnum.LOCATIONID_NULL);
+        }
+
+        // UserId不能为空
+        if (StringUtils.isEmpty(userId)) {
+            throw new CommonBizException(ExpCodeEnum.USERID_NULL);
         }
     }
 

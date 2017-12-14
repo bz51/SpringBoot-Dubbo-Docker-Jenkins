@@ -168,4 +168,24 @@ public interface UserController {
     @Login
     public Result<String> createLocation(LocationCreateReq locationCreateReq, HttpServletRequest httpReq);
 
+    /**
+     * 删除收货地址
+     * @param locationId 收货地址的ID
+     * @param httpReq HTTP请求
+     * @return 是否删除成功
+     */
+    @DeleteMapping("/location")
+    @Login
+    public Result deleteLocation(String locationId, HttpServletRequest httpReq);
+
+    /**
+     * 修改收货地址
+     * @param locationUpdateReq 收货地址修改请求
+     * @param httpReq HTTP请求
+     * @return 是否修改成功
+     */
+    @PutMapping("/location")
+    @Login
+    public Result modifyLocation(LocationUpdateReq locationUpdateReq, HttpServletRequest httpReq);
+
 }

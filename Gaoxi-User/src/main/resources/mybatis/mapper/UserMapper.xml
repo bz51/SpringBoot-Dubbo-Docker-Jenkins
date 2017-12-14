@@ -40,6 +40,23 @@
             #{userId}
         </foreach>
     </update>
+    <update id="updateLocation">
+      UPDATE location
+      set
+        <if test="location != null">
+            location = #{location},
+        </if>
+        <if test="name != null">
+            name = #{name},
+        </if>
+        <if test="phone != null">
+            phone = #{phone},
+        </if>
+        <if test="postCode != null">
+            post_code = #{postCode},
+        </if>
+        WHERE id = #{locationId} AND user_id = #{userId}
+    </update>
     <insert id="createLocation">
         INSERT INTO gaoxi.location (id, location, name, phone, post_code, user_id)
         VALUES (#{id}, #{location}, #{name}, #{phone}, #{postCode}, #{userId} )
@@ -55,6 +72,9 @@
 
     <delete id="deleteRoleMenu">
         DELETE FROM sys_role_menu WHERE role_id = #{roleId}
+    </delete>
+    <delete id="deleteLocation">
+        DELETE FROM location where id = #{locationId} AND user_id = #{userId}
     </delete>
 
 

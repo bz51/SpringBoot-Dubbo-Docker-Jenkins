@@ -1,6 +1,7 @@
 package com.gaoxi.user.dao;
 
 import com.gaoxi.entity.user.*;
+import com.gaoxi.req.user.LocationUpdateReq;
 import com.gaoxi.req.user.RoleMenuReq;
 import com.gaoxi.req.user.RolePermissionReq;
 import com.gaoxi.req.user.UserQueryReq;
@@ -98,4 +99,13 @@ public interface UserDAO {
      * @param locationEntity 收货地址
      */
     void createLocation(LocationEntity locationEntity);
+
+    void deleteLocation(String locationId, String userId);
+
+    /**
+     * 修改收货地址
+     * @param locationUpdateReq 收货地址修改请求
+     * @param userId 用户ID
+     */
+    void updateLocation(@Param("locationUpdateReq") LocationUpdateReq locationUpdateReq, @Param("userId") String userId);
 }
