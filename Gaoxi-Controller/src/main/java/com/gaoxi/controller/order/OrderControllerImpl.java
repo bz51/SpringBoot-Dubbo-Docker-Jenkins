@@ -13,6 +13,7 @@ import com.gaoxi.req.order.OrderInsertReq;
 import com.gaoxi.req.order.OrderQueryReq;
 import com.gaoxi.rsp.Result;
 import com.gaoxi.util.UserUtil;
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -87,7 +88,14 @@ public class OrderControllerImpl implements OrderController {
     private void transferProdIdCountJson(OrderInsertReq orderInsertReq) {
         if (orderInsertReq != null && StringUtils.isNotEmpty(orderInsertReq.getProdIdCountJson())) {
             try {
-                orderInsertReq.setProdIdCountMap(JSON.parse(orderInsertReq.getProdIdCountJson(), Map.class));
+                Map<String, Long> prodIdCountMapPre = JSON.parse(orderInsertReq.getProdIdCountJson(), Map.class);
+                Map<String, Integer> prodIdCountMap = Maps.newHashMap();
+                if (prodIdCountMapPre.size() > 0) {
+                    for (String key : prodIdCountMapPre.keySet()) {
+                        prodIdCountMap.put(key, (Integer) prodIdCountMapPre.get(key).intValue());
+                    }
+                }
+                orderInsertReq.setProdIdCountMap(prodIdCountMap);
             } catch (ParseException e) {
                 throw new CommonBizException(ExpCodeEnum.JSONERROR);
             }
