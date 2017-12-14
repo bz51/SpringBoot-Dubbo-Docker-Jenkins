@@ -17,6 +17,7 @@ public class OrderInsertReq extends AbsReq {
     private String userId;
 
     /** 产品ID-数量 */
+    private String prodIdCountJson;
     private Map<String, Integer> prodIdCountMap;
     private Map<ProductEntity, Integer> prodEntityCountMap;
 
@@ -89,10 +90,19 @@ public class OrderInsertReq extends AbsReq {
         this.prodEntityCountMap = prodEntityCountMap;
     }
 
+    public String getProdIdCountJson() {
+        return prodIdCountJson;
+    }
+
+    public void setProdIdCountJson(String prodIdCountJson) {
+        this.prodIdCountJson = prodIdCountJson;
+    }
+
     @Override
     public String toString() {
         return "OrderInsertReq{" +
                 "userId='" + userId + '\'' +
+                ", prodIdCountJson='" + prodIdCountJson + '\'' +
                 ", prodIdCountMap=" + prodIdCountMap +
                 ", prodEntityCountMap=" + prodEntityCountMap +
                 ", payModeCode=" + payModeCode +

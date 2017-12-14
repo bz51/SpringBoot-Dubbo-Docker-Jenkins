@@ -1,5 +1,8 @@
 package com.gaoxi.controller.order;
 
+import com.alibaba.dubbo.common.json.JSON;
+import com.alibaba.dubbo.common.json.ParseException;
+import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.gaoxi.entity.order.OrdersEntity;
 import com.gaoxi.entity.user.UserEntity;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 大闲人柴毛毛
@@ -66,6 +70,10 @@ public class OrderControllerImpl implements OrderController {
 
     @Override
     public Result<String> placeOrder(OrderInsertReq orderInsertReq, HttpServletRequest httpReq) {
+
+        // 将prodIdCountJson——>prodIdCountMap
+        transferProdIdCountJson(orderInsertReq);
+
         // 获取买家ID
         String buyerId = getUserId(httpReq);
 
@@ -74,6 +82,17 @@ public class OrderControllerImpl implements OrderController {
 
         // 成功
         return Result.newSuccessResult(html);
+    }
+
+    private void transferProdIdCountJson(OrderInsertReq orderInsertReq) {
+        if (orderInsertReq != null && StringUtils.isNotEmpty(orderInsertReq.getProdIdCountJson())) {
+            try {
+                orderInsertReq.setProdIdCountMap(JSON.parse(orderInsertReq.getProdIdCountJson(), Map.class));
+            } catch (ParseException e) {
+                throw new CommonBizException(ExpCodeEnum.JSONERROR);
+            }
+        }
+
     }
 
     @Override
