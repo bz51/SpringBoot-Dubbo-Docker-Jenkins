@@ -49,6 +49,10 @@
                 <result property="stock" column="product_stock"/>
                 <result property="sales" column="product_sales"/>
                 <result property="weight" column="product_weight"/>
+                <collection property="prodImageEntityList" ofType="com.gaoxi.entity.product.ProdImageEntity">
+                    <result property="id" column="image_id"/>
+                    <result property="imageURL" column="image_url"/>
+                </collection>
             </association>
         </collection>
         <collection property="orderStateTimeList" ofType="com.gaoxi.entity.order.OrderStateTimeEntity">
@@ -100,6 +104,10 @@
          product.sales as product_sales,
          product.weight as product_weight,
 
+--       prod_image表
+         image.prod_image_url as image_url,
+         image.id as image_id,
+
 --       order_state_time表
          order_state_time.order_state as order_state_time_order_state,
          order_state_time.times as order_state_time_time,
@@ -128,6 +136,7 @@
         LEFT JOIN gaoxi.order_state_time as order_state_time ON order_state_time.order_id=orders.id
         LEFT JOIN gaoxi.receipt as receipt ON receipt.id=orders.receipt_id
         LEFT JOIN gaoxi.location as location ON location.id=orders.location_id
+        LEFT JOIN gaoxi.prod_image as image ON image.product_id=product.id
 
 
       <where>
