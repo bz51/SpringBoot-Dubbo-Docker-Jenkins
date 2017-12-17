@@ -120,6 +120,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     public Result batchUpdateUserState(BatchReq<UserStateReq> userStateReqs) {
+
         // 批量更新
         userService.batchUpdateUserState(userStateReqs);
 

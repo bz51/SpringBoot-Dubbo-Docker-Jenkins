@@ -5,13 +5,14 @@ import com.gaoxi.entity.product.CategoryEntity;
 import com.gaoxi.entity.product.ProdImageEntity;
 import com.gaoxi.entity.user.UserEntity;
 import com.gaoxi.enumeration.product.ProdStateEnum;
+import com.gaoxi.req.AbsReq;
 
 import java.util.List;
 
 /**
  * Created by lihang on 2017/11/4.
  */
-public class ProdInsertReq {
+public class ProdInsertReq extends AbsReq {
     /** 产品ID（主键） */
     private String id;
 

@@ -1,11 +1,12 @@
 package com.gaoxi.req.product;
 
 import com.gaoxi.entity.user.UserEntity;
+import com.gaoxi.req.AbsReq;
 
 /**
  * Created by lihang on 2017/11/5.
  */
-public class BrandInsertReq {
+public class BrandInsertReq extends AbsReq {
     /** 主键 */
     private String id;
 

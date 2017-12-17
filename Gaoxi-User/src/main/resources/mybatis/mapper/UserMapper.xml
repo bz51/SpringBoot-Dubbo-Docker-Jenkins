@@ -171,7 +171,13 @@
     </select>
 
     <select id="findLocations" resultType="com.gaoxi.entity.user.LocationEntity">
-      SELECT  * FROM gaoxi.location WHERE gaoxi.location.user_id = #{userId}
+      SELECT  location.id as id,
+              location.location as location,
+              location.user_id as userId,
+              location.post_code as postCode,
+              location.phone as phone,
+              location.name as name
+      FROM gaoxi.location as location WHERE gaoxi.location.user_id = #{userId}
     </select>
 
 
