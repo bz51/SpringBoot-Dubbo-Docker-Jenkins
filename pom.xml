@@ -61,7 +61,6 @@
 			<artifactId>spring-boot-starter-dubbo</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-
 		<!-- gaoxi-common-service-facade -->
 		<dependency>
 			<groupId>com.gaoxi</groupId>
